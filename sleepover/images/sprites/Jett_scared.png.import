@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7bylgomron4s"
-path="res://.godot/imported/Jett_scared.png-169a46f693075120cd30a2a0706fe0d4.ctex"
+path="res://.godot/imported/Jett_scared.png-b349f5d058aa1cd8c3291a342c30c524.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/sprites/jett/Jett_scared.png"
-dest_files=["res://.godot/imported/Jett_scared.png-169a46f693075120cd30a2a0706fe0d4.ctex"]
+source_file="res://images/sprites/Jett_scared.png"
+dest_files=["res://.godot/imported/Jett_scared.png-b349f5d058aa1cd8c3291a342c30c524.ctex"]
 
 [params]
 

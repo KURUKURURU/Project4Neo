@@ -1,17 +1,18 @@
 extends Node2D
-var choice: int
+@onready var talkUI = $talking_ui
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	await talkUI._speak("Jett", "Hello. Nice to finally meet you.", "What?", "Oh, em, are you a friend of Gordon?", "")
+	if talkUI.choice == 1:
+		talkUI._emote("Jett", "smile")
+		talkUI._speak("You", "What? Who're you?", "", "", "")
+	elif talkUI.choice == 2:
+		talkUI._emote("Jett", "chuckle")
+		talkUI._speak("You", "You know Gordon I assume.", "", "", "")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func op1() -> void:
-	if choice == 1:
-		pass

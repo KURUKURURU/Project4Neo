@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7lorgkou7u3y"
-path="res://.godot/imported/Jett_smile.png-2c828fde493d6838701fc38931976df6.ctex"
+uid="uid://dellhv302di54"
+path="res://.godot/imported/Jett_neutral.png-fd86e7d8a979c5eab46c6aea630d54d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/sprites/jett/Jett_smile.png"
-dest_files=["res://.godot/imported/Jett_smile.png-2c828fde493d6838701fc38931976df6.ctex"]
+source_file="res://images/sprites/Jett_neutral.png"
+dest_files=["res://.godot/imported/Jett_neutral.png-fd86e7d8a979c5eab46c6aea630d54d0.ctex"]
 
 [params]
 

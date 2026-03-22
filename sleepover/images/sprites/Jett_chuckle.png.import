@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dellhv302di54"
-path="res://.godot/imported/Jett_neutral.png-730df4a4c52cbd45fa825f0e2ccc09b1.ctex"
+uid="uid://cb41gsenswbb7"
+path="res://.godot/imported/Jett_chuckle.png-67fad338402d4321309fb3006981469b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/sprites/jett/Jett_neutral.png"
-dest_files=["res://.godot/imported/Jett_neutral.png-730df4a4c52cbd45fa825f0e2ccc09b1.ctex"]
+source_file="res://images/sprites/Jett_chuckle.png"
+dest_files=["res://.godot/imported/Jett_chuckle.png-67fad338402d4321309fb3006981469b.ctex"]
 
 [params]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ci64unodp0266"]
+[gd_scene load_steps=17 format=3 uid="uid://ci64unodp0266"]
 
 [ext_resource type="PackedScene" uid="uid://bphofdfvsu4hb" path="res://scenes/tools/ui_rect.tscn" id="1_w8cav"]
 [ext_resource type="Script" uid="uid://cye45sdmr3t4c" path="res://scenes/tools/talking_ui.gd" id="1_yy8gy"]
 [ext_resource type="PackedScene" uid="uid://cd4lrywcx1px4" path="res://scenes/jet.tscn" id="2_ai47c"]
 [ext_resource type="Texture2D" uid="uid://bfpk6usfoq3ud" path="res://images/reply.png" id="2_anbk1"]
 [ext_resource type="Theme" uid="uid://dyj4gg1j5253" path="res://themes/talking_ui.tres" id="3_ai47c"]
+[ext_resource type="Script" uid="uid://cmf1t2qa52q5q" path="res://scenes/jet.gd" id="3_pjdk3"]
 [ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="3_yy8gy"]
 [ext_resource type="FontFile" uid="uid://ca3gk8bp6b1r1" path="res://fonts/terminal-grotesque.ttf" id="4_pjdk3"]
 
@@ -98,6 +99,42 @@ tracks/7/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("reply:self_modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("selection:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("reply:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ai47c"]
 resource_name = "enlarge"
@@ -189,9 +226,22 @@ tracks/7/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("reply:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_yy8gy"]
 resource_name = "normal"
+loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -235,6 +285,18 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(2),
 "points": PackedFloat32Array(796, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("reply:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_pjdk3"]
@@ -283,6 +345,30 @@ tracks/3/keys = {
 "points": PackedFloat32Array(796, 0, 0, 0.16111112, 0, 796, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.96666664)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("reply:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("selection:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljcuq"]
 _data = {
@@ -329,9 +415,10 @@ _data = {
 [node name="talking_ui" type="Node2D"]
 script = ExtResource("1_yy8gy")
 
-[node name="Jet" parent="." instance=ExtResource("2_ai47c")]
+[node name="Sprite" parent="." instance=ExtResource("2_ai47c")]
 texture_filter = 1
 position = Vector2(623, 634)
+script = ExtResource("3_pjdk3")
 
 [node name="UI_RECT" parent="." instance=ExtResource("1_w8cav")]
 self_modulate = Color(0.5584722, 1.0909963, 0.32549307, 1)
@@ -365,7 +452,7 @@ text = "Jet"
 scroll_active = false
 
 [node name="reply" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+visible = false
 offset_left = 1170.0
 offset_top = 670.0
 offset_right = 1581.0
@@ -375,6 +462,7 @@ mouse_filter = 2
 texture = ExtResource("2_anbk1")
 
 [node name="selection" type="VBoxContainer" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 1236.0
 offset_top = 670.0
