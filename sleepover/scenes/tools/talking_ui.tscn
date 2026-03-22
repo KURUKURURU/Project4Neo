@@ -1,0 +1,414 @@
+[gd_scene load_steps=16 format=3 uid="uid://ci64unodp0266"]
+
+[ext_resource type="PackedScene" uid="uid://bphofdfvsu4hb" path="res://scenes/tools/ui_rect.tscn" id="1_w8cav"]
+[ext_resource type="Script" uid="uid://cye45sdmr3t4c" path="res://scenes/tools/talking_ui.gd" id="1_yy8gy"]
+[ext_resource type="PackedScene" uid="uid://cd4lrywcx1px4" path="res://scenes/jet.tscn" id="2_ai47c"]
+[ext_resource type="Texture2D" uid="uid://bfpk6usfoq3ud" path="res://images/reply.png" id="2_anbk1"]
+[ext_resource type="Theme" uid="uid://dyj4gg1j5253" path="res://themes/talking_ui.tres" id="3_ai47c"]
+[ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="3_yy8gy"]
+[ext_resource type="FontFile" uid="uid://ca3gk8bp6b1r1" path="res://fonts/terminal-grotesque.ttf" id="4_pjdk3"]
+
+[sub_resource type="Animation" id="Animation_nl7kj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_RECT:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1287.14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI_RECT:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(356, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI_RECT:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(198, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_RECT:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(796, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("reply:self_modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("reply:self_modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("reply:self_modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("reply:self_modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ai47c"]
+resource_name = "enlarge"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_RECT:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(256, 0, 0, 0.16666667, -9.666667, 198, -1.1666666, 5, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI_RECT:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(796, 0, 0, 0.16666667, 0, 796, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI_RECT:size:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1237.9283, 0, 0, 0.16666667, 8.201945, 1287.14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_RECT:size:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(356, 0, 0, 0.16666667, 0, 356, -0.25, 0, 0.23333335, -22),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("reply:self_modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("reply:self_modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("reply:self_modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("reply:self_modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_yy8gy"]
+resource_name = "normal"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_RECT:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(1031.7484, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI_RECT:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(356, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI_RECT:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_RECT:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(796, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_pjdk3"]
+resource_name = "shrink"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_RECT:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1310.0488, 0, 0, 0.16111112, -46.383408, 1031.7484, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.96666664)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI_RECT:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(356, 0, 0, 0.16111112, 0, 356, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.96666664)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI_RECT:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(191.99998, 0, 0, 0.16111112, 10.66667, 256, -1.2666667, 1.5, 0.25, 0),
+"times": PackedFloat32Array(0, 0.96666664)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_RECT:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(796, 0, 0, 0.16111112, 0, 796, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.96666664)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljcuq"]
+_data = {
+&"RESET": SubResource("Animation_nl7kj"),
+&"enlarge": SubResource("Animation_ai47c"),
+&"normal": SubResource("Animation_yy8gy"),
+&"shrink": SubResource("Animation_pjdk3")
+}
+
+[sub_resource type="Animation" id="Animation_r1em3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mainText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ljcuq"]
+resource_name = "type"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mainText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j03vm"]
+_data = {
+&"RESET": SubResource("Animation_r1em3"),
+&"type": SubResource("Animation_ljcuq")
+}
+
+[node name="talking_ui" type="Node2D"]
+script = ExtResource("1_yy8gy")
+
+[node name="Jet" parent="." instance=ExtResource("2_ai47c")]
+texture_filter = 1
+position = Vector2(623, 634)
+
+[node name="UI_RECT" parent="." instance=ExtResource("1_w8cav")]
+self_modulate = Color(0.5584722, 1.0909963, 0.32549307, 1)
+offset_left = 198.0
+offset_top = 796.0
+offset_right = 1485.14
+offset_bottom = 1152.0
+scale = Vector2(1.1785818, 0.70139295)
+
+[node name="mainText" type="RichTextLabel" parent="."]
+offset_left = 296.0
+offset_top = 888.0
+offset_right = 1089.5488
+offset_bottom = 1032.0
+scale = Vector2(1.2067562, 0.8871272)
+theme = ExtResource("3_ai47c")
+text = "Hello! Haven't met you before."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="name" type="RichTextLabel" parent="."]
+offset_left = 295.99997
+offset_top = 816.0
+offset_right = 1089.5488
+offset_bottom = 864.0
+scale = Vector2(1.2399994, 1)
+theme = ExtResource("3_ai47c")
+theme_override_fonts/normal_font = ExtResource("4_pjdk3")
+theme_override_font_sizes/normal_font_size = 49
+text = "Jet"
+scroll_active = false
+
+[node name="reply" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1170.0
+offset_top = 670.0
+offset_right = 1581.0
+offset_bottom = 1050.0
+scale = Vector2(1.1833194, 0.9845594)
+mouse_filter = 2
+texture = ExtResource("2_anbk1")
+
+[node name="selection" type="VBoxContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1236.0
+offset_top = 670.0
+offset_right = 1536.0
+offset_bottom = 904.4323
+scale = Vector2(1.098102, 1.098102)
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="option" parent="selection" instance=ExtResource("3_yy8gy")]
+layout_mode = 2
+display = "Hello."
+design = 1
+
+[node name="option2" parent="selection" instance=ExtResource("3_yy8gy")]
+layout_mode = 2
+display = "????"
+design = 1
+
+[node name="option3" parent="selection" instance=ExtResource("3_yy8gy")]
+layout_mode = 2
+display = "Why are you following me?"
+design = 3
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ljcuq")
+}
+
+[node name="text_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j03vm")
+}
+
+[connection signal="activate" from="selection/option" to="." method="option1"]
+[connection signal="activate" from="selection/option2" to="." method="option2"]
+[connection signal="activate" from="selection/option3" to="." method="option3"]

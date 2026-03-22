@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bphofdfvsu4hb"]
+
+[ext_resource type="Texture2D" uid="uid://d00m1xqro51b2" path="res://images/slice2.png" id="1_kk214"]
+
+[node name="UI_RECT" type="NinePatchRect"]
+texture_filter = 1
+offset_right = 777.83704
+offset_bottom = 269.59692
+scale = Vector2(1.0422922, 1.1494434)
+texture = ExtResource("1_kk214")
+patch_margin_left = 126
+patch_margin_top = 178
+patch_margin_right = 178
+patch_margin_bottom = 178
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

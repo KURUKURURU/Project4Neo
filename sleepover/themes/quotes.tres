@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cw58y81wrsbbm"]
+
+[ext_resource type="FontFile" uid="uid://bjvt76bjlh8g3" path="res://fonts/ARashNaziBlurb.ttf" id="1_c34p4"]
+
+[resource]
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/font_sizes/normal_font_size = 43
+RichTextLabel/fonts/normal_font = ExtResource("1_c34p4")

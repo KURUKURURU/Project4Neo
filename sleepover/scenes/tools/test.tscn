@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cutnnluvr632v"]
+
+[ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="1_33x3f"]
+
+[node name="test" type="Node2D"]
+
+[node name="selection" type="HBoxContainer" parent="."]
+offset_left = 200.0
+offset_top = 134.0
+offset_right = 309.0
+offset_bottom = 174.0
+theme_override_constants/separation = 109
+
+[node name="o" type="Control" parent="selection"]
+layout_mode = 2
+
+[node name="option" parent="selection/o" instance=ExtResource("1_33x3f")]
+position = Vector2(48, 29)
+
+[node name="o2" type="Control" parent="selection"]
+layout_mode = 2
+
+[node name="option" parent="selection/o2" instance=ExtResource("1_33x3f")]
+position = Vector2(48, 29)

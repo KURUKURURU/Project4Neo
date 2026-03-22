@@ -1,0 +1,168 @@
+[gd_scene load_steps=9 format=3 uid="uid://dypsqherdaxbl"]
+
+[ext_resource type="Script" uid="uid://bkmu58gqemrns" path="res://scenes/quotes.gd" id="1_0l2ti"]
+[ext_resource type="Theme" uid="uid://cw58y81wrsbbm" path="res://themes/quotes.tres" id="1_8uant"]
+[ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="2_xo713"]
+[ext_resource type="AudioStream" uid="uid://dc73l2xwnjh2y" path="res://sfx/scare.wav" id="4_qj183"]
+[ext_resource type="Texture2D" uid="uid://ca0lcud0kyveo" path="res://images/border.png" id="5_qj183"]
+
+[sub_resource type="Animation" id="Animation_qj183"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:self_modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:self_modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:self_modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0l2ti"]
+resource_name = "start"
+length = 1.4985
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.24975, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.4985)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:self_modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.24975, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.4985)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:self_modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.24975, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.4985)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:self_modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.24975, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1.4985)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41uuk"]
+_data = {
+&"RESET": SubResource("Animation_qj183"),
+&"start": SubResource("Animation_0l2ti")
+}
+
+[node name="Quotes" type="Node2D"]
+script = ExtResource("1_0l2ti")
+
+[node name="Color" type="ColorRect" parent="."]
+offset_left = -42.0
+offset_top = -30.0
+offset_right = 1959.0
+offset_bottom = 1117.0
+color = Color(0.014315851, 0.04681973, 0.023561774, 1)
+
+[node name="Text" type="RichTextLabel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1088.0
+pivot_offset = Vector2(20, 20)
+size_flags_horizontal = 4
+theme = ExtResource("1_8uant")
+theme_override_font_sizes/normal_font_size = 48
+text = "Never discredit instinct."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="selection" type="HBoxContainer" parent="."]
+offset_left = 864.0
+offset_top = 712.0
+offset_right = 973.0
+offset_bottom = 752.0
+theme_override_constants/separation = 109
+alignment = 1
+
+[node name="option" parent="selection" instance=ExtResource("2_xo713")]
+layout_mode = 2
+display = "?"
+design = 1
+
+[node name="scare" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qj183")
+
+[node name="transition" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_41uuk")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BG2" type="TextureRect" parent="."]
+offset_left = -271.99997
+offset_top = -1.0
+offset_right = 1959.6089
+offset_bottom = 1094.0
+scale = Vector2(1.1004455, 0.9857623)
+mouse_filter = 2
+texture = ExtResource("5_qj183")
+
+[connection signal="activate" from="selection/option" to="." method="activate"]

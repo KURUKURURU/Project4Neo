@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://60378iqjk3t0"]
+
+[ext_resource type="Texture2D" uid="uid://bxdvf1t8dyq7e" path="res://images/ui/sliceUI.png" id="1_qscia"]
+
+[node name="UI" type="Node2D"]
+
+[node name="FlexibleRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+offset_right = 145.0
+offset_bottom = 34.0
+scale = Vector2(10.105379, 10.105379)
+texture = ExtResource("1_qscia")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+axis_stretch_horizontal = 1
