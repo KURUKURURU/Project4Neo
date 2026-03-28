@@ -9,12 +9,16 @@ extends Node2D
 
 @onready var text_animation = $text_animation
 @onready var S = $Sprite
+@onready var advance = $advance
 
 signal choice_selected(choice_id)
 var choice
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.hide()
+	advance.hide() 
+	
 	o1.activate.connect(func(): emit_signal("choice_selected", 1))
 	o2.activate.connect(func(): emit_signal("choice_selected", 2))
 	o3.activate.connect(func(): emit_signal("choice_selected", 3))
@@ -29,6 +33,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _speak(name, message, in_1, in_2, in_3):
+	self.show()
 	
 	if animation.get_assigned_animation() == "enlarge":
 		$name.text = name
@@ -42,6 +47,8 @@ func _speak(name, message, in_1, in_2, in_3):
 	
 	$name.text = name
 	$mainText.text = message
+	
+	var time = message.length() / 40
 	
 	text_animation.play("type")
 	await text_animation.animation_finished
@@ -61,11 +68,22 @@ func _speak(name, message, in_1, in_2, in_3):
 		print("Player picked... ", choice)
 		
 	else:
+		await wait(time)
+		await _advance()
 		return
 
 func _emote(name: String, emotion: String): #files are named specifically!!! PLEASE DONT SCREW THIS UP
 	S.sprite = name
 	S.emote = emotion
+
+func _advance():
+	advance.show()
+	await advance.pressed
+	
+	advance.hide()
+	
+func _end():
+	self.hide()
 
 func wait(seconds):
 	await get_tree().create_timer(seconds).timeout

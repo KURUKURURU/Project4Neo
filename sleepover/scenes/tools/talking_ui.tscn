@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci64unodp0266"]
+[gd_scene load_steps=21 format=3 uid="uid://ci64unodp0266"]
 
 [ext_resource type="PackedScene" uid="uid://bphofdfvsu4hb" path="res://scenes/tools/ui_rect.tscn" id="1_w8cav"]
 [ext_resource type="Script" uid="uid://cye45sdmr3t4c" path="res://scenes/tools/talking_ui.gd" id="1_yy8gy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cmf1t2qa52q5q" path="res://scenes/jet.gd" id="3_pjdk3"]
 [ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="3_yy8gy"]
 [ext_resource type="FontFile" uid="uid://ca3gk8bp6b1r1" path="res://fonts/terminal-grotesque.ttf" id="4_pjdk3"]
+[ext_resource type="Texture2D" uid="uid://kwexmwtatfss" path="res://images/arrow/n2.png" id="9_ljcuq"]
 
 [sub_resource type="Animation" id="Animation_nl7kj"]
 length = 0.001
@@ -412,6 +413,63 @@ _data = {
 &"type": SubResource("Animation_ljcuq")
 }
 
+[sub_resource type="Animation" id="Animation_j03vm"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(1224.1467, -0.25, 0, 0.25, 0, 1190.807, -0.08, 5.55662, 0, 0, 1224.1467, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.48, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("img:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(198.27734, -0.25, 0, 0.25, 0, 198.277, -0.08, 5.8492024e-05, 0, 0, 198.27734, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.48, 1)
+}
+
+[sub_resource type="Animation" id="Animation_pnaom"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1224.1467, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("img:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(198.27734, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jjmq"]
+_data = {
+&"RESET": SubResource("Animation_pnaom"),
+&"loop": SubResource("Animation_j03vm")
+}
+
 [node name="talking_ui" type="Node2D"]
 script = ExtResource("1_yy8gy")
 
@@ -496,6 +554,29 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_j03vm")
 }
+
+[node name="advance" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 256.00012
+offset_top = 792.0
+offset_right = 1695.6656
+offset_bottom = 1067.8641
+scale = Vector2(0.92799324, 0.92799324)
+stretch_mode = 4
+
+[node name="img" type="TextureRect" parent="advance"]
+layout_mode = 0
+offset_left = 1224.1467
+offset_top = 198.27734
+offset_right = 1274.1467
+offset_bottom = 248.27734
+texture = ExtResource("9_ljcuq")
+
+[node name="animation" type="AnimationPlayer" parent="advance"]
+libraries = {
+&"": SubResource("AnimationLibrary_5jjmq")
+}
+autoplay = "loop"
 
 [connection signal="activate" from="selection/option" to="." method="option1"]
 [connection signal="activate" from="selection/option2" to="." method="option2"]
