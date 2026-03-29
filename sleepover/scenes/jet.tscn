@@ -4,6 +4,12 @@
 
 [node name="Jet" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.5403036, 1.5403036)
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_children = 1
+offset_right = 202.0
+offset_bottom = 202.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(161.99998, 259)
+scale = Vector2(0.968385, 0.968385)
 texture = ExtResource("1_l0pwp")

@@ -1,27 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwqowqqwwrd15"]
+[gd_scene load_steps=8 format=3 uid="uid://cwqowqqwwrd15"]
 
-[ext_resource type="Texture2D" uid="uid://qn0nedc1tcmx" path="res://images/alleyway.jpg" id="1_5iy85"]
 [ext_resource type="Script" uid="uid://cp1itp5s46wf5" path="res://scenes/alleyway.gd" id="1_lgl4s"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="3_ls4g5"]
 [ext_resource type="Texture2D" uid="uid://ca0lcud0kyveo" path="res://images/border.png" id="3_wtvnm"]
+[ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="4_ls4g5"]
+
+[sub_resource type="Animation" id="Animation_ls4g5"]
+resource_name = "zoom"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.625, -0.16666667, -0.10416667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.625, -0.16666667, -0.10416667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_lgl4s"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfqiw"]
+_data = {
+&"RESET": SubResource("Animation_lgl4s"),
+&"zoom": SubResource("Animation_ls4g5")
+}
 
 [node name="Alleyway" type="Node2D"]
 script = ExtResource("1_lgl4s")
 
-[node name="BG" type="TextureRect" parent="."]
-visible = false
-self_modulate = Color(2.1749864, 2.1749864, 2.1749864, 1)
-offset_left = -177.0
-offset_top = -13.0
-offset_right = 2054.609
-offset_bottom = 1082.0
-texture = ExtResource("1_5iy85")
-
-[node name="talking_ui" parent="." instance=ExtResource("3_ls4g5")]
-
 [node name="top" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="talking_ui" parent="top" instance=ExtResource("3_ls4g5")]
+visible = false
 
 [node name="BG2" type="TextureRect" parent="top"]
+visible = false
 offset_left = -271.99997
 offset_top = -1.0
 offset_right = 1959.6089
@@ -29,3 +79,14 @@ offset_bottom = 1094.0
 scale = Vector2(1.1004455, 0.9857623)
 mouse_filter = 2
 texture = ExtResource("3_wtvnm")
+
+[node name="Player" parent="." instance=ExtResource("4_ls4g5")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_lfqiw")
+}
+autoplay = "zoom"

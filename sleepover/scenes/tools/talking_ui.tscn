@@ -42,7 +42,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(198, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
@@ -147,7 +147,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(256, 0, 0, 0.16666667, -9.666667, 198, -1.1666666, 5, 0.25, 0),
+"points": PackedFloat32Array(67, 0, 0, 0.16666667, -9.666667, -20, -1.1666666, 5, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -169,8 +169,8 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1237.9283, 0, 0, 0.16666667, 8.201945, 1287.14, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"points": PackedFloat32Array(1031.748, 0, 0, 0.16666667, 8.201945, 1287.14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -273,7 +273,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(2),
-"points": PackedFloat32Array(256, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(67, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
@@ -311,7 +311,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(2, 0),
 "points": PackedFloat32Array(1310.0488, 0, 0, 0.16111112, -46.383408, 1031.7484, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.96666664)
+"times": PackedFloat32Array(0, 0.43333334)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -332,7 +332,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(191.99998, 0, 0, 0.16111112, 10.66667, 256, -1.2666667, 1.5, 0.25, 0),
+"points": PackedFloat32Array(-20, 0, 0, 0.16111112, 10.66667, 67, -1.2666667, 1.5, 0.25, 0),
 "times": PackedFloat32Array(0, 0.96666664)
 }
 tracks/3/type = "bezier"
@@ -413,32 +413,6 @@ _data = {
 &"type": SubResource("Animation_ljcuq")
 }
 
-[sub_resource type="Animation" id="Animation_j03vm"]
-resource_name = "loop"
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("img:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(1224.1467, -0.25, 0, 0.25, 0, 1190.807, -0.08, 5.55662, 0, 0, 1224.1467, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.48, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("img:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(198.27734, -0.25, 0, 0.25, 0, 198.277, -0.08, 5.8492024e-05, 0, 0, 198.27734, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.48, 1)
-}
-
 [sub_resource type="Animation" id="Animation_pnaom"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -452,16 +426,20 @@ tracks/0/keys = {
 "points": PackedFloat32Array(1224.1467, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("img:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(198.27734, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+
+[sub_resource type="Animation" id="Animation_j03vm"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(1275, -0.25, 0, 0.25, 0, 1300, -0.08, 5.55662, 0, 0, 1275, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.48, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5jjmq"]
@@ -473,24 +451,19 @@ _data = {
 [node name="talking_ui" type="Node2D"]
 script = ExtResource("1_yy8gy")
 
-[node name="Sprite" parent="." instance=ExtResource("2_ai47c")]
-texture_filter = 1
-position = Vector2(623, 634)
-script = ExtResource("3_pjdk3")
-
 [node name="UI_RECT" parent="." instance=ExtResource("1_w8cav")]
 self_modulate = Color(0.5584722, 1.0909963, 0.32549307, 1)
-offset_left = 198.0
+offset_left = -70.0
 offset_top = 796.0
-offset_right = 1485.14
+offset_right = 1217.14
 offset_bottom = 1152.0
 scale = Vector2(1.1785818, 0.70139295)
 
 [node name="mainText" type="RichTextLabel" parent="."]
 offset_left = 296.0
-offset_top = 888.0
-offset_right = 1089.5488
-offset_bottom = 1032.0
+offset_top = 904.00006
+offset_right = 773.3126
+offset_bottom = 1048.0
 scale = Vector2(1.2067562, 0.8871272)
 theme = ExtResource("3_ai47c")
 text = "Hello! Haven't met you before."
@@ -498,10 +471,10 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="name" type="RichTextLabel" parent="."]
-offset_left = 295.99997
-offset_top = 816.0
-offset_right = 1089.5488
-offset_bottom = 864.0
+offset_left = 288.0
+offset_top = 848.0
+offset_right = 1081.5488
+offset_bottom = 896.0
 scale = Vector2(1.2399994, 1)
 theme = ExtResource("3_ai47c")
 theme_override_fonts/normal_font = ExtResource("4_pjdk3")
@@ -509,12 +482,18 @@ theme_override_font_sizes/normal_font_size = 49
 text = "Jet"
 scroll_active = false
 
+[node name="Sprite" parent="." instance=ExtResource("2_ai47c")]
+texture_filter = 1
+position = Vector2(72, 816)
+scale = Vector2(0.99113435, 0.99113435)
+script = ExtResource("3_pjdk3")
+
 [node name="reply" type="TextureRect" parent="."]
 visible = false
-offset_left = 1170.0
-offset_top = 670.0
-offset_right = 1581.0
-offset_bottom = 1050.0
+offset_left = 834.0
+offset_top = 712.0
+offset_right = 1245.0
+offset_bottom = 1092.0
 scale = Vector2(1.1833194, 0.9845594)
 mouse_filter = 2
 texture = ExtResource("2_anbk1")
@@ -522,10 +501,10 @@ texture = ExtResource("2_anbk1")
 [node name="selection" type="VBoxContainer" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 1236.0
-offset_top = 670.0
-offset_right = 1536.0
-offset_bottom = 904.4323
+offset_left = 890.0
+offset_top = 712.0
+offset_right = 1190.0
+offset_bottom = 946.4323
 scale = Vector2(1.098102, 1.098102)
 theme_override_constants/separation = 55
 alignment = 1
@@ -557,19 +536,19 @@ libraries = {
 
 [node name="advance" type="TextureButton" parent="."]
 texture_filter = 1
-offset_left = 256.00012
-offset_top = 792.0
-offset_right = 1695.6656
-offset_bottom = 1067.8641
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 1391.6655
+offset_bottom = 1200.7676
 scale = Vector2(0.92799324, 0.92799324)
 stretch_mode = 4
 
 [node name="img" type="TextureRect" parent="advance"]
 layout_mode = 0
 offset_left = 1224.1467
-offset_top = 198.27734
+offset_top = 1077.5941
 offset_right = 1274.1467
-offset_bottom = 248.27734
+offset_bottom = 1127.5941
 texture = ExtResource("9_ljcuq")
 
 [node name="animation" type="AnimationPlayer" parent="advance"]

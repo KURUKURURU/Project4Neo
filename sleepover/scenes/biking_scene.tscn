@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c762xcsn0ch8a"]
+
+[node name="BikingScene" type="Node2D"]
+
+[node name="color" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]

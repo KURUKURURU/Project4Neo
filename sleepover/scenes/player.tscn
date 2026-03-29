@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://btluxgttgiqbe"]
+
+[ext_resource type="Script" uid="uid://dfsnwhdagvrfm" path="res://player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://c3hhk3jt0wd70" path="res://images/test/sprite.png" id="2_dqkch"]
+[ext_resource type="Texture2D" uid="uid://ch6cmkagp5he" path="res://images/test/e1.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://duglf8maxnbce" path="res://images/test/e2.png" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://b2bhx006yqpvc" path="res://images/test/e3.png" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://bn5f5m27t6ja6" path="res://images/test/e4.png" id="6_ur7pv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dqkch")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dqkch")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4r1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tuyoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fjrip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_smehm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ur7pv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 18.27
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(102.20615, 124.70453)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 43.011627
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.3909305, 1.3909305)
+sprite_frames = SubResource("SpriteFrames_dqkch")
+animation = &"walk"
+
+[node name="interactIcon" type="AnimatedSprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -120)
+scale = Vector2(0.8799928, 0.8799928)
+sprite_frames = SubResource("SpriteFrames_y4r1p")
+autoplay = "default"
+frame_progress = 0.68465465
+
+[node name="coll" type="CollisionShape2D" parent="."]
+position = Vector2(0.24878263, -2.2814302)
+scale = Vector2(1.054736, 1.054736)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.3909305, 1.3909305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_g2els")

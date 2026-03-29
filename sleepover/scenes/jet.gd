@@ -2,7 +2,7 @@ extends Node2D
 @export var sprite: String
 @export var emote: String
 
-@onready var image = $Sprite2D
+@onready var image = $ColorRect/Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

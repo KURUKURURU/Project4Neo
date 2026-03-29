@@ -16,6 +16,8 @@ var choice
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	animation.play("normal")
+	advance.hide()
 	self.hide()
 	advance.hide() 
 	
@@ -23,9 +25,6 @@ func _ready() -> void:
 	o2.activate.connect(func(): emit_signal("choice_selected", 2))
 	o3.activate.connect(func(): emit_signal("choice_selected", 3))
 	
-	animation.play("normal")
-	_speak("Jet", "Hello! Haven't met you before.", "Um, hello?", "*Ignore*", "...")
-	selection.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,7 +47,7 @@ func _speak(name, message, in_1, in_2, in_3):
 	$name.text = name
 	$mainText.text = message
 	
-	var time = message.length() / 40
+	var time = message.length() / 35
 	
 	text_animation.play("type")
 	await text_animation.animation_finished
