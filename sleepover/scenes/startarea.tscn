@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brawv17r5t0ic"]
+[gd_scene load_steps=17 format=3 uid="uid://brawv17r5t0ic"]
 
 [ext_resource type="Script" uid="uid://dn5f3u1totlss" path="res://scenes/startarea.gd" id="1_apjf7"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_iyu60"]
@@ -62,6 +62,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_u6fly"]
 radius = 57.144997
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmf60"]
+size = Vector2(46.781006, 49.461365)
+
 [sub_resource type="Animation" id="Animation_ovo77"]
 resource_name = "move_away"
 length = 1.3795
@@ -97,6 +100,9 @@ _data = {
 &"move_away": SubResource("Animation_ovo77")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmf60"]
+radius = 104.307236
+
 [node name="mainstreet" type="Node2D"]
 script = ExtResource("1_apjf7")
 
@@ -106,7 +112,6 @@ script = ExtResource("1_apjf7")
 position = Vector2(-21, 0)
 
 [node name="fade" type="ColorRect" parent="top"]
-visible = false
 offset_right = 1300.0
 offset_bottom = 1086.0
 mouse_filter = 2
@@ -155,9 +160,24 @@ texture = ExtResource("6_nmf60")
 position = Vector2(6.7586946, 15.36067)
 shape = SubResource("CircleShape2D_u6fly")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="guardguy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guardguy/StaticBody2D"]
+position = Vector2(-8.029846, 21.044067)
+shape = SubResource("RectangleShape2D_nmf60")
+
 [node name="cutsceneA" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_5u4ro")
 }
 
-[connection signal="area_entered" from="guardguy/Area2D" to="." method="GuardGuyInteract"]
+[node name="ENTER" type="Area2D" parent="."]
+position = Vector2(429, 1668)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ENTER"]
+shape = SubResource("CircleShape2D_nmf60")
+
+[connection signal="area_entered" from="guardguy/Area2D" to="." method="Guy"]
+[connection signal="area_exited" from="guardguy/Area2D" to="." method="exit"]
+[connection signal="area_entered" from="ENTER" to="." method="_ENTER"]
+[connection signal="area_exited" from="ENTER" to="." method="exit"]

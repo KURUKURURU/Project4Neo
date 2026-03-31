@@ -62,11 +62,11 @@ animation = &"walk"
 
 [node name="interactIcon" type="AnimatedSprite2D" parent="."]
 z_index = 10
-position = Vector2(0, -120)
-scale = Vector2(0.8799928, 0.8799928)
+position = Vector2(0, -110)
+scale = Vector2(0.60155284, 0.60155284)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
 autoplay = "default"
-frame_progress = 0.68465465
+frame_progress = 0.5841217
 
 [node name="coll" type="CollisionShape2D" parent="."]
 position = Vector2(0.24878263, -2.2814302)
