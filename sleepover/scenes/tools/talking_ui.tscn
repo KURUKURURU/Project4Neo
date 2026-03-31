@@ -136,6 +136,28 @@ tracks/10/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("mainText:size:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(656.305, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("mainText:size:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(143.99994, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_ai47c"]
 resource_name = "enlarge"
@@ -238,6 +260,28 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("mainText:size:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 3),
+"points": PackedFloat32Array(656.305, -0.25, 0, 0.25, 0, 424.2779, -0.25, 58.006775, 0.25, -58.006775),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("mainText:size:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 3),
+"points": PackedFloat32Array(143.99994, -0.25, 0, 0.25, 0, 143.99994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_yy8gy"]
@@ -370,6 +414,28 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("mainText:size:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(444.3399, -0.25, 0, 0.25, 0, 656.305, -0.25, -52.991272, 0.25, 52.991272),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("mainText:size:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 3),
+"points": PackedFloat32Array(143.99994, -0.25, 0, 0.25, 0, 143.99994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljcuq"]
 _data = {
@@ -462,7 +528,7 @@ scale = Vector2(1.1785818, 0.70139295)
 [node name="mainText" type="RichTextLabel" parent="."]
 offset_left = 296.0
 offset_top = 904.00006
-offset_right = 773.3126
+offset_right = 952.305
 offset_bottom = 1048.0
 scale = Vector2(1.2067562, 0.8871272)
 theme = ExtResource("3_ai47c")

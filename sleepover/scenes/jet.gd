@@ -14,4 +14,8 @@ func _process(delta: float) -> void:
 	if !(emote == "") and !(name == ""):
 		var combo = str(sprite) + "_" + emote + ".png"
 		image.texture = load("res://images/sprites/" + str(combo))
+	else:
+		image.texture = null
+		
+	
 		

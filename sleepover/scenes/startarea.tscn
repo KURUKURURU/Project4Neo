@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brawv17r5t0ic"]
+[gd_scene load_steps=19 format=3 uid="uid://brawv17r5t0ic"]
 
 [ext_resource type="Script" uid="uid://dn5f3u1totlss" path="res://scenes/startarea.gd" id="1_apjf7"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_iyu60"]
@@ -6,21 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="3_bxioc"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_c4uvy"]
 [ext_resource type="Texture2D" uid="uid://ywsng3xvgw6w" path="res://images/test/guy.png" id="6_nmf60"]
-
-[sub_resource type="Animation" id="Animation_c4uvy"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("top/fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0.106126174, 0), Color(0, 0, 0.106126174, 1)]
-}
+[ext_resource type="AudioStream" uid="uid://7hruycijxbn3" path="res://sfx/ambience_street.wav" id="7_u6fly"]
+[ext_resource type="AudioStream" uid="uid://6hg5ytg3dyhx" path="res://sfx/bikeplace.mp3" id="8_ovo77"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -35,6 +22,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c4uvy"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 0), Color(0, 0, 0.106126174, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_u6fly"]
@@ -65,6 +67,20 @@ radius = 57.144997
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmf60"]
 size = Vector2(46.781006, 49.461365)
 
+[sub_resource type="Animation" id="Animation_y0kta"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("guardguy:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1668, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_ovo77"]
 resource_name = "move_away"
 length = 1.3795
@@ -78,20 +94,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1668, -0.25, 0, 0.25, 0, 1797.0001, -0.125, -32.25003, 0.125, 32.25003),
 "times": PackedFloat32Array(0, 0.96666664)
-}
-
-[sub_resource type="Animation" id="Animation_y0kta"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("guardguy:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1668, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5u4ro"]
@@ -139,7 +141,7 @@ texture = ExtResource("3_apjf7")
 
 [node name="Player" parent="." instance=ExtResource("3_bxioc")]
 modulate = Color(0.55815613, 0.55815613, 0.55815613, 1)
-position = Vector2(703, 1531)
+position = Vector2(773, 264)
 speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -176,6 +178,19 @@ position = Vector2(429, 1668)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ENTER"]
 shape = SubResource("CircleShape2D_nmf60")
+
+[node name="wind" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(670, 475)
+stream = ExtResource("7_u6fly")
+volume_db = 9.087
+autoplay = true
+attenuation = 2.2973964
+
+[node name="bike" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(670, 318)
+stream = ExtResource("8_ovo77")
+volume_db = 9.087
+autoplay = true
 
 [connection signal="area_entered" from="guardguy/Area2D" to="." method="Guy"]
 [connection signal="area_exited" from="guardguy/Area2D" to="." method="exit"]

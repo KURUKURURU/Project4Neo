@@ -5,6 +5,7 @@ extends Node2D
 @onready var p = $Player
 @onready var pArea = $Player/Area2D
 @onready var t = $top/talking_ui
+@onready var sprite = $top/talking_ui/Sprite
 
 @onready var cutsceneA = $cutsceneA
 
@@ -22,8 +23,9 @@ func _ready() -> void:
 	cutscene("RESET")
 	fadeAnimation.play("fadein")
 	
-	await speak("You", "I forgot to lock my bike.", "", "", "")
-	t._end()
+	t._emote("self", "test")
+	await speak("You", "I finally made it. I should head in.", "", "", "")
+	e()
 	
 
 
@@ -34,18 +36,41 @@ func _process(delta: float) -> void:
 			talking = true
 			p.can_interact = false
 			print("debug")
-			await speak("Benny", "Evenin' Sam.", "", "", "")
-			await speak("Benny", "You're early as usual. ", "", "", "")
-			await speak("Benny", "Off to get another job, hm?", "Yup.", "", "")
+			
+			t._emote("guy", "test")
+			await speak("...", "Good evening.", "", "", "")
+			t._emote("self", "test")
+			await speak("You", "Hey Benny.", "", "", "")
+			t._emote("guy", "test")
+			await speak("Benny", "Another job?", "", "", "")
+			t._emote("self", "test")
+			await speak("You", "Another job.", "", "", "")
 			
 			await cutscene("move_away")
 			benny.monitoring = false
+			t._emote("guy", "test")
 			
-			await speak("Benny", "Later.", "", "", "")
 			e()
 			talking = false
 			
 		elif enter_vant:
+			talking = true
+			p.can_interact = false
+			await speak("Benny", "You are good guy.", "", "", "")
+			
+			t._emote("self", "test")
+			await speak("You", "Thanks?", "", "", "")
+			t._emote("guy", "test")
+			await speak("Benny", "You should get real job, not crap made for bums.", "", "", "")
+			
+			t._emote("self", "test")
+			await speak("You", "That's probably the nicest thing you've said to me.", "", "", "")
+			await speak("You", "Though, that might be the first positive thing you've said since we met last year.", "", "", "")
+			await speak("You", "Don't worry, this'll be the last job for a while.", "", "", "")
+			
+			e()
+			talking = false
+			
 			fadeAnimation.play("fade")
 			await fadeAnimation.animation_finished
 			get_tree().change_scene_to_file("res://scenes/vant_area.tscn")
