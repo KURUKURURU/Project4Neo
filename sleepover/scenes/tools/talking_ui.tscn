@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ci64unodp0266"]
+[gd_scene load_steps=22 format=3 uid="uid://ci64unodp0266"]
 
 [ext_resource type="PackedScene" uid="uid://bphofdfvsu4hb" path="res://scenes/tools/ui_rect.tscn" id="1_w8cav"]
 [ext_resource type="Script" uid="uid://cye45sdmr3t4c" path="res://scenes/tools/talking_ui.gd" id="1_yy8gy"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="3_yy8gy"]
 [ext_resource type="FontFile" uid="uid://ca3gk8bp6b1r1" path="res://fonts/terminal-grotesque.ttf" id="4_pjdk3"]
 [ext_resource type="Texture2D" uid="uid://kwexmwtatfss" path="res://images/arrow/n2.png" id="9_ljcuq"]
+[ext_resource type="AudioStream" uid="uid://dsbd5hw85qdds" path="res://sfx/talk.wav" id="10_r1em3"]
 
 [sub_resource type="Animation" id="Animation_nl7kj"]
 length = 0.001
@@ -622,6 +623,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_5jjmq")
 }
 autoplay = "loop"
+
+[node name="ding" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_r1em3")
+volume_db = -27.68
+pitch_scale = 3.1
 
 [connection signal="activate" from="selection/option" to="." method="option1"]
 [connection signal="activate" from="selection/option2" to="." method="option2"]

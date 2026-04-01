@@ -65,7 +65,7 @@ func _process(delta: float) -> void:
 			
 			t._emote("self", "test")
 			await speak("You", "That's probably the nicest thing you've said to me.", "", "", "")
-			await speak("You", "Though, that might be the first positive thing you've said since we met last year.", "", "", "")
+			await speak("You", "And that might be the first positive thing you've said since we met last year.", "", "", "")
 			await speak("You", "Don't worry, this'll be the last job for a while.", "", "", "")
 			
 			e()
@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 			
 			fadeAnimation.play("fade")
 			await fadeAnimation.animation_finished
-			get_tree().change_scene_to_file("res://scenes/vant_area.tscn")
+			get_tree().change_scene_to_file("res://scenes/kitchen.tscn")
 	
 
 

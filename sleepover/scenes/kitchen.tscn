@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://pu4m4ise4xet"]
+
+[ext_resource type="Script" uid="uid://cs3aj7r5lnogu" path="res://vant_area.gd" id="1_g3o0j"]
+[ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_58u3k"]
+[ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_ibrlr"]
+[ext_resource type="Texture2D" uid="uid://dyrp5d0v3xu4n" path="res://images/test/3.png" id="4_mwmjw"]
+[ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="5_cwf2y"]
+[ext_resource type="AudioStream" uid="uid://cca5mgt8s8svo" path="res://sfx/kitchen.wav" id="6_vpxcu"]
+
+[sub_resource type="Animation" id="Animation_nmf60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c4uvy"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 0), Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u6fly"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 1), Color(0, 0, 0.106126174, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovo77"]
+_data = {
+&"RESET": SubResource("Animation_nmf60"),
+&"fade": SubResource("Animation_c4uvy"),
+&"fadein": SubResource("Animation_u6fly")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2y3cc"]
+radius = 109.004585
+
+[node name="VantArea" type="Node2D"]
+script = ExtResource("1_g3o0j")
+
+[node name="top" type="CanvasLayer" parent="."]
+
+[node name="talking_ui" parent="top" instance=ExtResource("2_58u3k")]
+visible = false
+position = Vector2(-21, 0)
+
+[node name="fade" type="ColorRect" parent="top"]
+offset_right = 1300.0
+offset_bottom = 1086.0
+mouse_filter = 2
+color = Color(0, 0, 0.106126174, 1)
+
+[node name="animation" type="AnimationPlayer" parent="top/fade"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ovo77")
+}
+
+[node name="filter" type="TextureRect" parent="top"]
+offset_right = 1300.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("3_ibrlr")
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_mwmjw")
+
+[node name="Player" parent="." instance=ExtResource("5_cwf2y")]
+position = Vector2(963, 816)
+speed = 325
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -2)
+zoom = Vector2(1.5, 1.5)
+limit_enabled = false
+limit_left = 1303
+limit_top = 1079
+limit_right = -7
+limit_bottom = 5
+position_smoothing_enabled = true
+
+[node name="ambience" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(869, 561)
+stream = ExtResource("6_vpxcu")
+autoplay = true
+
+[node name="enter_bar" type="Area2D" parent="."]
+position = Vector2(250, 848)
+
+[node name="col" type="CollisionShape2D" parent="enter_bar"]
+shape = SubResource("CircleShape2D_2y3cc")
+
+[connection signal="area_entered" from="enter_bar" to="." method="_enter_bar"]
+[connection signal="area_exited" from="enter_bar" to="." method="exit"]

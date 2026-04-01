@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://pu4m4ise4xet"]
+[gd_scene load_steps=9 format=3 uid="uid://c1v8aeu1cmouf"]
 
-[ext_resource type="Script" uid="uid://cs3aj7r5lnogu" path="res://vant_area.gd" id="1_se2uh"]
-[ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_7ij2v"]
-[ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_2y3cc"]
-[ext_resource type="Texture2D" uid="uid://dyrp5d0v3xu4n" path="res://images/test/3.png" id="4_hx3kg"]
-[ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="5_7ij2v"]
-[ext_resource type="AudioStream" uid="uid://cca5mgt8s8svo" path="res://sfx/kitchen.wav" id="6_2y3cc"]
+[ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_f3ktr"]
+[ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="2_50xnb"]
+[ext_resource type="Texture2D" uid="uid://dyrp5d0v3xu4n" path="res://images/test/3.png" id="3_uk3xj"]
+[ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="4_bp8vj"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -59,16 +57,11 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2y3cc"]
-radius = 109.004585
-
-[node name="VantArea" type="Node2D"]
-script = ExtResource("1_se2uh")
+[node name="Restaurant" type="Node2D"]
 
 [node name="top" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="talking_ui" parent="top" instance=ExtResource("2_7ij2v")]
+[node name="talking_ui" parent="top" instance=ExtResource("1_f3ktr")]
 visible = false
 position = Vector2(-21, 0)
 
@@ -88,15 +81,16 @@ libraries = {
 offset_right = 1300.0
 offset_bottom = 1080.0
 mouse_filter = 2
-texture = ExtResource("3_2y3cc")
+texture = ExtResource("2_50xnb")
 
 [node name="bg" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_hx3kg")
+texture = ExtResource("3_uk3xj")
 
-[node name="Player" parent="." instance=ExtResource("5_7ij2v")]
+[node name="Player" parent="." instance=ExtResource("4_bp8vj")]
 position = Vector2(963, 816)
+speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
@@ -107,14 +101,3 @@ limit_top = 1079
 limit_right = -7
 limit_bottom = 5
 position_smoothing_enabled = true
-
-[node name="ambience" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(869, 561)
-stream = ExtResource("6_2y3cc")
-autoplay = true
-
-[node name="enter_bar" type="Area2D" parent="."]
-position = Vector2(250, 848)
-
-[node name="col" type="CollisionShape2D" parent="enter_bar"]
-shape = SubResource("CircleShape2D_2y3cc")

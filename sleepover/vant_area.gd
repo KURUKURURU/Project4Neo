@@ -16,13 +16,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and !talking:
 		if enter_bar:
-			talking = true
+			#talking = true
 			p.can_interact = false
-			t._emote("", "")
-			await speak("", "", "", "", "")
+			#t._emote("", "")
+			#await speak("", "", "", "", "")
+			#
+			#e()
+			#talking = false
 			
-			e()
-			talking = false
+			fadeAnimation.play("fade")
+			await fadeAnimation.animation_finished
+			get_tree().change_scene_to_file("res://scenes/kitchen.tscn")
+			
 
 func speak(n, m, c1, c2, c3):
 	p.moving = false

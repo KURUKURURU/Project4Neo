@@ -10,6 +10,7 @@ extends Node2D
 @onready var text_animation = $text_animation
 @onready var S = $Sprite
 @onready var advance = $advance
+@onready var ding = $ding
 
 signal choice_selected(choice_id)
 var choice
@@ -50,6 +51,7 @@ func _speak(name, message, in_1, in_2, in_3):
 	var time = message.length() / 35
 	
 	text_animation.play("type")
+	ding.play()
 	await text_animation.animation_finished
 	
 	if !(in_1 == "" and in_2 == "" and in_3 == ""):
