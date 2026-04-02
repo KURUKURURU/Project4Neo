@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 		image.texture = load("res://images/sprites/" + str(combo))
 	else:
 		image.texture = null
+		#image.texture = load("res://images/sprites/empty.png")
 		
 	
 		

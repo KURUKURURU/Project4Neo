@@ -79,10 +79,15 @@ func _emote(name: String, emotion: String): #files are named specifically!!! PLE
 
 func _advance():
 	advance.show()
-	await advance.pressed
+	await advance.pressed 
 	
 	advance.hide()
-	
+
+func _input(event):
+	if advance.visible and event.is_action_pressed("ui_accept"):
+		advance.hide()
+		advance.emit_signal("pressed")
+
 func _end():
 	self.hide()
 

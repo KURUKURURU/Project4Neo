@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1v8aeu1cmouf"]
+[gd_scene load_steps=16 format=3 uid="uid://c1v8aeu1cmouf"]
 
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_f3ktr"]
+[ext_resource type="Script" uid="uid://kstu171vtduc" path="res://scenes/restaurant.gd" id="1_uk3xj"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="2_50xnb"]
-[ext_resource type="Texture2D" uid="uid://dyrp5d0v3xu4n" path="res://images/test/3.png" id="3_uk3xj"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="4_bp8vj"]
+[ext_resource type="Texture2D" uid="uid://crtaipmq2iumy" path="res://images/test/4.png" id="4_rwm3f"]
+[ext_resource type="AudioStream" uid="uid://cydjmu5sul2cc" path="res://music/Vant.wav" id="5_50xnb"]
+[ext_resource type="AudioStream" uid="uid://cmkkh2qbh2cjs" path="res://sfx/munches.wav" id="7_bp8vj"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -57,9 +60,63 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sijj"]
+size = Vector2(325, 15)
+
+[sub_resource type="Animation" id="Animation_bp8vj"]
+resource_name = "walk_in"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(665, 824), Vector2(665, 582)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.9333333, 3.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, -112)]
+}
+
+[sub_resource type="Animation" id="Animation_rwm3f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1sijj"]
+_data = {
+&"RESET": SubResource("Animation_rwm3f"),
+&"walk_in": SubResource("Animation_bp8vj")
+}
+
 [node name="Restaurant" type="Node2D"]
+script = ExtResource("1_uk3xj")
 
 [node name="top" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="talking_ui" parent="top" instance=ExtResource("1_f3ktr")]
 visible = false
@@ -86,10 +143,10 @@ texture = ExtResource("2_50xnb")
 [node name="bg" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_uk3xj")
+texture = ExtResource("4_rwm3f")
 
 [node name="Player" parent="." instance=ExtResource("4_bp8vj")]
-position = Vector2(963, 816)
+position = Vector2(981, 954)
 speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -101,3 +158,27 @@ limit_top = 1079
 limit_right = -7
 limit_bottom = 5
 position_smoothing_enabled = true
+
+[node name="theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_50xnb")
+volume_db = -20.037
+autoplay = true
+
+[node name="big_boss" type="Area2D" parent="."]
+position = Vector2(720, 513)
+
+[node name="col" type="CollisionShape2D" parent="big_boss"]
+position = Vector2(0, 266)
+shape = SubResource("RectangleShape2D_1sijj")
+
+[node name="munches" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(897, 401)
+stream = ExtResource("7_bp8vj")
+autoplay = true
+attenuation = 5.0982246
+panning_strength = 2.4
+
+[node name="cutscenes" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1sijj")
+}

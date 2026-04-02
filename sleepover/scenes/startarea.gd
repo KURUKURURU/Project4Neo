@@ -21,11 +21,13 @@ var enter_vant = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	#p.last_action = "l"
+	
 	cutscene("RESET")
 	fadeAnimation.play("fadein")
 	
-	t._emote("sam", "normal")
-	await speak("You", "Gotta lock my bike.", "", "", "")
+	t._emote("", "")
+	await speak("", "Bike locked.", "", "", "")
 	e()
 	
 
@@ -61,6 +63,9 @@ func _process(delta: float) -> void:
 			
 			await speak("Benny", "You are good guy.", "", "", "")
 			
+			p.last_action = "d"
+			p.last_action = ""
+			
 			await p.emote_icon("exclamation")
 			t._emote("sam", "derp")
 			await speak("You", "Thanks?", "", "", "")
@@ -70,6 +75,9 @@ func _process(delta: float) -> void:
 			t._emote("sam", "normal")
 			await speak("You", "That's probably the nicest thing you've said to me.", "", "", "")
 			await speak("You", "And that might be the first positive thing you've said since we met last year.", "", "", "")
+			
+			p.last_action = "l"
+			
 			await speak("You", "Don't worry, this'll be the last job for a while.", "", "", "")
 			
 			e()
@@ -103,8 +111,6 @@ func Guy(area: Area2D) -> void:
 		talk_benny = true
 		
 
-
-
 func _ENTER(area: Area2D) -> void:
 	if area == pArea:
 		p.can_interact = true
@@ -116,3 +122,6 @@ func exit(area):
 		p.can_interact = false
 		talk_benny = false
 		enter_vant = false
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout

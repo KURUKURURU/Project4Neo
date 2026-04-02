@@ -12,6 +12,7 @@ extends Node2D
 var talking = false
 
 func _ready() -> void:
+	p.last_action = "l"
 	fadeAnimation.play("fadein")
 
 func _process(_delta: float) -> void:
@@ -45,6 +46,7 @@ func loud_fan_dialogue():
 	talking = true
 	p.can_interact = false
 	
+	p.emote_icon("question")
 	t._emote("sam", "normal")
 	await speak("You", "That's pretty loud.", "", "", "")
 	t._emote("sam", "normal")
@@ -56,6 +58,7 @@ func _knife():
 	talking = true
 	p.can_interact = false
 	
+	p.emote_icon("worry")
 	t._emote("", "")
 	await speak("You", "Pointy. Don't touch.", "", "", "")
 	
@@ -67,7 +70,7 @@ func enter_bar_scene():
 	p.can_interact = false
 	fadeAnimation.play("fade")
 	await fadeAnimation.animation_finished
-	get_tree().change_scene_to_file("res://scenes/kitchen.tscn")
+	get_tree().change_scene_to_file("res://scenes/restaurant.tscn")
 
 
 # --- dialogue helpers ---
