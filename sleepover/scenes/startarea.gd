@@ -20,11 +20,12 @@ var enter_vant = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	cutscene("RESET")
 	fadeAnimation.play("fadein")
 	
-	t._emote("self", "test")
-	await speak("You", "I finally made it. I should head in.", "", "", "")
+	t._emote("sam", "normal")
+	await speak("You", "Gotta lock my bike.", "", "", "")
 	e()
 	
 
@@ -39,12 +40,13 @@ func _process(delta: float) -> void:
 			
 			t._emote("guy", "test")
 			await speak("...", "Good evening.", "", "", "")
-			t._emote("self", "test")
+			t._emote("sam", "normal")
 			await speak("You", "Hey Benny.", "", "", "")
 			t._emote("guy", "test")
 			await speak("Benny", "Another job?", "", "", "")
-			t._emote("self", "test")
+			t._emote("sam", "normal")
 			await speak("You", "Another job.", "", "", "")
+			t._emote("", "")
 			
 			await cutscene("move_away")
 			benny.monitoring = false
@@ -56,14 +58,16 @@ func _process(delta: float) -> void:
 		elif enter_vant:
 			talking = true
 			p.can_interact = false
+			
 			await speak("Benny", "You are good guy.", "", "", "")
 			
-			t._emote("self", "test")
+			await p.emote_icon("exclamation")
+			t._emote("sam", "derp")
 			await speak("You", "Thanks?", "", "", "")
 			t._emote("guy", "test")
 			await speak("Benny", "You should get real job, not crap made for bums.", "", "", "")
 			
-			t._emote("self", "test")
+			t._emote("sam", "normal")
 			await speak("You", "That's probably the nicest thing you've said to me.", "", "", "")
 			await speak("You", "And that might be the first positive thing you've said since we met last year.", "", "", "")
 			await speak("You", "Don't worry, this'll be the last job for a while.", "", "", "")

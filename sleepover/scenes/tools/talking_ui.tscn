@@ -1,15 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://ci64unodp0266"]
+[gd_scene load_steps=23 format=3 uid="uid://ci64unodp0266"]
 
 [ext_resource type="PackedScene" uid="uid://bphofdfvsu4hb" path="res://scenes/tools/ui_rect.tscn" id="1_w8cav"]
 [ext_resource type="Script" uid="uid://cye45sdmr3t4c" path="res://scenes/tools/talking_ui.gd" id="1_yy8gy"]
 [ext_resource type="PackedScene" uid="uid://cd4lrywcx1px4" path="res://scenes/jet.tscn" id="2_ai47c"]
 [ext_resource type="Texture2D" uid="uid://bfpk6usfoq3ud" path="res://images/reply.png" id="2_anbk1"]
 [ext_resource type="Theme" uid="uid://dyj4gg1j5253" path="res://themes/talking_ui.tres" id="3_ai47c"]
+[ext_resource type="Texture2D" uid="uid://qbc3lbujoeb" path="res://images/slice21.png" id="3_j03vm"]
 [ext_resource type="Script" uid="uid://cmf1t2qa52q5q" path="res://scenes/jet.gd" id="3_pjdk3"]
 [ext_resource type="PackedScene" uid="uid://c20jkag6bf83w" path="res://scenes/tools/option.tscn" id="3_yy8gy"]
 [ext_resource type="FontFile" uid="uid://ca3gk8bp6b1r1" path="res://fonts/terminal-grotesque.ttf" id="4_pjdk3"]
 [ext_resource type="Texture2D" uid="uid://kwexmwtatfss" path="res://images/arrow/n2.png" id="9_ljcuq"]
-[ext_resource type="AudioStream" uid="uid://dsbd5hw85qdds" path="res://sfx/talk.wav" id="10_r1em3"]
+[ext_resource type="AudioStream" uid="uid://lrw5ypcoysxo" path="res://sfx/advance.wav" id="10_r1em3"]
 
 [sub_resource type="Animation" id="Animation_nl7kj"]
 length = 0.001
@@ -519,12 +520,12 @@ _data = {
 script = ExtResource("1_yy8gy")
 
 [node name="UI_RECT" parent="." instance=ExtResource("1_w8cav")]
-self_modulate = Color(0.5584722, 1.0909963, 0.32549307, 1)
-offset_left = -70.0
+offset_left = 67.0
 offset_top = 796.0
-offset_right = 1217.14
+offset_right = 1098.748
 offset_bottom = 1152.0
 scale = Vector2(1.1785818, 0.70139295)
+texture = ExtResource("3_j03vm")
 
 [node name="mainText" type="RichTextLabel" parent="."]
 offset_left = 296.0
@@ -551,8 +552,8 @@ scroll_active = false
 
 [node name="Sprite" parent="." instance=ExtResource("2_ai47c")]
 texture_filter = 1
-position = Vector2(72, 816)
-scale = Vector2(0.99113435, 0.99113435)
+position = Vector2(96, 824)
+scale = Vector2(0.8952906, 0.8952906)
 script = ExtResource("3_pjdk3")
 
 [node name="reply" type="TextureRect" parent="."]
@@ -626,8 +627,8 @@ autoplay = "loop"
 
 [node name="ding" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_r1em3")
-volume_db = -27.68
-pitch_scale = 3.1
+volume_db = 4.074
+pitch_scale = 0.87
 
 [connection signal="activate" from="selection/option" to="." method="option1"]
 [connection signal="activate" from="selection/option2" to="." method="option2"]

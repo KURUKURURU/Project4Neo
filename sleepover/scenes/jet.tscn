@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd4lrywcx1px4"]
 
-[ext_resource type="Texture2D" uid="uid://cirywsewl7vit" path="res://images/sprites/self_test.png" id="1_l0pwp"]
+[ext_resource type="Texture2D" uid="uid://r8r6f6843ro1" path="res://images/sprites/sam_derp.png" id="1_l0pwp"]
 
 [node name="Sprite" type="Node2D"]
 
@@ -10,6 +10,5 @@ offset_right = 202.0
 offset_bottom = 202.0
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
-position = Vector2(100, 100)
-scale = Vector2(1.2594104, 1.2594104)
+position = Vector2(100, 102)
 texture = ExtResource("1_l0pwp")

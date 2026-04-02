@@ -1,11 +1,18 @@
 extends CharacterBody2D
 @onready var animation = $animation
 @onready var interactIcon = $interactIcon
+@onready var emoteIcon = $emoteIcon
+@onready var emoteAnim = $emoteIcon/animation
 
 @export var speed = 500 
+#@export var emote := "" 
 var can_interact = false
 var moving = true
 #
+
+func _ready() -> void:
+	emoteIcon.hide()
+
 func _process(delta: float) -> void:
 	if can_interact:
 		interactIcon.show()
@@ -35,3 +42,16 @@ func _physics_process(delta):
 		animation.play("walk")
 	else:
 		animation.play("idle")
+
+func emote_icon(emote):
+	emoteIcon.show()
+	
+	var frank = "res://images/emoteicons/" + emote + ".png"
+	
+	emoteIcon.texture = load(frank)
+	emoteAnim.play("popup")
+	
+	
+	await emoteAnim.animation_finished
+	emoteIcon.hide()
+	

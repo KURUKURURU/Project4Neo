@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://btluxgttgiqbe"]
+[gd_scene load_steps=15 format=3 uid="uid://btluxgttgiqbe"]
 
 [ext_resource type="Script" uid="uid://dfsnwhdagvrfm" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c3hhk3jt0wd70" path="res://images/test/sprite.png" id="2_dqkch"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://duglf8maxnbce" path="res://images/test/e2.png" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://b2bhx006yqpvc" path="res://images/test/e3.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://bn5f5m27t6ja6" path="res://images/test/e4.png" id="6_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://dpcnjw7a08ydu" path="res://images/emoteicons/wrong.png" id="7_fjrip"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
 animations = [{
@@ -46,6 +47,115 @@ animations = [{
 "speed": 18.27
 }]
 
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "popup"
+length = 1.544
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(211.12027, 214.445), Vector2(211.12027, 214.445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-66, -124), Vector2(-66, -191)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.60155284, 0.28155285), Vector2(0.60155284, 0.60155284)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0076308916, 0.0076308916, 0.0076308916, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_smehm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(211.12027, 214.445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-66, -191)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.60155284, 0.60155284)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_smehm"),
+&"popup": SubResource("Animation_tuyoq")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(102.20615, 124.70453)
 
@@ -67,6 +177,20 @@ scale = Vector2(0.60155284, 0.60155284)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
 autoplay = "default"
 frame_progress = 0.5841217
+
+[node name="emoteIcon" type="TextureRect" parent="."]
+z_index = 10
+offset_left = -66.0
+offset_top = -191.0
+offset_right = 145.12027
+offset_bottom = 23.445007
+scale = Vector2(0.60155284, 0.60155284)
+texture = ExtResource("7_fjrip")
+
+[node name="animation" type="AnimationPlayer" parent="emoteIcon"]
+libraries = {
+&"": SubResource("AnimationLibrary_fjrip")
+}
 
 [node name="coll" type="CollisionShape2D" parent="."]
 position = Vector2(0.24878263, -2.2814302)

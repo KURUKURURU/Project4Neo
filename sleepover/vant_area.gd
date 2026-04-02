@@ -45,9 +45,10 @@ func loud_fan_dialogue():
 	talking = true
 	p.can_interact = false
 	
-	t._emote("", "")
-	await speak("You", "This is pretty loud.", "", "", "")
-	await speak("You", "If I compare other's opinions of me, I think I may have competition.", "", "", "")
+	t._emote("sam", "normal")
+	await speak("You", "That's pretty loud.", "", "", "")
+	t._emote("sam", "normal")
+	await speak("You", "If I compare other's opinions of me, I might have competition.", "", "", "")
 	
 	end_dialogue()
 
