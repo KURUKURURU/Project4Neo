@@ -56,6 +56,13 @@ func walkin_cutscene():
 	await wait(1.0)
 	await speak("Big Vant", "*clears throat*", "", "", "")
 	
+	await speak("Big Vant", "Good evening Sam! Grab a plate, the chef finally made something remotely edible.", "Impossible.", "No thanks.", "")
+	if t.choice == 1:
+		print("debug")
+		await speak("You", "Impossible. You sure that isn't store bought?", "", "", "")
+		await speak("Big Vant", "Have some faith in him, hehe.", "", "", "")
+	
+	
 	#cutscene = false
 	
 	

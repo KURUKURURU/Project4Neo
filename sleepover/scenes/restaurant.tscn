@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="2_50xnb"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="4_bp8vj"]
 [ext_resource type="Texture2D" uid="uid://crtaipmq2iumy" path="res://images/test/4.png" id="4_rwm3f"]
-[ext_resource type="AudioStream" uid="uid://cydjmu5sul2cc" path="res://music/Vant.wav" id="5_50xnb"]
+[ext_resource type="AudioStream" uid="uid://dyv5ap051igal" path="res://music/jazzy.wav" id="6_rwm3f"]
 [ext_resource type="AudioStream" uid="uid://cmkkh2qbh2cjs" path="res://sfx/munches.wav" id="7_bp8vj"]
 [ext_resource type="AudioStream" uid="uid://sj41r1lqv6os" path="res://sfx/bar_sfx.wav" id="8_rwm3f"]
 
@@ -160,9 +160,8 @@ limit_bottom = 5
 position_smoothing_enabled = true
 
 [node name="theme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_50xnb")
-volume_db = -3.817
-pitch_scale = 0.46
+stream = ExtResource("6_rwm3f")
+volume_db = -7.633
 autoplay = true
 
 [node name="big_boss" type="Area2D" parent="."]

@@ -59,7 +59,7 @@ func _knife():
 	p.can_interact = false
 	
 	p.emote_icon("worry")
-	t._emote("", "")
+	t._emote("sam", "normal")
 	await speak("You", "Pointy. Don't touch.", "", "", "")
 	
 	end_dialogue()

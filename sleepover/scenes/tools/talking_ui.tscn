@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://ci64unodp0266"]
+[gd_scene load_steps=23 format=3 uid="uid://ci64unodp0266"]
 
 [ext_resource type="PackedScene" uid="uid://bphofdfvsu4hb" path="res://scenes/tools/ui_rect.tscn" id="1_w8cav"]
 [ext_resource type="Script" uid="uid://cye45sdmr3t4c" path="res://scenes/tools/talking_ui.gd" id="1_yy8gy"]
 [ext_resource type="PackedScene" uid="uid://cd4lrywcx1px4" path="res://scenes/jet.tscn" id="2_ai47c"]
-[ext_resource type="Texture2D" uid="uid://bfpk6usfoq3ud" path="res://images/reply.png" id="2_anbk1"]
 [ext_resource type="Theme" uid="uid://dyj4gg1j5253" path="res://themes/talking_ui.tres" id="3_ai47c"]
 [ext_resource type="Texture2D" uid="uid://qbc3lbujoeb" path="res://images/slice21.png" id="3_j03vm"]
 [ext_resource type="Script" uid="uid://cmf1t2qa52q5q" path="res://scenes/jet.gd" id="3_pjdk3"]
@@ -378,7 +377,7 @@ tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0, 3),
-"points": PackedFloat32Array(656.305, -0.25, 0, 0.25, 0, 424.2779, -0.25, 58.006775, 0.25, -58.006775),
+"points": PackedFloat32Array(656.305, -0.25, 0, 0.25, 0, 477.313, -0.25, 58.006775, 0.25, -58.006775),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/10/type = "bezier"
@@ -729,21 +728,20 @@ autoplay = "loop"
 
 [node name="reply" type="TextureRect" parent="."]
 visible = false
-offset_left = 834.0
-offset_top = 712.0
-offset_right = 1245.0
-offset_bottom = 1092.0
-scale = Vector2(1.1833194, 0.9845594)
+offset_left = 896.0
+offset_top = 728.0
+offset_right = 1307.0
+offset_bottom = 1108.0
+scale = Vector2(1.0569903, 0.87944955)
 mouse_filter = 2
-texture = ExtResource("2_anbk1")
 
 [node name="selection" type="VBoxContainer" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 890.0
-offset_top = 712.0
-offset_right = 1190.0
-offset_bottom = 946.4323
+offset_left = 904.0
+offset_top = 783.99994
+offset_right = 1204.0
+offset_bottom = 1018.43225
 scale = Vector2(1.098102, 1.098102)
 theme_override_constants/separation = 55
 alignment = 1
