@@ -11,6 +11,8 @@ var last_action = ""
 #@export var emote := "" 
 var can_interact = false
 var moving = true
+var talking = false
+var cutscene = false
 #
 
 func _ready() -> void:
@@ -42,32 +44,35 @@ func _process(delta: float) -> void:
 	else:
 		interactIcon.hide()
 		
-	
-	if Input.is_action_pressed("right"):
+	if cutscene:
+		return
+		
+	elif Input.is_action_pressed("right") and !talking:
 		animation.flip_h = true
 		animation.play("side")
 		
 		last_action = "r"
 		
-	elif Input.is_action_pressed("left"):
+	elif Input.is_action_pressed("left") and !talking:
 		animation.flip_h = false
 		animation.play("side")
 		
 		last_action = "r"
 		
-	elif Input.is_action_pressed("up"):
+	elif Input.is_action_pressed("up") and !talking:
 		animation.flip_h = false
 		animation.play("up")
 		
 		last_action = "u"
 		
-	elif Input.is_action_pressed("down"):
+	elif Input.is_action_pressed("down") and !talking:
 		animation.flip_h = false
 		animation.play("down")
 		
 		last_action = "d"
-		
+	
 	else:
+		
 		if last_action == "u":
 			animation.play("up_1")
 		elif last_action == "d":
@@ -84,7 +89,7 @@ func _physics_process(delta):
 # setup direction of movement
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
-	if moving:
+	if !cutscene and moving:
 		if Input.is_action_pressed("right") || Input.is_action_pressed("left"):
 			direction.y = 0
 		elif Input.is_action_pressed("up") || Input.is_action_pressed("down"):
@@ -92,7 +97,7 @@ func _physics_process(delta):
 		else:
 			direction = Vector2.ZERO
 	
-
+			
 		direction = direction.normalized()
 # setup the actual movement
 		velocity = (direction * speed)

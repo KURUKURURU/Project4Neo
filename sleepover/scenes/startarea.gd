@@ -34,6 +34,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	p.talking = talking
+	
 	if Input.is_action_just_pressed("interact") and !talking:
 		if talk_benny:
 			talking = true
@@ -50,11 +53,13 @@ func _process(delta: float) -> void:
 			await speak("You", "Another job.", "", "", "")
 			t._emote("", "")
 			
-			await cutscene("move_away")
 			benny.monitoring = false
+			e()
+			
+			await cutscene("move_away")
+			
 			t._emote("guy", "test")
 			
-			e()
 			talking = false
 			
 		elif enter_vant:
@@ -64,7 +69,7 @@ func _process(delta: float) -> void:
 			await speak("Benny", "You are good guy.", "", "", "")
 			
 			p.last_action = "d"
-			p.last_action = ""
+			#p.last_action = ""
 			
 			await p.emote_icon("exclamation")
 			t._emote("sam", "derp")
@@ -79,6 +84,7 @@ func _process(delta: float) -> void:
 			p.last_action = "l"
 			
 			await speak("You", "Don't worry, this'll be the last job for a while.", "", "", "")
+			ENTER.monitoring = false
 			
 			e()
 			talking = false

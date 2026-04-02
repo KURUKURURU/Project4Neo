@@ -10,18 +10,22 @@ extends Node2D
 @onready var big_boss = $big_boss
 
 var talking = false
+var cutscene = false
 
 func _ready() -> void:
 	p.last_action = "l"
 	fadeAnimation.play("fadein")
 
 func _process(_delta: float) -> void:
-	if talking:
-		return
+	
+	p.cutscene = cutscene
+	
+	#if talking:
+		#return
 	
 	# check loud fan
 	if pArea.overlaps_area(big_boss):
-		walkin_cutscene()
+		await walkin_cutscene()
 		#print("debug")
 		
 	
@@ -32,6 +36,7 @@ func _process(_delta: float) -> void:
 # --- interactions ---
 
 func walkin_cutscene():
+	cutscene = true
 	talking = true
 	p.can_interact = false
 	
@@ -42,6 +47,16 @@ func walkin_cutscene():
 	
 	await c.animation_finished
 	pAnim.play("up_1")
+	
+	await speak("Big Vant", "So I said, 'What kind of man doesn't pay his debt?'", "", "", "")
+	await speak("Big Vant", "A dead man.", "", "", "")
+	
+	t.textbox_emote()
+	speak("Big Vant", "AHAHHAAHHAHAHHAHA!!", "", "", "")
+	await wait(1.0)
+	await speak("Big Vant", "*clears throat*", "", "", "")
+	
+	#cutscene = false
 	
 	
 
@@ -58,6 +73,8 @@ func walkin_cutscene():
 	#
 	#end_dialogue()
 
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 
 func speak(n, m, c1, c2, c3):
 	p.moving = false

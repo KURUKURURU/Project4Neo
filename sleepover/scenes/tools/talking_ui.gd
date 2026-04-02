@@ -73,6 +73,10 @@ func _speak(name, message, in_1, in_2, in_3):
 		await _advance()
 		return
 
+func textbox_emote(emote:= "shake"):
+	animation.play(emote)
+	await animation.animation_finished
+
 func _emote(name: String, emotion: String): #files are named specifically!!! PLEASE DONT SCREW THIS UP
 	S.sprite = name
 	S.emote = emotion
