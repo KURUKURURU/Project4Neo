@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var interactIcon = $interactIcon
 @onready var emoteIcon = $emoteIcon
 @onready var emoteAnim = $emoteIcon/animation
+@onready var japan = $japan
 
 @export var speed = 500 
 @export var directassist = "" 
@@ -13,32 +14,13 @@ var can_interact = false
 var moving = true
 var talking = false
 var cutscene = false
+
 #
 
 func _ready() -> void:
 	emoteIcon.hide()
 
 func _process(delta: float) -> void:
-	#if directassist != "":
-		#match directassist:
-			#"r":
-				#animation.flip_h = false
-				#animation.play("side")
-				#last_action = "r"
-			#"l":
-				#animation.flip_h = true
-				#animation.play("side")
-				#last_action = "l"
-			#"u":
-				#animation.flip_h = false
-				#animation.play("up")
-				#last_action = "u"
-			#"d":
-				#animation.flip_h = false
-				#animation.play("down")
-				#last_action = "d"
-		#return
-	
 	if can_interact:
 		interactIcon.show()
 	else:
@@ -90,11 +72,22 @@ func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	if !cutscene and moving:
+		
 		if Input.is_action_pressed("right") || Input.is_action_pressed("left"):
 			direction.y = 0
+			
+			if !japan.is_playing():
+				japan.play()
+			
 		elif Input.is_action_pressed("up") || Input.is_action_pressed("down"):
 			direction.x = 0
+			
+			if !japan.is_playing():
+				japan.play()
+			
 		else:
+			if japan.is_playing():
+				japan.stop()
 			direction = Vector2.ZERO
 	
 			

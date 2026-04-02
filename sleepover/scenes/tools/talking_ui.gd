@@ -14,6 +14,7 @@ extends Node2D
 
 signal choice_selected(choice_id)
 var choice
+var is_speaking := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,6 +34,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _speak(name, message, in_1, in_2, in_3):
+	if is_speaking:
+		return
+	ding.play()
 	self.show()
 	
 	if animation.get_assigned_animation() == "enlarge":
@@ -51,7 +55,6 @@ func _speak(name, message, in_1, in_2, in_3):
 	var time = message.length() / 35
 	
 	text_animation.play("type")
-	ding.play()
 	await text_animation.animation_finished
 	
 	if !(in_1 == "" and in_2 == "" and in_3 == ""):
@@ -67,6 +70,7 @@ func _speak(name, message, in_1, in_2, in_3):
 		choice = await choice_selected 
 		
 		print("Player picked... ", choice)
+		return
 		
 	else:
 		await wait(time)

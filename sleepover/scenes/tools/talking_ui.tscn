@@ -681,7 +681,9 @@ offset_right = 952.305
 offset_bottom = 1048.0
 scale = Vector2(1.2067562, 0.8871272)
 theme = ExtResource("3_ai47c")
+bbcode_enabled = true
 text = "Hello! Haven't met you before."
+autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -694,6 +696,7 @@ scale = Vector2(1.2399994, 1)
 theme = ExtResource("3_ai47c")
 theme_override_fonts/normal_font = ExtResource("4_pjdk3")
 theme_override_font_sizes/normal_font_size = 49
+bbcode_enabled = true
 text = "Jet"
 scroll_active = false
 

@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=3 uid="uid://8yxgscete44d"]
+
+[ext_resource type="Script" uid="uid://cjoiva2rc8vct" path="res://npc.gd" id="1_8gbmn"]
+[ext_resource type="Texture2D" uid="uid://dpcnjw7a08ydu" path="res://images/emoteicons/wrong.png" id="15_46t2e"]
+[ext_resource type="AudioStream" uid="uid://daggo2ifkpn0e" path="res://sfx/footstepsJAPAN.wav" id="16_u8ld7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rv78h"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"vant_d",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_l",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_r",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_u",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"vant_up",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_smehm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(211.12027, 214.445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-66, -191)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.60155284, 0.60155284)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "popup"
+length = 1.544
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(211.12027, 214.445), Vector2(211.12027, 214.445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-66, -124), Vector2(-66, -191)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.60155284, 0.28155285), Vector2(0.60155284, 0.60155284)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0076308916, 0.0076308916, 0.0076308916, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_smehm"),
+&"popup": SubResource("Animation_tuyoq")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ub7sa"]
+radius = 43.011627
+
+[node name="NPC" type="Node2D"]
+script = ExtResource("1_8gbmn")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.9536963, 0.9536963)
+sprite_frames = SubResource("SpriteFrames_rv78h")
+animation = &"vant_d"
+
+[node name="emoteIcon" type="TextureRect" parent="."]
+z_index = 10
+offset_left = -66.0
+offset_top = -191.0
+offset_right = 145.12027
+offset_bottom = 23.445007
+scale = Vector2(0.60155284, 0.60155284)
+texture = ExtResource("15_46t2e")
+
+[node name="animation" type="AnimationPlayer" parent="emoteIcon"]
+libraries = {
+&"": SubResource("AnimationLibrary_fjrip")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.3909305, 1.3909305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ub7sa")
+
+[node name="japan" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_u8ld7")
+volume_db = -13.127
+pitch_scale = 0.88
+panning_strength = 1.58

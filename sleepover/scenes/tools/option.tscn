@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bm3hrdbwwmbrs" path="res://option.gd" id="1_v1fl3"]
 [ext_resource type="Theme" uid="uid://cw58y81wrsbbm" path="res://themes/quotes.tres" id="2_j8do4"]
-[ext_resource type="FontFile" uid="uid://bxvvtjlhdcwkm" path="res://fonts/mary-jane/MARYJO__.ttf" id="3_qu7xw"]
+[ext_resource type="FontFile" uid="uid://ebo6iyt5heop" path="res://fonts/Garaje 53 Uni Black.otf" id="3_qu7xw"]
 [ext_resource type="AudioStream" uid="uid://nmqkjnmty4pm" path="res://sfx/tick.wav" id="4_0fcof"]
 [ext_resource type="Texture2D" uid="uid://cxr1chk3h3s0d" path="res://images/action/normal.png" id="4_qu7xw"]
 
@@ -393,20 +393,20 @@ script = ExtResource("1_v1fl3")
 self_modulate = Color(1, 1, 1, -0.915)
 texture_filter = 1
 layout_mode = 0
-offset_left = 40.0
-offset_top = 6.0
-offset_right = 377.0
-offset_bottom = 50.0
+offset_left = -106.0
+offset_right = 231.0
+offset_bottom = 44.0
 theme = ExtResource("2_j8do4")
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("3_qu7xw")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 25
 text = "Option 1"
 fit_content = true
 scroll_active = false
+vertical_alignment = 1
 
 [node name="icon" type="TextureRect" parent="."]
-self_modulate = Color(3.2359245, 3.2359245, 1.0829546, 1)
+self_modulate = Color(18.892157, 18.892157, 18.892157, 1)
 texture_filter = 1
 layout_mode = 0
 offset_top = 12.000001

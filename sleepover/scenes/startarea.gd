@@ -8,6 +8,7 @@ extends Node2D
 @onready var sprite = $top/talking_ui/Sprite
 
 @onready var cutsceneA = $cutsceneA
+@onready var bikeSFX = $bike
 
 #AREAS
 @onready var benny = $guardguy/Area2D
@@ -28,6 +29,7 @@ func _ready() -> void:
 	
 	t._emote("", "")
 	await speak("", "Bike locked.", "", "", "")
+	bikeSFX.play()
 	e()
 	
 

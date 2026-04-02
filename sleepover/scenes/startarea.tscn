@@ -208,7 +208,6 @@ attenuation = 4.9245863
 position = Vector2(670, 318)
 stream = ExtResource("8_ovo77")
 volume_db = 9.087
-autoplay = true
 
 [connection signal="area_entered" from="guardguy/Area2D" to="." method="Guy"]
 [connection signal="area_exited" from="guardguy/Area2D" to="." method="exit"]
