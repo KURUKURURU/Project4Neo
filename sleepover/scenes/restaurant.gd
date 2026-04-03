@@ -63,12 +63,12 @@ func walkin_cutscene():
 	t._emote("vant", "think")
 	await speak("Big Vant", "*clears throat*", "", "", "")
 	t._emote("vant", "smug")
-	await speak("Big Vant", "Good evening Sam! Grab a plate, the chef finally made something remotely edible.", "No thanks.", "I can't.", "")
+	await speak("Big Vant", "Sam! Grab a plate, the chef finally made something remotely edible.", "No thanks.", "I can't.", "")
 	
 	if t.choice == 1:
 		print("debug")
 		t._emote("sam", "normal")
-		await speak("You", "No thanks. You sure that isn't store bought?", "", "", "")
+		await speak("You", "No thanks. You sure that ain't store bought?", "", "", "")
 		t._emote("vant", "smile")
 		await speak("Big Vant", "Have some faith in the guy.", "", "", "")
 	elif t.choice == 2:
@@ -99,10 +99,15 @@ func walkin_cutscene():
 	await speak("Damon", "We need to have adequate security in order to protect our research.", "", "", "")
 	await speak("Damon", "We need someone that can get the job done quietly and efficiently. Resorting to [shake]extreme methods [/shake]when neccessary.", "", "", "")
 	t._emote("damon", "sad")
-	await speak("Damon", ".", "", "", "")
+	await speak("Damon", "..", "", "", "")
 	t._emote("damon", "direct")
-	await speak("Damon", "Say, what kind of man are you?", "Smart.", "Hard-working.", "Determined.")
-	
+	await speak("Damon", "Say, [shake]what kind of man are you?[/shake]", "Problem-solver.","Jack of all trades.", "Do what it takes.")
+	if t.choice == 1:
+		await speak("You", "I'm a problem-solver. I can take care of [pulse]any[/pulse] issue.", "", "", "")
+	elif t.choice == 2:
+		await speak("You", "", "", "", "")
+	elif t.choice == 3:
+		await speak("You", "", "", "", "")
 	
 	
 	#cutscene = false

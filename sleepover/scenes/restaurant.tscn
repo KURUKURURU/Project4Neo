@@ -226,7 +226,7 @@ offset_top = -606.0
 offset_right = 1550.0
 offset_bottom = 1233.0
 scale = Vector2(1.2636892, 1.5735767)
-color = Color(0.23921569, 0.23529412, 0.32941177, 1)
+color = Color(0, 0, 0.08627451, 1)
 
 [node name="barrier" type="TileMapLayer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
