@@ -6,9 +6,12 @@
 
 [node name="ColorRect" type="ColorRect" parent="."]
 clip_children = 1
-offset_right = 202.0
-offset_bottom = 202.0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = 204.34079
+offset_bottom = 208.0
+scale = Vector2(0.9501402, 0.9501402)
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
-position = Vector2(100, 102)
+position = Vector2(95, 97)
 texture = ExtResource("1_l0pwp")

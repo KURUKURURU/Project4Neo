@@ -1,51 +1,59 @@
-[gd_scene load_steps=9 format=3 uid="uid://8yxgscete44d"]
+[gd_scene load_steps=14 format=3 uid="uid://8yxgscete44d"]
 
 [ext_resource type="Script" uid="uid://cjoiva2rc8vct" path="res://npc.gd" id="1_8gbmn"]
+[ext_resource type="Texture2D" uid="uid://bybdxo545nmhi" path="res://images/npc/benny_idle.png" id="2_0tygy"]
+[ext_resource type="Texture2D" uid="uid://bjbd7ks78s362" path="res://images/npc/damon_normal.png" id="3_sptji"]
+[ext_resource type="Texture2D" uid="uid://dogfisaedgivp" path="res://images/npc/damon_turn.png" id="4_v4e37"]
+[ext_resource type="Texture2D" uid="uid://dgxa017k07lf0" path="res://images/npc/vant_normal.png" id="5_1h837"]
+[ext_resource type="Texture2D" uid="uid://d3gj36bjmqewb" path="res://images/npc/vant_eating.png" id="6_gl1un"]
 [ext_resource type="Texture2D" uid="uid://dpcnjw7a08ydu" path="res://images/emoteicons/wrong.png" id="15_46t2e"]
 [ext_resource type="AudioStream" uid="uid://daggo2ifkpn0e" path="res://sfx/footstepsJAPAN.wav" id="16_u8ld7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rv78h"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0tygy")
+}],
+"loop": true,
+"name": &"benny_r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sptji")
+}],
+"loop": true,
+"name": &"damon_d",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v4e37")
+}],
+"loop": true,
+"name": &"damon_u",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1h837")
+}],
 "loop": true,
 "name": &"vant_d",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"vant_down",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"vant_l",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"vant_left",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"vant_r",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"vant_right",
-"speed": 5.0
-}, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gl1un")
+}],
 "loop": true,
 "name": &"vant_u",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"vant_up",
-"speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ub7sa"]
+radius = 98.23142
 
 [sub_resource type="Animation" id="Animation_smehm"]
 length = 0.001
@@ -156,23 +164,32 @@ _data = {
 &"popup": SubResource("Animation_tuyoq")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ub7sa"]
-radius = 43.011627
-
 [node name="NPC" type="Node2D"]
 script = ExtResource("1_8gbmn")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.9536963, 0.9536963)
 sprite_frames = SubResource("SpriteFrames_rv78h")
-animation = &"vant_d"
+animation = &"benny_r"
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.8857221, 0.8857221)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ub7sa")
+
+[node name="japan" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(0.63678384, 0.63678384)
+stream = ExtResource("16_u8ld7")
+volume_db = -13.127
+pitch_scale = 0.88
+panning_strength = 1.58
 
 [node name="emoteIcon" type="TextureRect" parent="."]
 z_index = 10
 offset_left = -66.0
-offset_top = -191.0
+offset_top = -205.0
 offset_right = 145.12027
-offset_bottom = 23.445007
+offset_bottom = 9.445007
 scale = Vector2(0.60155284, 0.60155284)
 texture = ExtResource("15_46t2e")
 
@@ -180,15 +197,3 @@ texture = ExtResource("15_46t2e")
 libraries = {
 &"": SubResource("AnimationLibrary_fjrip")
 }
-
-[node name="Area2D" type="Area2D" parent="."]
-scale = Vector2(1.3909305, 1.3909305)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_ub7sa")
-
-[node name="japan" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("16_u8ld7")
-volume_db = -13.127
-pitch_scale = 0.88
-panning_strength = 1.58

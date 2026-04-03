@@ -50,24 +50,33 @@ func walkin_cutscene():
 	await c.animation_finished
 	pAnim.play("up_1")
 	
+	t._emote("vant", "plain")
 	await speak("Big Vant", "So I said, 'What kind of man doesn't pay his debt?'", "", "", "")
+	t._emote("vant", "smug")
 	await speak("Big Vant", "A dead man.", "", "", "")
 	
 	t.textbox_emote()
+	t._emote("vant", "smile")
 	speak("Big Vant", "[wave amp=80.0 freq=5.0 connected=1]AHAHHAAHHAHAHHAHA!![/wave]", "", "", "")
 	await wait(1.0)
+	t._emote("vant", "think")
 	await speak("Big Vant", "*clears throat*", "", "", "")
-	
+	t._emote("vant", "smug")
 	await speak("Big Vant", "Good evening Sam! Grab a plate, the chef finally made something remotely edible.", "No thanks.", "I can't.", "")
 	if t.choice == 1:
 		print("debug")
+		t._emote("sam", "normal")
 		await speak("You", "No thanks. You sure that isn't store bought?", "", "", "")
+		t._emote("vant", "smile")
 		await speak("Big Vant", "Have some faith in the guy.", "", "", "")
 	elif t.choice == 2:
+		t._emote("sam", "normal")
 		await speak("You", "I can't have shellfish, thanks though.", "", "", "")
+		t._emote("vant", "think")
 		vant.emote_icon("dots")
 		await speak("Big Vant", "A life without shrimp, how disdainful.", "", "", "")
-		
+	
+	t._emote("vant", "smug")
 	await speak("Big Vant", "Daniel, this here is who've I've been talking about.", "", "", "")
 	await speak("Big Vant", "A good worker, and he's quiet too.", "", "", "")
 	await speak("Big Vant", "Well, when it counts.", "", "", "")
@@ -75,15 +84,18 @@ func walkin_cutscene():
 	vant.emote_icon("exclamation")
 	await speak("Big Vant", "Oh, please Samuel, please meet my good friend here.", "", "", "")
 	speak("Big Vant", "He's Daniel Damon, a-", "", "", "")
-	await wait(1.0)
+	await wait(1.7)
 	
+	t._emote("damon", "normal")
 	await speak("Damon", "I can introduce myself, Vant, thank you.", "", "", "")
 	await speak("Damon", "You've probably heard of [shake rate=20.0 level=5 connected=1]Brightwell Industries[/shake]. We've been on the news several times already.", "", "", "")
 	await speak("Damon", "We do groundbreaking research on the care and behavior of [shake rate=20.0 level=5 connected=1]children[/shake].", "", "", "")
+	t._emote("damon", "smile")
 	await speak("Damon", "We need to have adequate security in order to protect our research.", "", "", "")
 	await speak("Damon", "We need someone that can get the job done quietly and efficiently. Resorting to [shake]extreme methods [/shake]when neccessary.", "", "", "")
+	t._emote("damon", "sad")
 	await speak("Damon", ".", "", "", "")
-	
+	t._emote("damon", "direct")
 	await speak("Damon", "Say, what kind of man are you?", "Smart.", "Hard-working.", "Determined.")
 	
 	

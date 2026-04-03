@@ -1,11 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://brawv17r5t0ic"]
+[gd_scene load_steps=20 format=3 uid="uid://brawv17r5t0ic"]
 
 [ext_resource type="Script" uid="uid://dn5f3u1totlss" path="res://scenes/startarea.gd" id="1_apjf7"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_iyu60"]
 [ext_resource type="Texture2D" uid="uid://dr3nrn1ac12p2" path="res://images/test/estttt.png" id="3_apjf7"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="3_bxioc"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_c4uvy"]
-[ext_resource type="Texture2D" uid="uid://ywsng3xvgw6w" path="res://images/test/guy.png" id="6_nmf60"]
+[ext_resource type="PackedScene" uid="uid://8yxgscete44d" path="res://scenes/npc.tscn" id="6_5u4ro"]
 [ext_resource type="AudioStream" uid="uid://7hruycijxbn3" path="res://sfx/ambience_street.wav" id="7_u6fly"]
 [ext_resource type="AudioStream" uid="uid://6hg5ytg3dyhx" path="res://sfx/bikeplace.mp3" id="8_ovo77"]
 [ext_resource type="AudioStream" uid="uid://cbeuwofbsnd5q" path="res://sfx/windhowl.mp3" id="8_y0kta"]
@@ -63,39 +63,38 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u6fly"]
-radius = 57.144997
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmf60"]
-size = Vector2(46.781006, 49.461365)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbwxa"]
+size = Vector2(333.34015, 215.35884)
 
 [sub_resource type="Animation" id="Animation_y0kta"]
 length = 0.001
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("guardguy:position:y")
+tracks/0/path = NodePath("benny:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1668, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(554, 1672)]
 }
 
 [sub_resource type="Animation" id="Animation_ovo77"]
 resource_name = "move_away"
 length = 1.3795
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("guardguy:position:y")
+tracks/0/path = NodePath("benny:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1668, -0.25, 0, 0.25, 0, 1797.0001, -0.125, -32.25003, 0.125, 32.25003),
-"times": PackedFloat32Array(0, 0.96666664)
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(554, 1672), Vector2(554, 1792)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5u4ro"]
@@ -104,8 +103,8 @@ _data = {
 &"move_away": SubResource("Animation_ovo77")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nmf60"]
-radius = 104.307236
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u4ro"]
+size = Vector2(104, 94.5)
 
 [node name="mainstreet" type="Node2D"]
 script = ExtResource("1_apjf7")
@@ -153,22 +152,17 @@ limit_right = 0
 limit_bottom = 2155
 position_smoothing_enabled = true
 
-[node name="guardguy" type="Sprite2D" parent="."]
-position = Vector2(534, 1668)
-scale = Vector2(1.6275332, 1.6275332)
-texture = ExtResource("6_nmf60")
+[node name="benny" parent="." instance=ExtResource("6_5u4ro")]
+position = Vector2(554, 1672)
+scale = Vector2(0.95338356, 0.95338356)
 
-[node name="Area2D" type="Area2D" parent="guardguy"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="benny"]
+scale = Vector2(0.63678384, 0.63678384)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="guardguy/Area2D"]
-position = Vector2(6.7586946, 15.36067)
-shape = SubResource("CircleShape2D_u6fly")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="guardguy"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="guardguy/StaticBody2D"]
-position = Vector2(-8.029846, 21.044067)
-shape = SubResource("RectangleShape2D_nmf60")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="benny/StaticBody2D2"]
+position = Vector2(-104.595764, 8.804443)
+scale = Vector2(0.9536962, 0.9536962)
+shape = SubResource("RectangleShape2D_jbwxa")
 
 [node name="cutsceneA" type="AnimationPlayer" parent="."]
 libraries = {
@@ -176,10 +170,11 @@ libraries = {
 }
 
 [node name="ENTER" type="Area2D" parent="."]
-position = Vector2(429, 1668)
+position = Vector2(433, 1672)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ENTER"]
-shape = SubResource("CircleShape2D_nmf60")
+position = Vector2(40, 11.75)
+shape = SubResource("RectangleShape2D_5u4ro")
 
 [node name="wind" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(670, 475)
@@ -209,7 +204,5 @@ position = Vector2(670, 318)
 stream = ExtResource("8_ovo77")
 volume_db = 9.087
 
-[connection signal="area_entered" from="guardguy/Area2D" to="." method="Guy"]
-[connection signal="area_exited" from="guardguy/Area2D" to="." method="exit"]
 [connection signal="area_entered" from="ENTER" to="." method="_ENTER"]
 [connection signal="area_exited" from="ENTER" to="." method="exit"]
