@@ -9,6 +9,7 @@ extends Node2D
 
 @onready var big_boss = $big_boss
 @onready var vant = $Vant
+@onready var damon = $Damon
 
 var talking = false
 var cutscene = false
@@ -20,7 +21,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	p.cutscene = cutscene
-	
+	queue_free()
 	#if talking:
 		#return
 	
@@ -38,6 +39,7 @@ func _process(_delta: float) -> void:
 # --- interactions ---
 
 func walkin_cutscene():
+	damon.last_action = "u"
 	cutscene = true
 	talking = true
 	p.can_interact = false
@@ -63,6 +65,7 @@ func walkin_cutscene():
 	await speak("Big Vant", "*clears throat*", "", "", "")
 	t._emote("vant", "smug")
 	await speak("Big Vant", "Good evening Sam! Grab a plate, the chef finally made something remotely edible.", "No thanks.", "I can't.", "")
+	
 	if t.choice == 1:
 		print("debug")
 		t._emote("sam", "normal")
@@ -70,6 +73,7 @@ func walkin_cutscene():
 		t._emote("vant", "smile")
 		await speak("Big Vant", "Have some faith in the guy.", "", "", "")
 	elif t.choice == 2:
+		damon.last_action = "d"
 		t._emote("sam", "normal")
 		await speak("You", "I can't have shellfish, thanks though.", "", "", "")
 		t._emote("vant", "think")
@@ -84,10 +88,12 @@ func walkin_cutscene():
 	vant.emote_icon("exclamation")
 	await speak("Big Vant", "Oh, please Samuel, please meet my good friend here.", "", "", "")
 	speak("Big Vant", "He's Daniel Damon, a-", "", "", "")
-	await wait(1.7)
+	await wait(1.0)
 	
+	damon.last_action = "u"
 	t._emote("damon", "normal")
 	await speak("Damon", "I can introduce myself, Vant, thank you.", "", "", "")
+	damon.last_action = "d"
 	await speak("Damon", "You've probably heard of [shake rate=20.0 level=5 connected=1]Brightwell Industries[/shake]. We've been on the news several times already.", "", "", "")
 	await speak("Damon", "We do groundbreaking research on the care and behavior of [shake rate=20.0 level=5 connected=1]children[/shake].", "", "", "")
 	t._emote("damon", "smile")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://pu4m4ise4xet"]
+[gd_scene load_steps=13 format=3 uid="uid://pu4m4ise4xet"]
 
 [ext_resource type="Script" uid="uid://cs3aj7r5lnogu" path="res://vant_area.gd" id="1_g3o0j"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_58u3k"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_ibrlr"]
-[ext_resource type="Texture2D" uid="uid://dyrp5d0v3xu4n" path="res://images/test/3.png" id="4_mwmjw"]
+[ext_resource type="Texture2D" uid="uid://hmy6rmh8l4is" path="res://images/settings_bgs/kitchen.png" id="4_58u3k"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="5_cwf2y"]
+[ext_resource type="Texture2D" uid="uid://bkn24ksjfhks5" path="res://images/settings_bgs/kitchen_table.png" id="6_ibrlr"]
 [ext_resource type="AudioStream" uid="uid://cca5mgt8s8svo" path="res://sfx/kitchen.wav" id="6_vpxcu"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
@@ -66,6 +67,7 @@ radius = 71.02816
 script = ExtResource("1_g3o0j")
 
 [node name="top" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="talking_ui" parent="top" instance=ExtResource("2_58u3k")]
 position = Vector2(-21, 0)
@@ -91,10 +93,19 @@ texture = ExtResource("3_ibrlr")
 [node name="bg" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_mwmjw")
+texture = ExtResource("4_58u3k")
+
+[node name="bg2" type="TextureRect" parent="."]
+z_index = 1
+clip_contents = true
+offset_right = 1300.0
+offset_bottom = 535.0
+texture = ExtResource("6_ibrlr")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("5_cwf2y")]
-position = Vector2(963, 816)
+position = Vector2(1011, 872)
 speed = 325
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -108,12 +119,12 @@ limit_bottom = 5
 position_smoothing_enabled = true
 
 [node name="ambience" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(869, 561)
+position = Vector2(275, 566)
 stream = ExtResource("6_vpxcu")
 autoplay = true
 
 [node name="enter_bar" type="Area2D" parent="."]
-position = Vector2(250, 848)
+position = Vector2(250, 872)
 
 [node name="col" type="CollisionShape2D" parent="enter_bar"]
 shape = SubResource("CircleShape2D_2y3cc")
@@ -125,7 +136,15 @@ position = Vector2(608, 615)
 shape = SubResource("CircleShape2D_2y3cc")
 
 [node name="loud" type="Area2D" parent="."]
-position = Vector2(963, 531)
+position = Vector2(275, 589)
 
 [node name="col" type="CollisionShape2D" parent="loud"]
 shape = SubResource("CircleShape2D_2y3cc")
+
+[node name="bg3" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -521.0
+offset_top = -295.0
+offset_right = 1710.0
+offset_bottom = 1544.0
+color = Color(0.23921569, 0.23529412, 0.32941177, 1)

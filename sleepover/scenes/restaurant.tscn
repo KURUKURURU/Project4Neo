@@ -193,3 +193,9 @@ libraries = {
 
 [node name="Vant" parent="." instance=ExtResource("9_1sijj")]
 position = Vector2(909, 320)
+last_action = "u"
+npc = "vant"
+
+[node name="Damon" parent="." instance=ExtResource("9_1sijj")]
+position = Vector2(627, 320)
+npc = "damon"
