@@ -225,7 +225,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(102.20615, 124.70453)
+size = Vector2(85.3294, 121.357376)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 43.011627
@@ -261,7 +261,7 @@ libraries = {
 }
 
 [node name="coll" type="CollisionShape2D" parent="."]
-position = Vector2(0.24878263, -2.2814302)
+position = Vector2(6.0000005, -1.0000043)
 scale = Vector2(1.054736, 1.054736)
 shape = SubResource("RectangleShape2D_g2els")
 

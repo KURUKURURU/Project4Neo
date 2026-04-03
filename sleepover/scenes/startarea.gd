@@ -57,15 +57,15 @@ func _process(delta: float) -> void:
 				t._emote("sam", "normal")
 				await speak("You", "Another job.", "", "", "")
 				t._emote("", "")
-				
+				benny_C.disabled = true
+				ENTER_C.disabled = false
 				e()
 				
 				await cutscene("move_away")
 				
 				t._emote("benny", "normal")
 				
-				benny_C.disabled = true
-				ENTER_C.disabled = false
+				
 				
 				talking = false
 			

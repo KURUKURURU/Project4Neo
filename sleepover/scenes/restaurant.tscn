@@ -1,14 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1v8aeu1cmouf"]
+[gd_scene load_steps=21 format=4 uid="uid://c1v8aeu1cmouf"]
 
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_f3ktr"]
 [ext_resource type="Script" uid="uid://kstu171vtduc" path="res://scenes/restaurant.gd" id="1_uk3xj"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="2_50xnb"]
+[ext_resource type="Texture2D" uid="uid://k0kmwlm1b20e" path="res://images/settings_bgs/restrurant.png" id="4_1sijj"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="4_bp8vj"]
-[ext_resource type="Texture2D" uid="uid://crtaipmq2iumy" path="res://images/test/4.png" id="4_rwm3f"]
 [ext_resource type="AudioStream" uid="uid://dyv5ap051igal" path="res://music/jazzy.wav" id="6_rwm3f"]
 [ext_resource type="AudioStream" uid="uid://cmkkh2qbh2cjs" path="res://sfx/munches.wav" id="7_bp8vj"]
 [ext_resource type="AudioStream" uid="uid://sj41r1lqv6os" path="res://sfx/bar_sfx.wav" id="8_rwm3f"]
 [ext_resource type="PackedScene" uid="uid://8yxgscete44d" path="res://scenes/npc.tscn" id="9_1sijj"]
+[ext_resource type="Texture2D" uid="uid://ct1r5gaiq6hf6" path="res://images/settings_bgs/barrier.png" id="10_u1ary"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -93,7 +94,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(665, 824), Vector2(665, 582)]
+"values": [Vector2(720, 824), Vector2(720, 582)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -114,6 +115,17 @@ _data = {
 &"walk_in": SubResource("Animation_bp8vj")
 }
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qujyy"]
+texture = ExtResource("10_u1ary")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(31, 50, -50, 50, 50, 50, 50, -50, -50, -50, -50, 50, -50, 50, 50, 50)
+
+[sub_resource type="TileSet" id="TileSet_0duca"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qujyy")
+
 [node name="Restaurant" type="Node2D"]
 script = ExtResource("1_uk3xj")
 
@@ -121,6 +133,7 @@ script = ExtResource("1_uk3xj")
 
 [node name="talking_ui" parent="top" instance=ExtResource("1_f3ktr")]
 visible = false
+z_index = 5
 position = Vector2(-21, 0)
 
 [node name="fade" type="ColorRect" parent="top"]
@@ -142,12 +155,16 @@ mouse_filter = 2
 texture = ExtResource("2_50xnb")
 
 [node name="bg" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("4_rwm3f")
+clip_contents = true
+offset_right = 1300.0
+offset_bottom = 1193.0
+texture = ExtResource("4_1sijj")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("4_bp8vj")]
-position = Vector2(975, 968)
+modulate = Color(1.4164544, 1.4164544, 1.4164544, 1)
+position = Vector2(984, 938)
 speed = 165
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -192,10 +209,35 @@ libraries = {
 }
 
 [node name="Vant" parent="." instance=ExtResource("9_1sijj")]
-position = Vector2(909, 320)
+modulate = Color(1.365921, 1.365921, 1.365921, 1)
+position = Vector2(909, 315)
 last_action = "u"
 npc = "vant"
 
 [node name="Damon" parent="." instance=ExtResource("9_1sijj")]
+modulate = Color(1.0009198, 1.1143279, 1.366, 1)
 position = Vector2(627, 320)
 npc = "damon"
+
+[node name="bg3" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -681.00006
+offset_top = -606.0
+offset_right = 1550.0
+offset_bottom = 1233.0
+scale = Vector2(1.2636892, 1.5735767)
+color = Color(0.23921569, 0.23529412, 0.32941177, 1)
+
+[node name="barrier" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(267, 0)
+scale = Vector2(0.97930604, 1.0341561)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAP//AAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_0duca")
+
+[node name="barrier2" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(800, 779)
+scale = Vector2(0.99413466, 0.6417827)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_0duca")
