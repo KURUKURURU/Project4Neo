@@ -12,7 +12,9 @@ extends Node2D
 
 #AREAS
 @onready var benny = $benny/Area2D
+@onready var benny_C = $benny/Area2D/CollisionShape2D
 @onready var ENTER = $ENTER
+@onready var ENTER_C = $ENTER/CollisionShape2D
 
 var talking = false
 var talk_benny = false
@@ -62,8 +64,8 @@ func _process(delta: float) -> void:
 				
 				t._emote("benny", "normal")
 				
-				benny.monitorable = false
-				ENTER.monitorable = true
+				benny_C.disabled = true
+				ENTER_C.disabled = false
 				
 				talking = false
 			
@@ -71,7 +73,7 @@ func _process(delta: float) -> void:
 			p.can_interact = true
 			
 			if Input.is_action_just_pressed("interact"):
-				ENTER.monitoring = false
+				ENTER_C.disabled = true
 				
 				talking = true
 				p.can_interact = false
@@ -102,7 +104,6 @@ func _process(delta: float) -> void:
 				await speak("You", "Sorry.", "", "", "")
 				t._emote("sam", "sad")
 				await speak("You", "Don't worry, this'll be the last job for a while.", "", "", "")
-				ENTER.monitoring = false
 				
 				e()
 				talking = false

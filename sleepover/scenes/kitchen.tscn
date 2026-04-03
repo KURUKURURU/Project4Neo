@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://pu4m4ise4xet"]
+[gd_scene load_steps=16 format=4 uid="uid://pu4m4ise4xet"]
 
 [ext_resource type="Script" uid="uid://cs3aj7r5lnogu" path="res://vant_area.gd" id="1_g3o0j"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_58u3k"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="5_cwf2y"]
 [ext_resource type="Texture2D" uid="uid://bkn24ksjfhks5" path="res://images/settings_bgs/kitchen_table.png" id="6_ibrlr"]
 [ext_resource type="AudioStream" uid="uid://cca5mgt8s8svo" path="res://sfx/kitchen.wav" id="6_vpxcu"]
+[ext_resource type="Texture2D" uid="uid://ct1r5gaiq6hf6" path="res://images/settings_bgs/barrier.png" id="8_ibrlr"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -63,11 +64,21 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2y3cc"]
 radius = 71.02816
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mwmjw"]
+texture = ExtResource("8_ibrlr")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(31, 50, -50, 50, 50, 50, 50, -50, -50, -50, -50, 50, -50, 50, 50, 50)
+
+[sub_resource type="TileSet" id="TileSet_cwf2y"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_mwmjw")
+
 [node name="VantArea" type="Node2D"]
 script = ExtResource("1_g3o0j")
 
 [node name="top" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="talking_ui" parent="top" instance=ExtResource("2_58u3k")]
 position = Vector2(-21, 0)
@@ -148,3 +159,24 @@ offset_top = -295.0
 offset_right = 1710.0
 offset_bottom = 1544.0
 color = Color(0.23921569, 0.23529412, 0.32941177, 1)
+
+[node name="barrier" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(36, 82)
+scale = Vector2(0.9435371, 0.95931935)
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_cwf2y")
+
+[node name="barrier2" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(36, 82)
+scale = Vector2(0.945768, 0.72242707)
+tile_map_data = PackedByteArray("AAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_cwf2y")
+
+[node name="barrier3" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(12, 80.99999)
+scale = Vector2(0.93503416, 0.7190407)
+tile_map_data = PackedByteArray("AAAGAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_cwf2y")

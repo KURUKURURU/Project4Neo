@@ -21,7 +21,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	p.cutscene = cutscene
-	queue_free()
 	#if talking:
 		#return
 	
