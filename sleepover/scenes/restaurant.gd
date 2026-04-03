@@ -76,6 +76,7 @@ func walkin_cutscene():
 	await speak("Big Vant", "Oh, please Samuel, please meet my good friend here.", "", "", "")
 	speak("Big Vant", "He's Daniel Damon, a-", "", "", "")
 	await wait(1.0)
+	
 	await speak("Damon", "I can introduce myself, Vant, thank you.", "", "", "")
 	await speak("Damon", "You've probably heard of [shake rate=20.0 level=5 connected=1]Brightwell Industries[/shake]. We've been on the news several times already.", "", "", "")
 	await speak("Damon", "We do groundbreaking research on the care and behavior of [shake rate=20.0 level=5 connected=1]children[/shake].", "", "", "")
