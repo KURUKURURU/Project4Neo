@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1tukiw0ew1lj"]
+
+[ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
+[ext_resource type="Script" uid="uid://cu7ie5owcmlwo" path="res://camera_2d.gd" id="1_mdax1"]
+[ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
+[ext_resource type="Texture2D" uid="uid://e6r8bimuy1at" path="res://images/testturnsystem.png" id="2_mdax1"]
+[ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_oirde"]
+[ext_resource type="Script" uid="uid://cqwgv6p3myr2d" path="res://scenes/cursor.gd" id="4_c1lty"]
+
+[sub_resource type="Animation" id="Animation_nmf60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c4uvy"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 0), Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u6fly"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 1), Color(0, 0, 0.106126174, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovo77"]
+_data = {
+&"RESET": SubResource("Animation_nmf60"),
+&"fade": SubResource("Animation_c4uvy"),
+&"fadein": SubResource("Animation_u6fly")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40qg6"]
+radius = 289.00693
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8p4ax"]
+radius = 35.510563
+
+[node name="bg1" type="Node2D"]
+script = ExtResource("1_8p4ax")
+
+[node name="top" type="CanvasLayer" parent="."]
+
+[node name="talking_ui" parent="top" instance=ExtResource("2_24ock")]
+visible = false
+z_index = 5
+position = Vector2(-21, 0)
+
+[node name="fade" type="ColorRect" parent="top"]
+offset_right = 1300.0
+offset_bottom = 1086.0
+mouse_filter = 2
+color = Color(0, 0, 0.106126174, 1)
+
+[node name="animation" type="AnimationPlayer" parent="top/fade"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ovo77")
+}
+
+[node name="filter" type="TextureRect" parent="top"]
+offset_right = 1300.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("3_oirde")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -923.0
+offset_right = 3900.0
+offset_bottom = 157.0
+scale = Vector2(1.7156413, 1.7156413)
+texture = ExtResource("2_mdax1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(3345, 0)
+scale = Vector2(1, 2.2)
+zoom = Vector2(0.605, 0.605)
+limit_left = 0
+limit_top = 0
+limit_right = 6685
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 3.12
+drag_horizontal_enabled = true
+script = ExtResource("1_mdax1")
+
+[node name="Jane" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jane"]
+position = Vector2(497, 73)
+shape = SubResource("CircleShape2D_40qg6")
+
+[node name="Cursor" type="Area2D" parent="."]
+script = ExtResource("4_c1lty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
+shape = SubResource("CircleShape2D_8p4ax")
