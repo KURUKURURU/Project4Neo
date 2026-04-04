@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 				bikeSFX.play()
 				fadeAnimation.play("fade")
 				await fadeAnimation.animation_finished
-				get_tree().change_scene_to_file("res://scenes/kitchen.tscn")
+				get_tree().change_scene_to_file("uid://n27dfrxyq3d2")
 		else:
 			p.can_interact = false
 

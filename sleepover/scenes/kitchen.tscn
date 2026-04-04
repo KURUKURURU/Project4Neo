@@ -146,6 +146,12 @@ position = Vector2(608, 615)
 [node name="col" type="CollisionShape2D" parent="knife"]
 shape = SubResource("CircleShape2D_2y3cc")
 
+[node name="sink" type="Area2D" parent="."]
+position = Vector2(779, 337)
+
+[node name="col" type="CollisionShape2D" parent="sink"]
+shape = SubResource("CircleShape2D_2y3cc")
+
 [node name="loud" type="Area2D" parent="."]
 position = Vector2(275, 589)
 

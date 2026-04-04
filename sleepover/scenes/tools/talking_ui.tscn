@@ -675,6 +675,7 @@ scale = Vector2(1.1785818, 0.70139295)
 texture = ExtResource("3_j03vm")
 
 [node name="mainText" type="RichTextLabel" parent="."]
+clip_contents = false
 offset_left = 296.0
 offset_top = 904.00006
 offset_right = 952.305

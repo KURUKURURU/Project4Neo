@@ -8,6 +8,7 @@ extends Node2D
 @onready var loudfan = $loud
 @onready var bar = $enter_bar
 @onready var knife = $knife
+@onready var sink = $sink
 
 var talking = false
 
@@ -35,6 +36,10 @@ func _process(_delta: float) -> void:
 		p.can_interact = true
 		if Input.is_action_just_pressed("interact"):
 			await _knife()
+	elif pArea.overlaps_area(sink):
+		p.can_interact = true
+		if Input.is_action_just_pressed("interact"):
+			await _sink()
 	
 	else:
 		p.can_interact = false
@@ -64,7 +69,18 @@ func _knife():
 	
 	end_dialogue()
 
-
+func _sink():
+	talking = true
+	p.can_interact = false
+	
+	t._emote("sam", "normal")
+	await speak("You", "People are crazy about sinks, but they're idiots.", "", "", "")
+	await speak("You", "Why pay for essentially two sinks? Just use the bath for everything.", "", "", "")
+	p.emote_icon("dots")
+	t._emote("sam", "sad")
+	await speak("You", "[shake]Though, I'm only saying this cause I can't afford a sink...", "", "", "")
+	
+	end_dialogue()
 
 func enter_bar_scene():
 	p.can_interact = false

@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://n27dfrxyq3d2"]
+[gd_scene load_steps=12 format=3 uid="uid://n27dfrxyq3d2"]
 
 [ext_resource type="PackedScene" uid="uid://c762xcsn0ch8a" path="res://scenes/biking_scene.tscn" id="1_40xye"]
+[ext_resource type="Script" uid="uid://dq518eectkhot" path="res://scenes/booths.gd" id="1_cngsr"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_cngsr"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_1kclb"]
+[ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="5_1kclb"]
+[ext_resource type="Texture2D" uid="uid://vq1bvsvccllf" path="res://images/test/5.png" id="6_3n54q"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -56,7 +59,11 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xxu2"]
+size = Vector2(162, 178)
+
 [node name="Booths" type="Node2D"]
+script = ExtResource("1_cngsr")
 
 [node name="top" type="CanvasLayer" parent="."]
 
@@ -84,3 +91,28 @@ offset_right = 1300.0
 offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("3_1kclb")
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 1300.0
+offset_bottom = 1080.0
+texture = ExtResource("6_3n54q")
+
+[node name="Player" parent="." instance=ExtResource("5_1kclb")]
+position = Vector2(163, 815)
+speed = 300
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 1300
+limit_top = 0
+limit_right = 0
+limit_bottom = 2155
+position_smoothing_enabled = true
+
+[node name="start" type="Area2D" parent="."]
+position = Vector2(720, 513)
+
+[node name="col" type="CollisionShape2D" parent="start"]
+position = Vector2(0, 27)
+shape = SubResource("RectangleShape2D_8xxu2")
+
+[connection signal="BIKE_DONE" from="top/BikingScene" to="." method="_BIKE_DONE"]
