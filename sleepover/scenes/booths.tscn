@@ -102,11 +102,9 @@ position = Vector2(163, 815)
 speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = 1300
-limit_top = 0
-limit_right = 0
-limit_bottom = 2155
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
+position_smoothing_speed = 3.5
 
 [node name="start" type="Area2D" parent="."]
 position = Vector2(720, 513)

@@ -89,8 +89,9 @@ func walkin_cutscene():
 	t._emote("vant", "smug")
 	await speak("Big Vant", "Daniel, this here is who've I've been talking about.", "", "", "")
 	await speak("Big Vant", "A good worker, and he's quiet too.", "", "", "")
+	t._emote("vant", "think")
 	await speak("Big Vant", "Well, when it counts.", "", "", "")
-	
+	t._emote("vant", "smug")
 	vant.emote_icon("exclamation")
 	await speak("Big Vant", "Oh, please Samuel, please meet my good friend here.", "", "", "")
 	speak("Big Vant", "He's Daniel Damon, a-", "", "", "")

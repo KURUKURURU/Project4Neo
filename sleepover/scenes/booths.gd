@@ -62,8 +62,8 @@ func _process(delta: float) -> void:
 			#if Input.is_action_just_pressed("interact"):
 				#pass
 				##
-		#else:
-			#p.can_interact = false
+		else:
+			p.can_interact = false
 
 
 func speak(n, m, c1, c2, c3):
