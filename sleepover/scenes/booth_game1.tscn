@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1tukiw0ew1lj"]
+[gd_scene load_steps=14 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
@@ -65,6 +65,9 @@ size = Vector2(308.5, 492.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8p4ax"]
 radius = 35.510563
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_24ock"]
+radius = 177.63446
+
 [node name="bg1" type="Node2D"]
 script = ExtResource("1_8p4ax")
 
@@ -105,7 +108,18 @@ bbcode_enabled = true
 text = "sedfasefwe"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="hand" type="TextureRect" parent="top"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="TextureRect" parent="."]
+offset_top = -923.0
+offset_right = 3900.0
+offset_bottom = 157.0
+scale = Vector2(1.7156413, 1.7156413)
+texture = ExtResource("5_24ock")
+
+[node name="movement" type="TextureRect" parent="."]
 offset_top = -923.0
 offset_right = 3900.0
 offset_bottom = 157.0
@@ -132,6 +146,7 @@ offset_left = 330.0
 offset_top = -213.0
 offset_right = 646.0
 offset_bottom = 291.0
+focus_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jane"]
 position = Vector2(475.75, 34.75)
@@ -142,5 +157,11 @@ script = ExtResource("4_c1lty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
 shape = SubResource("CircleShape2D_8p4ax")
+
+[node name="ID" type="Area2D" parent="."]
+position = Vector2(5681, -213)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ID"]
+shape = SubResource("CircleShape2D_24ock")
 
 [connection signal="pressed" from="Jane/TextureButton" to="." method="Woman"]
