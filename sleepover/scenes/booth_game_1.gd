@@ -8,6 +8,9 @@ extends Node2D
 @onready var jane = $Jane
 @onready var id = $ID
 @onready var id_A = $ID/CollisionShape2D
+@onready var scanner = $Scanner
+@onready var movement_texture = $movement
+@onready var beep = $beep
 
 @onready var t = $top/talking_ui
 @onready var sprite = $top/talking_ui/Sprite
@@ -24,6 +27,7 @@ var follow = false
 signal putdown
 
 func _ready() -> void:
+	id_A.disabled = false
 	await wait(2.0)
 	fadeAnimation.play("fadein")
 	await fadeAnimation.animation_finished
@@ -56,12 +60,23 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("click"):
 			pass
 			
-	if id.overlaps_area(cursor):
+	elif id.overlaps_area(cursor):
 		interact("Identification")
 		
 		if Input.is_action_just_pressed("click"):
 			id_A.disabled = true
 			card_holding()
+			
+	elif scanner.overlaps_area(cursor):
+		if holding:
+			interact("Scan?")
+		if not holding:
+			interact("Scanner")
+			return
+		
+		if Input.is_action_just_pressed("click"):
+			id_A.disabled = true
+			scan()
 			
 	else:
 		interact("")
@@ -76,6 +91,24 @@ func card_holding():
 	hand.texture = id_hold
 	await putdown
 	hand.texture = null
+	
+func scan():
+	if !holding:
+		return
+	if holding:
+		talking = true
+		emit_signal("putdown")
+		movement_texture.texture = id_insert
+		
+		await wait(1.0)
+		beep.play()
+		await wait(1.0)
+		
+		movement_texture.texture = null
+		e()
+		
+		
+	
 
 func Woman() -> void:
 	talking = true
