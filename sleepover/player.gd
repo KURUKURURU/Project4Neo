@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 		animation.flip_h = false
 		animation.play("side")
 		
-		last_action = "r"
+		last_action = "l"
 		
 	elif Input.is_action_pressed("up") and !talking:
 		animation.flip_h = false
@@ -56,14 +56,19 @@ func _process(delta: float) -> void:
 	else:
 		
 		if last_action == "u":
+			animation.flip_h = false
 			animation.play("up_1")
 		elif last_action == "d":
+			animation.flip_h = false
 			animation.play("down_1")
 		elif last_action == "":
+			animation.flip_h = false
 			animation.play("down_1")
 		elif last_action == "r":
+			animation.flip_h = true
 			animation.play("side_1")
 		elif last_action == "l":
+			animation.flip_h = false
 			animation.play("side_1")
 		
 

@@ -13,6 +13,7 @@ extends Node2D
 
 var talking = false
 var cutscene = false
+var played = false
 
 func _ready() -> void:
 	p.last_action = "l"
@@ -23,17 +24,23 @@ func _process(_delta: float) -> void:
 	p.cutscene = cutscene
 	#if talking:
 		#return
-	
+	if cutscene:
+		return
 	# check loud fan
 	if pArea.overlaps_area(big_boss):
+		#get_tree().change_scene_to_file("res://scenes/leaving_mainstreet.tscn")
 		big_boss.monitoring = false
+		if played:
+			return
+		played = true
 		await walkin_cutscene()
+		print("Still in tree:", is_inside_tree())
+		print("ABOUT TO CHANGE SCENE")
+		print("Inside tree:", is_inside_tree())
+		print("Tree:", get_tree())
+		get_tree().change_scene_to_file("res://scenes/leaving_mainstreet.tscn")
 		#print("debug")
 		
-	
-	else:
-		p.can_interact = false
-
 
 # --- interactions ---
 
@@ -93,8 +100,10 @@ func walkin_cutscene():
 	t._emote("damon", "normal")
 	await speak("Damon", "I can introduce myself, Vant, thank you.", "", "", "")
 	damon.last_action = "d"
-	await speak("Damon", "You've probably heard of [shake rate=20.0 level=5 connected=1]Brightwell Industries[/shake]. We've been on the news several times already.", "", "", "")
-	await speak("Damon", "We do groundbreaking research on the care and behavior of [shake rate=20.0 level=5 connected=1]children[/shake].", "", "", "")
+	await speak("Damon", "I am Daniel Damon.", "", "", "")
+	await speak("Damon", "I am the security officer of your future client.", "", "", "")
+	await speak("Damon", "I am very particular on the kind of person they want for this job.", "", "", "")
+	
 	t._emote("damon", "smile")
 	await speak("Damon", "We need to have adequate security in order to protect our research.", "", "", "")
 	await speak("Damon", "We need someone that can get the job done quietly and efficiently. Resorting to [shake]extreme methods [/shake]when neccessary.", "", "", "")
@@ -102,13 +111,44 @@ func walkin_cutscene():
 	await speak("Damon", "..", "", "", "")
 	t._emote("damon", "direct")
 	await speak("Damon", "Say, [shake]what kind of man are you?[/shake]", "Problem-solver.","Jack of all trades.", "Do what it takes.")
+	t._emote("sam", "normal")
 	if t.choice == 1:
 		await speak("You", "I'm a problem-solver. I can take care of [pulse]any[/pulse] issue.", "", "", "")
+		t._emote("damon", "sad")
+		await speak("Damon", "Excellent.", "", "", "")
 	elif t.choice == 2:
-		await speak("You", "", "", "", "")
+		await speak("You", "I'm skilled in many fields, like art, construction, and defense.", "", "", "")
+		t._emote("damon", "sad")
+		await speak("Damon", "Art?", "", "", "")
+		t._emote("sam", "normal")
+		await speak("You", "Abstract art.", "", "", "")
+		t._emote("damon", "normal")
+		damon.emote_icon("dots")
+		speak("Damon", "Well...", "", "", "")
+		await wait(1.4)
+		
 	elif t.choice == 3:
-		await speak("You", "", "", "", "")
+		await speak("You", "I'll do what it takes for what I'm given.", "", "", "")
+		await speak("You", "I'm persistent.", "", "", "")
+		damon.emote_icon("correct")
+		t._emote("damon", "normal")
+		await speak("Damon", "That isn't very different from what I already know.", "", "", "")
+		 
 	
+	t._emote("damon", "smile")
+	await speak("Damon", "I have heard of your many talents from Vant.", "", "", "")
+	damon.last_action = "u"
+	await speak("Damon", "I find your employee here competent. Especially with his background in security.", "", "", "")
+	damon.last_action = "d"
+	await speak("Damon", "You've probably heard of [shake rate=20.0 level=5 connected=1]Brightwell Care[/shake]. We've been on the news several times already.", "", "", "")
+	await speak("Damon", "We do groundbreaking research on the care and behavior of [shake rate=20.0 level=5 connected=1]children[/shake].", "", "", "")
+	await speak("Damon", "Of course, the children must be protected, including any private information in our warehouses.", "", "", "")
+	await speak("Damon", "You're job is simple.", "", "", "")
+	fadeAnimation.play("fade")
+	
+	await fadeAnimation.animation_finished
+	await wait(1.0)
+	return
 	
 	#cutscene = false
 	
@@ -127,16 +167,16 @@ func walkin_cutscene():
 	#
 	#end_dialogue()
 
-func wait(seconds: float) -> void:
+func e():
+	t._end()
+	talking = false
+
+func wait(seconds):
+	if not is_inside_tree():
+		return
 	await get_tree().create_timer(seconds).timeout
 
 func speak(n, m, c1, c2, c3):
 	p.moving = false
 	await t._speak(n, m, c1, c2, c3)
 	p.moving = true
-
-
-func end_dialogue():
-	t._end()
-	talking = false
-	p.can_interact = true

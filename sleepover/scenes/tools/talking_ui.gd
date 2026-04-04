@@ -69,6 +69,9 @@ func _speak(name, message, in_1, in_2, in_3):
 		selection.show()
 		choice = await choice_selected 
 		
+		if not is_inside_tree():
+			return
+		
 		print("Player picked... ", choice)
 		return
 		
