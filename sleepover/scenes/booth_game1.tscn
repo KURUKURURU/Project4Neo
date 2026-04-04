@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
-[ext_resource type="Script" uid="uid://cu7ie5owcmlwo" path="res://camera_2d.gd" id="1_mdax1"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
-[ext_resource type="Texture2D" uid="uid://e6r8bimuy1at" path="res://images/testturnsystem.png" id="2_mdax1"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_oirde"]
 [ext_resource type="Script" uid="uid://cqwgv6p3myr2d" path="res://scenes/cursor.gd" id="4_c1lty"]
+[ext_resource type="FontFile" uid="uid://bmjxagehe61x7" path="res://fonts/scott___.ttf" id="4_oirde"]
+[ext_resource type="Texture2D" uid="uid://yf6gcvbcssip" path="res://images/test/test.png" id="5_24ock"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -59,8 +59,8 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_40qg6"]
-radius = 289.00693
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oirde"]
+size = Vector2(308.5, 492.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8p4ax"]
 radius = 35.510563
@@ -71,7 +71,6 @@ script = ExtResource("1_8p4ax")
 [node name="top" type="CanvasLayer" parent="."]
 
 [node name="talking_ui" parent="top" instance=ExtResource("2_24ock")]
-visible = false
 z_index = 5
 position = Vector2(-21, 0)
 
@@ -93,12 +92,25 @@ offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("3_oirde")
 
+[node name="label" type="RichTextLabel" parent="top"]
+clip_contents = false
+offset_left = 646.0
+offset_top = 983.0
+offset_right = 1240.0
+offset_bottom = 1055.0
+theme_override_constants/outline_size = 25
+theme_override_fonts/normal_font = ExtResource("4_oirde")
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "sedfasefwe"
+horizontal_alignment = 2
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_top = -923.0
 offset_right = 3900.0
 offset_bottom = 157.0
 scale = Vector2(1.7156413, 1.7156413)
-texture = ExtResource("2_mdax1")
+texture = ExtResource("5_24ock")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(3345, 0)
@@ -112,16 +124,23 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.12
 drag_horizontal_enabled = true
-script = ExtResource("1_mdax1")
 
 [node name="Jane" type="Area2D" parent="."]
 
+[node name="TextureButton" type="TextureButton" parent="Jane"]
+offset_left = 330.0
+offset_top = -213.0
+offset_right = 646.0
+offset_bottom = 291.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jane"]
-position = Vector2(497, 73)
-shape = SubResource("CircleShape2D_40qg6")
+position = Vector2(475.75, 34.75)
+shape = SubResource("RectangleShape2D_oirde")
 
 [node name="Cursor" type="Area2D" parent="."]
 script = ExtResource("4_c1lty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
 shape = SubResource("CircleShape2D_8p4ax")
+
+[connection signal="pressed" from="Jane/TextureButton" to="." method="Woman"]

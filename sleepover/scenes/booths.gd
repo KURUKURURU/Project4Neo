@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 				if t.choice == 1:
 					pass
 				elif t.choice == 2:
-					pass #add the code bro
+					get_tree().change_scene_to_file("uid://b1tukiw0ew1lj")
 				e()
 				
 				talking = false
