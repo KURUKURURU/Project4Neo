@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://n27dfrxyq3d2"]
+
+[ext_resource type="PackedScene" uid="uid://c762xcsn0ch8a" path="res://scenes/biking_scene.tscn" id="1_40xye"]
+[ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_cngsr"]
+[ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_1kclb"]
+
+[sub_resource type="Animation" id="Animation_nmf60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c4uvy"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 0), Color(0, 0, 0.106126174, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u6fly"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top/fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.106126174, 1), Color(0, 0, 0.106126174, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovo77"]
+_data = {
+&"RESET": SubResource("Animation_nmf60"),
+&"fade": SubResource("Animation_c4uvy"),
+&"fadein": SubResource("Animation_u6fly")
+}
+
+[node name="Booths" type="Node2D"]
+
+[node name="top" type="CanvasLayer" parent="."]
+
+[node name="BikingScene" parent="top" instance=ExtResource("1_40xye")]
+
+[node name="talking_ui" parent="top" instance=ExtResource("2_cngsr")]
+visible = false
+z_index = 5
+position = Vector2(-21, 0)
+
+[node name="fade" type="ColorRect" parent="top"]
+offset_right = 1300.0
+offset_bottom = 1086.0
+mouse_filter = 2
+color = Color(0, 0, 0.106126174, 1)
+
+[node name="animation" type="AnimationPlayer" parent="top/fade"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ovo77")
+}
+
+[node name="filter" type="TextureRect" parent="top"]
+offset_right = 1300.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("3_1kclb")
