@@ -23,8 +23,11 @@ var id_hold = preload("res://images/test/card_take.png")
 
 var talking = false
 var follow = false
+var processing = false
 
 signal putdown
+signal pickup
+signal giveback
 
 func _ready() -> void:
 	id_A.disabled = false
@@ -33,9 +36,11 @@ func _ready() -> void:
 	await fadeAnimation.animation_finished
 	fadeColor.hide()
 	
-	await speak("", "He was very direct on how protective I should be of the facility.", "","","")
-	await speak("", "Though, I'm not going to be a big fan of those methods.", "","","")
-	await speak("", "I came here for a reason.", "","","")
+	await speak("", "Those [shake]extreme measures[/shake] he mentioned...", "","","")
+	await speak("", "Not a big fan.                            ", "","","")
+	await speak("", "Anyways, I came here for a reason.", "","","")
+	await speak("", "The game plan is in my notebook.", "","","")
+	
 	e()
 	follow = true
 
@@ -61,9 +66,18 @@ func _process(delta: float) -> void:
 			pass
 			
 	elif id.overlaps_area(cursor):
-		interact("Identification")
+		if holding and processing:
+			interact("Give back?")
+		else:
+			interact("Identification")
 		
 		if Input.is_action_just_pressed("click"):
+			
+			if holding and processing:
+				emit_signal("giveback")
+				id_A.disabled = true
+				return
+			
 			id_A.disabled = true
 			card_holding()
 			
@@ -75,6 +89,10 @@ func _process(delta: float) -> void:
 			return
 		
 		if Input.is_action_just_pressed("click"):
+			if processing:
+				return
+			
+			processing = true
 			id_A.disabled = true
 			scan()
 			
@@ -91,6 +109,11 @@ func card_holding():
 	hand.texture = id_hold
 	await putdown
 	hand.texture = null
+	await pickup
+	hand.texture = id_hold
+	await giveback
+	hand.texture = null
+	holding = false 
 	
 func scan():
 	if !holding:
@@ -107,13 +130,16 @@ func scan():
 		movement_texture.texture = null
 		e()
 		
+		emit_signal("pickup")
 		
-	
+		id_A.disabled = false
+
 
 func Woman() -> void:
 	talking = true
 	await speak("", "There's someone over there.","", "", "")
-	await speak("", "Nice to know I'm not alone, though that could be bad too.","", "", "")
+	await speak("", "Nice to know I'm not alone. ","", "", "")
+	await speak("", "[wave]Though that could be bad thing too...","", "", "")
 	await speak("", "Wonder how she got the job.","", "", "")
 	e()
 	

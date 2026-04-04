@@ -452,6 +452,81 @@ tracks/4/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_5jjmq"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("name:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.68, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(288, 848), Vector2(184, 848), Vector2(416, 848), Vector2(288, 848)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mainText:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.68, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(296, 904.00006), Vector2(192, 904.00006), Vector2(424, 904.00006), Vector2(296, 904.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.68, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(96, 824), Vector2(-8, 824), Vector2(208, 824), Vector2(96, 824)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_RECT:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(67, 796), Vector2(-31.999985, 796), Vector2(23.323536, 796), Vector2(67, 796)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI_RECT:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1785818, 0.70139295)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI_RECT:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1031.7483, 356)]
+}
+
 [sub_resource type="Animation" id="Animation_pjdk3"]
 resource_name = "shrink"
 tracks/0/type = "bezier"
@@ -543,81 +618,6 @@ tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 3),
 "points": PackedFloat32Array(143.99994, -0.25, 0, 0.25, 0, 143.99994, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="Animation" id="Animation_5jjmq"]
-resource_name = "shake"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("name:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.32, 0.68, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(288, 848), Vector2(184, 848), Vector2(416, 848), Vector2(288, 848)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("mainText:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.32, 0.68, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(296, 904.00006), Vector2(192, 904.00006), Vector2(424, 904.00006), Vector2(296, 904.00006)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.32, 0.68, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(96, 824), Vector2(-8, 824), Vector2(208, 824), Vector2(96, 824)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI_RECT:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.32, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(67, 796), Vector2(-31.999985, 796), Vector2(23.323536, 796), Vector2(67, 796)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("UI_RECT:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.1785818, 0.70139295)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("UI_RECT:size")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1031.7483, 356)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljcuq"]
@@ -775,9 +775,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_j03vm")
 }
 
-[node name="ding" type="AudioStreamPlayer2D" parent="."]
+[node name="ding" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_r1em3")
-volume_db = 4.074
+volume_db = -3.559
 pitch_scale = 0.87
 
 [connection signal="activate" from="selection/option" to="." method="option1"]
