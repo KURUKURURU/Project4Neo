@@ -3,20 +3,29 @@ extends Node2D
 @onready var fadeColor = $top/fade
 @onready var label = $top/label
 
+#help
 @onready var cursor = $Cursor
 @onready var cam = $Camera2D
 @onready var jane = $Jane
 @onready var id = $ID
 @onready var id_A = $ID/CollisionShape2D
 @onready var scanner = $Scanner
+
 @onready var movement_texture = $movement
+
 @onready var beep = $sfx/beep
 @onready var wind = $sfx/wind
+
 @onready var window_animation = $window
 @onready var window = $Window
 @onready var window_A = $Window/CollisionShape2D
+
 @onready var leave_QA_area = $leave_QA/CollisionShape2D
 @onready var leave_QA = $leave_QA
+
+@onready var buzzer = $Buzzer
+@onready var buzzer_A = $Buzzer/CollisionShape2D
+@onready var buzzer_sfx = $sfx/buzzer
 
 @onready var t = $top/talking_ui
 @onready var sprite = $top/talking_ui/Sprite
@@ -37,20 +46,24 @@ signal pickup
 signal giveback
 
 func _ready() -> void:
+	leave_QA.hide()
 	leave_QA_area.disabled = true
 	id_A.disabled = true
+	
 	await wait(2.0)
 	fadeAnimation.play("fadein")
 	await fadeAnimation.animation_finished
 	fadeColor.hide()
-	
-	await speak("", "Those [shake]extreme measures[/shake] he mentioned...", "","","")
-	await speak("", "Not a big fan.                            ", "","","")
-	await speak("", "Anyways, I came here for a reason.", "","","")
-	await speak("", "The game plan is in my notebook.", "","","")
-	
-	e()
+	#
+	#await speak("", "Those [shake]extreme measures[/shake] he mentioned...", "","","")
+	#await speak("", "Not a big fan.                            ", "","","")
+	#await speak("", "Anyways, I came here for a reason.", "","","")
+	#await speak("", "The game plan is in my notebook.", "","","")
+	#
+	#e()
 	follow = true
+	
+	await card_sequence()
 
 func _process(delta: float) -> void:
 	
@@ -82,8 +95,8 @@ func _process(delta: float) -> void:
 			
 	elif id.overlaps_area(cursor): ### Debug plsss
 		
-		if holding and processing:
-			
+		if holding and processing: 
+			# when you're holding the card but also already scanned it and now in the checking phase
 			interact("Give back?")
 			if Input.is_action_just_pressed("click"):
 				emit_signal("giveback")
@@ -91,11 +104,12 @@ func _process(delta: float) -> void:
 				return
 		
 		else:
-			
-			interact("Identification")
-			if Input.is_action_just_pressed("click"):
-				id_A.disabled = true
-				card_holding()
+			# when you're starting process by grabbing the ID and later scanning it
+			interact("Take ID?")
+			if Input.is_action_just_pressed("click"): #turns off the id button and starts the texture process
+				id_A.disabled = true 
+				card_holding() #though this is texture, it's not initating the next step.
+				#That would be when the scanner is clicked!!!!!!!! lol
 			
 	elif leave_QA.overlaps_area(cursor):
 		interact("Tell them to git?")
@@ -104,31 +118,58 @@ func _process(delta: float) -> void:
 			
 			talking = true
 			
-			await speak("", "Should I tell him to get lost?","Yep.", "Nah, gotta check again.", "")
-			if t.choice == "1":
+			await speak("", "Should I tell him to get lost?","Yep.", "[wave]Check again.", "")
+			if t.choice == 1:
 				t._emote("sam","derp")
 				await speak("You", "Sorry man, you gotta go.","", "", "")
 				t._emote("","")
 				await get_lost()
-			elif t.choice == "2":
-				return
 			
 			e()
 			
-	elif scanner.overlaps_area(cursor):
+	elif scanner.overlaps_area(cursor): 
 		if holding:
-			interact("Scan?")
-		if not holding:
+			interact("Scan ID?")
+		if not holding or processing:
 			interact("Scanner")
-			return #stops here if not checking for scanning
+			if Input.is_action_just_pressed("click"):
+				beep.play()
+			return #stops here if not holding card for scan, so it wont reach if clicked event
 		
-		if Input.is_action_just_pressed("click"):
-			if processing:
+		if Input.is_action_just_pressed("click"): #when holding card and scanner clicked, temp turn off the default button
+			#starting the rest of the checking process again
+			if processing: #cancel if already checking or the card is scanned already
 				return
 			
-			processing = true
-			id_A.disabled = true
-			scan()
+			processing = true # you are now checking
+			id_A.disabled = true 
+			# ^^^^^ this button (for giving and taking) is turned off for small bugs, so no biggie on this
+			scan() #rest of scan process!
+			
+	elif buzzer.overlaps_area(cursor): 
+		interact("Open the gatesss!")
+		
+		if Input.is_action_just_pressed("click"): #when holding card and scanner clicked, temp turn off the default button
+			if !processing:
+				talking = true
+				
+				if holding:
+					await speak("","I haven't scanned the card yet, dummy.","","","")
+				else:
+					await speak("","Nobody's waiting, so no.","","","")
+				
+				e()
+				return
+				
+			elif holding:
+				talking = true
+				
+				await speak("","I have to hand it back.","","","")
+				
+				e()
+				return
+			
+			await come_in()
 			
 	else:
 		interact("")
@@ -149,24 +190,25 @@ func card_holding():
 	hand.texture = null
 	holding = false 
 	
-func scan():
-	if !holding:
+func scan(): # basically the scanner function when clicked
+	if !holding: # just checking if holding or not
 		return
-	if holding:
-		talking = true
-		emit_signal("putdown")
-		movement_texture.texture = id_insert
-		
-		await wait(1.0)
-		beep.play()
-		await wait(1.0)
-		
-		movement_texture.texture = null
-		e()
-		
-		emit_signal("pickup")
-		
-		id_A.disabled = false
+	
+	talking = true
+	emit_signal("putdown")
+	movement_texture.texture = id_insert
+	
+	await wait(1.0)
+	beep.play()
+	await wait(1.0)
+	
+	movement_texture.texture = null
+	e()
+	
+	emit_signal("pickup")
+	
+	id_A.disabled = false
+	#basically did the texture with the help of the card_holding function
 
 func Woman() -> void:
 	talking = true
@@ -192,26 +234,31 @@ func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
 
 
+
+
 @onready var d_up = $Node2D/drive_up
 @onready var d_away = $Node2D/drive_away
-#@onready var drive_away = $Node2D/drive_away
+@onready var gate_o = $sfx/gate_open
+@onready var gate_c = $sfx/gate_close
 
-func card_sequence():
-	#doin prelims
+
+func card_sequence(): #main function for scanning, though it's more indirect than direct
+	#doin prelims, for reseting possibly idk
 	leave_QA_area.disabled = true
 	id_A.disabled = true
 	
 	#start with car driving up
 	d_up.play()
-	await d_up.finished
 	
 	#then wait and then stick hand out for id
-	await wait(2.0)
+	await wait(3.0)
 	movement_texture.texture = null #CHANGE THIS TO THE UPDATED TEXTURE
+	id_A.disabled = false
 	
 	#then grab, scan, and giveback
 	await giveback
-	leave_QA_area.disabled = false
+	leave_QA.show()
+	leave_QA_area.disabled = false # turns on choice to tell him to leave 
 	
 	
 	#then check computer screen for clearance (5), license, weight (cars get 3,000 pounds, trucks get 8,000)
@@ -220,7 +267,9 @@ func card_sequence():
 	#or tell them to leave
 	
 func get_lost(driver_message:= "Dang."):
+	talking = true
 	await speak("Driver",driver_message,"","","")
+	e()
 	d_away.play()
 	await wait(2.0)
 	movement_texture.texture = null
@@ -228,10 +277,22 @@ func get_lost(driver_message:= "Dang."):
 	
 	
 
-func come_in(driver_message):
-	pass
+func come_in(driver_message:= "Thanks."):
+	leave_QA_area.disabled = true
+	leave_QA.hide()
+	buzzer_sfx.play()
+	gate_o.play()
 	
+	talking = true
+	await speak("Driver",driver_message,"","","")
+	e()
 	
+	d_away.play()
+	await wait(2.0)
+	movement_texture.texture = null
+	await d_away.finished
+	
+	gate_c.play()
 
 
 func openDoor() -> void:
