@@ -10,10 +10,12 @@ extends Node2D
 @onready var id_A = $ID/CollisionShape2D
 @onready var scanner = $Scanner
 @onready var movement_texture = $movement
-@onready var beep = $beep
+@onready var beep = $sfx/beep
 @onready var window_animation = $window
 @onready var window = $Window
 @onready var window_A = $Window/CollisionShape2D
+@onready var leave_QA_area = $leave_QA/CollisionShape2D
+@onready var leave_QA = $leave_QA
 
 @onready var t = $top/talking_ui
 @onready var sprite = $top/talking_ui/Sprite
@@ -34,7 +36,8 @@ signal pickup
 signal giveback
 
 func _ready() -> void:
-	id_A.disabled = false
+	leave_QA_area.disabled = true
+	id_A.disabled = true
 	await wait(2.0)
 	fadeAnimation.play("fadein")
 	await fadeAnimation.animation_finished
@@ -77,6 +80,22 @@ func _process(delta: float) -> void:
 			$wind.play()
 			
 	elif id.overlaps_area(cursor):
+		if holding and processing:
+			interact("Give back?")
+		else:
+			interact("Identification")
+		
+		if Input.is_action_just_pressed("click"):
+			
+			if holding and processing:
+				emit_signal("giveback")
+				id_A.disabled = true
+				return
+			
+			id_A.disabled = true
+			card_holding()
+			
+	elif leave_QA.overlaps_area(cursor):
 		if holding and processing:
 			interact("Give back?")
 		else:
@@ -145,13 +164,12 @@ func scan():
 		
 		id_A.disabled = false
 
-
 func Woman() -> void:
 	talking = true
 	
 	await speak("", "There's someone over there.","", "", "")
 	await speak("", "Nice to know I'm not alone. ","", "", "")
-	await speak("", "[wave]Though that could be bad thing too...","", "", "")
+	await speak("", "[wave]Though that could be a bad thing too...","", "", "")
 	await speak("", "Wonder how she got the job.","", "", "")
 	
 	e()
@@ -168,6 +186,37 @@ func e():
 	
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
+
+
+@onready var d_up = $Node2D/drive_up
+@onready var d_away = $Node2D/drive_away
+#@onready var drive_away = $Node2D/drive_away
+
+func card_sequence():
+	#doin prelims
+	leave_QA_area.disabled = true
+	id_A.disabled = true
+	
+	#start with car driving up
+	d_up.play()
+	await d_up.finished
+	
+	#then wait and then stick hand out for id
+	await wait(2.0)
+	movement_texture.texture = null #CHANGE THIS TO THE UPDATED TEXTURE
+	id_A.disabled = false
+	
+	#then grab, scan, and giveback
+	await giveback
+	leave_QA_area.disabled = false
+	
+	
+	#then check computer screen for clearance (5), license, weight (cars get 3,000 pounds, trucks get 8,000)
+	#then log them in log book
+	#then buzz them in and they drive in w/ same sfx
+	#or tell them to leave
+	
+	
 
 
 func openDoor() -> void:

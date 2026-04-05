@@ -675,15 +675,6 @@ offset_bottom = 1152.0
 scale = Vector2(1.1785818, 0.70139295)
 texture = ExtResource("3_j03vm")
 
-[node name="UI_RECT2" parent="." instance=ExtResource("1_w8cav")]
-z_index = -1
-offset_left = 67.0
-offset_top = 796.0
-offset_right = 1098.7483
-offset_bottom = 1152.0
-scale = Vector2(1.1785818, 0.70139295)
-texture = ExtResource("3_j03vm")
-
 [node name="mainText" type="RichTextLabel" parent="."]
 clip_contents = false
 offset_left = 296.0
