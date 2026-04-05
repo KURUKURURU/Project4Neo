@@ -11,6 +11,7 @@ extends Node2D
 @onready var scanner = $Scanner
 @onready var movement_texture = $movement
 @onready var beep = $sfx/beep
+@onready var wind = $sfx/wind
 @onready var window_animation = $window
 @onready var window = $Window
 @onready var window_A = $Window/CollisionShape2D
@@ -77,46 +78,49 @@ func _process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("click"):
 			await wait(1)
-			$wind.play()
+			wind.play()
 			
-	elif id.overlaps_area(cursor):
-		if holding and processing:
-			interact("Give back?")
-		else:
-			interact("Identification")
+	elif id.overlaps_area(cursor): ### Debug plsss
 		
-		if Input.is_action_just_pressed("click"):
+		if holding and processing:
 			
-			if holding and processing:
+			interact("Give back?")
+			if Input.is_action_just_pressed("click"):
 				emit_signal("giveback")
 				id_A.disabled = true
 				return
+		
+		else:
 			
-			id_A.disabled = true
-			card_holding()
+			interact("Identification")
+			if Input.is_action_just_pressed("click"):
+				id_A.disabled = true
+				card_holding()
 			
 	elif leave_QA.overlaps_area(cursor):
-		if holding and processing:
-			interact("Give back?")
-		else:
-			interact("Identification")
+		interact("Tell them to git?")
 		
 		if Input.is_action_just_pressed("click"):
 			
-			if holding and processing:
-				emit_signal("giveback")
-				id_A.disabled = true
+			talking = true
+			
+			await speak("", "Should I tell him to get lost?","Yep.", "Nah, gotta check again.", "")
+			if t.choice == "1":
+				t._emote("sam","derp")
+				await speak("You", "Sorry man, you gotta go.","", "", "")
+				t._emote("","")
+				await get_lost()
+			elif t.choice == "2":
 				return
 			
-			id_A.disabled = true
-			card_holding()
+			e()
 			
 	elif scanner.overlaps_area(cursor):
 		if holding:
 			interact("Scan?")
 		if not holding:
 			interact("Scanner")
-			return
+			return #stops here if not checking for scanning
 		
 		if Input.is_action_just_pressed("click"):
 			if processing:
@@ -204,7 +208,6 @@ func card_sequence():
 	#then wait and then stick hand out for id
 	await wait(2.0)
 	movement_texture.texture = null #CHANGE THIS TO THE UPDATED TEXTURE
-	id_A.disabled = false
 	
 	#then grab, scan, and giveback
 	await giveback
@@ -215,6 +218,18 @@ func card_sequence():
 	#then log them in log book
 	#then buzz them in and they drive in w/ same sfx
 	#or tell them to leave
+	
+func get_lost(driver_message:= "Dang."):
+	await speak("Driver",driver_message,"","","")
+	d_away.play()
+	await wait(2.0)
+	movement_texture.texture = null
+	await d_away.finished
+	
+	
+
+func come_in(driver_message):
+	pass
 	
 	
 

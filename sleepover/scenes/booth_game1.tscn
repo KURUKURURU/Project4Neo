@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b1tukiw0ew1lj"]
+[gd_scene load_steps=29 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://bqceg1g3xh4i1" path="res://sfx/roomtone1.mp3" id="10_vfikc"]
 [ext_resource type="AudioStream" uid="uid://g70nari74vns" path="res://sfx/computer_start.wav" id="11_1e40v"]
 [ext_resource type="AudioStream" uid="uid://bnb2nxvibxmov" path="res://music/daRKNRESSSS.wav" id="11_d50hb"]
-[ext_resource type="Texture2D" uid="uid://diborw45h4ru3" path="res://images/settings_bgs/turnsystem2.png" id="12_f5wnn"]
 [ext_resource type="AudioStream" uid="uid://u2kwsta7w3a2" path="res://sfx/drive_up.wav" id="12_svwcg"]
 [ext_resource type="AudioStream" uid="uid://bun3mkfyi8gho" path="res://sfx/drive_away2.wav" id="13_cs4w5"]
 [ext_resource type="Texture2D" uid="uid://c6co8wv3dcp6t" path="res://images/settings_bgs/turnsystem3.png" id="13_dttfu"]
@@ -113,10 +112,10 @@ tracks/0/path = NodePath("../bg:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666666, 0.33333334),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("5_g0l6d"), ExtResource("12_f5wnn"), ExtResource("13_dttfu")]
+"values": [ExtResource("5_g0l6d"), ExtResource("13_dttfu")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hodh1"]
@@ -328,12 +327,11 @@ panning_strength = 0.0
 
 [node name="darknessssss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_d50hb")
-volume_db = -24.807
-pitch_scale = 0.71
+volume_db = -22.899
 autoplay = true
 
 [node name="window" type="AnimationPlayer" parent="."]
-root_node = NodePath("../sfx/wind2")
+root_node = NodePath("../bg")
 libraries = {
 &"": SubResource("AnimationLibrary_hodh1")
 }
