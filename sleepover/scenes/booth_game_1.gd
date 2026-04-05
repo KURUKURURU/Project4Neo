@@ -11,6 +11,9 @@ extends Node2D
 @onready var scanner = $Scanner
 @onready var movement_texture = $movement
 @onready var beep = $beep
+@onready var window_animation = $window
+@onready var window = $Window
+@onready var window_A = $Window/CollisionShape2D
 
 @onready var t = $top/talking_ui
 @onready var sprite = $top/talking_ui/Sprite
@@ -24,6 +27,7 @@ var id_hold = preload("res://images/test/card_take.png")
 var talking = false
 var follow = false
 var processing = false
+var door_open = false
 
 signal putdown
 signal pickup
@@ -59,11 +63,18 @@ func _process(delta: float) -> void:
 		follow = false
 		return
 	
-	if jane.overlaps_area(cursor):
+	elif jane.overlaps_area(cursor) and door_open:
 		interact("Woman")
 		
 		if Input.is_action_just_pressed("click"):
+			Woman()
 			pass
+	elif window.overlaps_area(cursor):
+		interact("Open?")
+		
+		if Input.is_action_just_pressed("click"):
+			await wait(1)
+			$wind.play()
 			
 	elif id.overlaps_area(cursor):
 		if holding and processing:
@@ -137,10 +148,12 @@ func scan():
 
 func Woman() -> void:
 	talking = true
+	
 	await speak("", "There's someone over there.","", "", "")
 	await speak("", "Nice to know I'm not alone. ","", "", "")
 	await speak("", "[wave]Though that could be bad thing too...","", "", "")
 	await speak("", "Wonder how she got the job.","", "", "")
+	
 	e()
 	
 	talking = false
@@ -155,3 +168,13 @@ func e():
 	
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
+
+
+func openDoor() -> void:
+	if door_open:
+		return
+	
+	window_animation.play("door_open")
+	await window_animation.animation_finished
+	door_open = true
+	window_A.disabled = true
