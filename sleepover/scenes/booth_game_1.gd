@@ -30,6 +30,11 @@ extends Node2D
 @onready var t = $top/talking_ui
 @onready var sprite = $top/talking_ui/Sprite
 
+@onready var stinger = $Scare/scare
+@onready var scare1 = $Scare
+
+@onready var screen_image = $screen_image
+
 #handssssss
 @onready var hand = $top/hand
 var holding := false
@@ -40,10 +45,16 @@ var talking = false
 var follow = false
 var processing = false
 var door_open = false
+var scared_1 = false
+
+var screen = preload("res://scenes/computerscreen.tscn").instantiate()
+
 
 signal putdown
 signal pickup
 signal giveback
+
+signal finished
 
 func _ready() -> void:
 	leave_QA.hide()
@@ -63,7 +74,14 @@ func _ready() -> void:
 	#e()
 	follow = true
 	
-	await card_sequence()
+	card_sequence()
+	await finished
+	
+	await wait(15.0)
+	
+	card_sequence()
+	await finished
+	
 
 func _process(delta: float) -> void:
 	
@@ -86,13 +104,14 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("click"):
 			Woman()
 			pass
+	
 	elif window.overlaps_area(cursor):
 		interact("Open?")
 		
 		if Input.is_action_just_pressed("click"):
 			await wait(1)
 			wind.play()
-			
+	
 	elif id.overlaps_area(cursor): ### Debug plsss
 		
 		if holding and processing: 
@@ -110,7 +129,7 @@ func _process(delta: float) -> void:
 				id_A.disabled = true 
 				card_holding() #though this is texture, it's not initating the next step.
 				#That would be when the scanner is clicked!!!!!!!! lol
-			
+	
 	elif leave_QA.overlaps_area(cursor):
 		interact("Tell them to git?")
 		
@@ -170,11 +189,23 @@ func _process(delta: float) -> void:
 				return
 			
 			await come_in()
-			
+	
+	elif scare1.overlaps_area(cursor): 
+		
+		if scared_1:
+			return
+		scared_1 = true
+		stinger.play()
+		
+		
 	else:
 		interact("")
 		label.show()
-		
+	
+
+func computer_screen_on():
+	add_child(screen)
+	screen_image.show()
 
 func interact(text):
 	label.text = "[shake]" + text 
@@ -241,11 +272,11 @@ func wait(seconds: float) -> void:
 @onready var gate_o = $sfx/gate_open
 @onready var gate_c = $sfx/gate_close
 
-
 func card_sequence(): #main function for scanning, though it's more indirect than direct
 	#doin prelims, for reseting possibly idk
 	leave_QA_area.disabled = true
 	id_A.disabled = true
+	leave_QA.hide()
 	
 	#start with car driving up
 	d_up.play()
@@ -267,6 +298,7 @@ func card_sequence(): #main function for scanning, though it's more indirect tha
 	#or tell them to leave
 	
 func get_lost(driver_message:= "Dang."):
+	processing = false
 	talking = true
 	await speak("Driver",driver_message,"","","")
 	e()
@@ -275,9 +307,10 @@ func get_lost(driver_message:= "Dang."):
 	movement_texture.texture = null
 	await d_away.finished
 	
-	
+	emit_signal("finished")
 
 func come_in(driver_message:= "Thanks."):
+	processing = false
 	leave_QA_area.disabled = true
 	leave_QA.hide()
 	buzzer_sfx.play()
@@ -293,6 +326,8 @@ func come_in(driver_message:= "Thanks."):
 	await d_away.finished
 	
 	gate_c.play()
+	
+	emit_signal("finished")
 
 
 func openDoor() -> void:

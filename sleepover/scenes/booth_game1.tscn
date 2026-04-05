@@ -1,11 +1,14 @@
-[gd_scene load_steps=33 format=3 uid="uid://b1tukiw0ew1lj"]
+[gd_scene load_steps=37 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
+[ext_resource type="PackedScene" uid="uid://uc18o0gcd3oe" path="res://scenes/screen_image.tscn" id="2_mn8mh"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_oirde"]
 [ext_resource type="Script" uid="uid://cqwgv6p3myr2d" path="res://scenes/cursor.gd" id="4_c1lty"]
 [ext_resource type="FontFile" uid="uid://bmjxagehe61x7" path="res://fonts/scott___.ttf" id="4_oirde"]
 [ext_resource type="Texture2D" uid="uid://djjljpgkd3abv" path="res://images/settings_bgs/turnsystem1.png" id="5_g0l6d"]
+[ext_resource type="AudioStream" uid="uid://df6b1krhd0ynr" path="res://sfx/STINGER.wav" id="6_hodh1"]
+[ext_resource type="Texture2D" uid="uid://bqmsni0e4qkkj" path="res://images/thongngn.png" id="7_oeblk"]
 [ext_resource type="AudioStream" uid="uid://m8jy1gikgd4s" path="res://sfx/scan.mp3" id="7_oirde"]
 [ext_resource type="AudioStream" uid="uid://cgmj2inommki0" path="res://sfx/buzzer.wav" id="8_cs4w5"]
 [ext_resource type="AudioStream" uid="uid://cq7chuyob5hmb" path="res://sfx/windsmall.mp3" id="8_ln2eu"]
@@ -74,6 +77,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hodh1"]
 size = Vector2(351.625, 266.25)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jux77"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oirde"]
 size = Vector2(308.5, 492.5)
 
@@ -139,6 +144,8 @@ script = ExtResource("1_8p4ax")
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="screen_image" parent="top" instance=ExtResource("2_mn8mh")]
+
 [node name="talking_ui" parent="top" instance=ExtResource("2_24ock")]
 z_index = 5
 position = Vector2(-21, 0)
@@ -189,6 +196,14 @@ offset_bottom = 157.0
 scale = Vector2(1.7156413, 1.7156413)
 texture = ExtResource("5_g0l6d")
 
+[node name="bg3" type="TextureRect" parent="."]
+self_modulate = Color(0.34789982, 0.34789982, 0.34789982, 0.21000001)
+offset_left = 3204.0002
+offset_right = 3704.0002
+offset_bottom = 412.0
+scale = Vector2(1.1278567, 1.260275)
+texture = ExtResource("7_oeblk")
+
 [node name="movement" type="TextureRect" parent="."]
 offset_top = -923.0
 offset_right = 3900.0
@@ -214,6 +229,16 @@ position = Vector2(1653, 547)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buzzer"]
 position = Vector2(491.1875, 117)
 shape = SubResource("RectangleShape2D_hodh1")
+
+[node name="Scare" type="Area2D" parent="."]
+position = Vector2(4363, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scare"]
+position = Vector2(149, 0)
+shape = SubResource("CapsuleShape2D_jux77")
+
+[node name="scare" type="AudioStreamPlayer" parent="Scare"]
+stream = ExtResource("6_hodh1")
 
 [node name="Jane" type="Area2D" parent="."]
 position = Vector2(275, -32)
@@ -280,14 +305,13 @@ volume_db = 9.089
 max_distance = 4096.0
 
 [node name="gate_open" type="AudioStreamPlayer2D" parent="sfx"]
-position = Vector2(6160, 901)
+position = Vector2(4618, 927)
 stream = ExtResource("8_svwcg")
-volume_db = 18.176
-pitch_scale = 0.72
+volume_db = 4.04
 panning_strength = 0.0
 
 [node name="gate_close" type="AudioStreamPlayer2D" parent="sfx"]
-position = Vector2(6160, 845)
+position = Vector2(4618, 661)
 stream = ExtResource("9_cs4w5")
 volume_db = 8.079
 panning_strength = 0.0
@@ -353,7 +377,7 @@ panning_strength = 1.17
 
 [node name="darknessssss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_d50hb")
-volume_db = -22.899
+volume_db = -17.174
 autoplay = true
 
 [node name="window" type="AnimationPlayer" parent="."]

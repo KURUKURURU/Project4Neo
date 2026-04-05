@@ -6,17 +6,14 @@ extends Node2D
 @onready var pArea = $Player/Area2D
 @onready var t = $top/talking_ui
 @onready var sprite = $top/talking_ui/Sprite
+@onready var biking = $top/BikingScene/animation
 
-#@onready var cutsceneA = $cutsceneA
-#@onready var bikeSFX = $bike
+@onready var wind = $wind2
+@onready var cicadas = $cicadas
+@onready var aura = $darknessssss
 
 #AREAS
 @onready var start = $start
-#@onready var move_backC = $move_back/CollisionShape2D
-#@onready var benny = $benny/Area2D
-#@onready var benny_C = $benny/Area2D/CollisionShape2D
-#@onready var ENTER = $ENTER
-#@onready var ENTER_C = $ENTER/CollisionShape2D
 
 var talking = false
 var talk_benny = false
@@ -31,6 +28,10 @@ func _ready() -> void:
 	talking = true
 	p.can_interact = false
 	
+	await biking.animation_finished
+	wind.play()
+	cicadas.play()
+	aura.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

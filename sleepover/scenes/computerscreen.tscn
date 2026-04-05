@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://r2rbtp4j6a1k" path="res://scenes/computerscreen.gd" id="1_50rua"]
 [ext_resource type="Shader" uid="uid://cwx3em0yxeatv" path="res://themes/shaders/crt.gdshader" id="1_62ikm"]
-[ext_resource type="Texture2D" uid="uid://qn0nedc1tcmx" path="res://images/alleyway.jpg" id="2_xltw4"]
+[ext_resource type="PackedScene" uid="uid://uc18o0gcd3oe" path="res://scenes/screen_image.tscn" id="3_50rua"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xltw4"]
 shader = ExtResource("1_62ikm")
@@ -33,15 +33,13 @@ script = ExtResource("1_50rua")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_xltw4")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="ColorRect" type="TextureRect" parent="."]
-offset_right = 1300.0
-offset_bottom = 1080.0
-texture = ExtResource("2_xltw4")
+[node name="screen_image" parent="." instance=ExtResource("3_50rua")]
