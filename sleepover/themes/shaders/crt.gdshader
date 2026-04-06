@@ -52,7 +52,7 @@ vec2 random(vec2 uv){
                dot(uv, vec2(269.5,183.3) ) );
     return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
 }
-
+render_mode blend_mix;
 // Generate a Perlin noise used by the distortion effects
 float noise(vec2 uv) {
     vec2 uv_index = floor(uv);
@@ -99,7 +99,7 @@ void fragment()
 	vec2 text_uv = uv;
 	vec2 roll_uv = vec2(0.0);
 	float time = roll ? TIME : 0.0;
-	
+	COLOR.a *= 1.0;
 
 	// Pixelate the texture based on the given resolution.
 	if (pixelate)

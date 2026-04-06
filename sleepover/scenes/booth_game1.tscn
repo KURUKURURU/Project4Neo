@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b1tukiw0ew1lj"]
+[gd_scene load_steps=40 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://bmjxagehe61x7" path="res://fonts/scott___.ttf" id="4_oirde"]
 [ext_resource type="Texture2D" uid="uid://djjljpgkd3abv" path="res://images/settings_bgs/turnsystem1.png" id="5_g0l6d"]
 [ext_resource type="AudioStream" uid="uid://df6b1krhd0ynr" path="res://sfx/STINGER.wav" id="6_hodh1"]
+[ext_resource type="Shader" uid="uid://cwx3em0yxeatv" path="res://themes/shaders/crt.gdshader" id="6_oeblk"]
 [ext_resource type="Texture2D" uid="uid://bqmsni0e4qkkj" path="res://images/thongngn.png" id="7_oeblk"]
 [ext_resource type="AudioStream" uid="uid://m8jy1gikgd4s" path="res://sfx/scan.mp3" id="7_oirde"]
 [ext_resource type="AudioStream" uid="uid://cgmj2inommki0" path="res://sfx/buzzer.wav" id="8_cs4w5"]
@@ -74,8 +75,35 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0yi3"]
+shader = ExtResource("6_oeblk")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.04400000209
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0750000035625
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 9.985
+shader_parameter/roll_size = 34.54000164065
+shader_parameter/roll_variation = 1.01200004481012
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.034000001615
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.24400001159
+shader_parameter/aberration = 0.023000048592499933
+shader_parameter/brightness = 1.26
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 1.230000058425
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hodh1"]
 size = Vector2(351.625, 266.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn8mh"]
+size = Vector2(843.90625, 861)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jux77"]
 
@@ -182,6 +210,16 @@ bbcode_enabled = true
 text = "sedfasefwe"
 horizontal_alignment = 2
 
+[node name="computer_filter" type="ColorRect" parent="top"]
+visible = false
+material = SubResource("ShaderMaterial_i0yi3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="bg2" type="ColorRect" parent="."]
 offset_top = -923.0
 offset_right = 3900.0
@@ -229,6 +267,13 @@ position = Vector2(1653, 547)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buzzer"]
 position = Vector2(491.1875, 117)
 shape = SubResource("RectangleShape2D_hodh1")
+
+[node name="Computer" type="Area2D" parent="."]
+position = Vector2(2821, -91)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Computer"]
+position = Vector2(736.0469, 431.5)
+shape = SubResource("RectangleShape2D_mn8mh")
 
 [node name="Scare" type="Area2D" parent="."]
 position = Vector2(4363, 40)

@@ -7,23 +7,23 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xltw4"]
 shader = ExtResource("1_62ikm")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.0210000009975
-shader_parameter/scanlines_width = 0.1090000051775
-shader_parameter/grille_opacity = 0.190000009025
+shader_parameter/scanlines_opacity = 0.04400000209
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0750000035625
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
-shader_parameter/roll = true
-shader_parameter/roll_speed = 10.04
-shader_parameter/roll_size = 40.2870019136325
-shader_parameter/roll_variation = 0.16700000467262
-shader_parameter/distort_intensity = 0.0
-shader_parameter/noise_opacity = 0.0790000037525
+shader_parameter/roll = false
+shader_parameter/roll_speed = 9.985
+shader_parameter/roll_size = 34.54000164065
+shader_parameter/roll_variation = 1.01200004481012
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.034000001615
 shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.03
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.6550000311125
+shader_parameter/static_noise_intensity = 0.24400001159
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/brightness = 0.835
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 1.230000058425
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
@@ -43,3 +43,4 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="screen_image" parent="." instance=ExtResource("3_50rua")]
+visible = false

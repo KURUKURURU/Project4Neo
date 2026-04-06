@@ -33,7 +33,9 @@ extends Node2D
 @onready var stinger = $Scare/scare
 @onready var scare1 = $Scare
 
-@onready var screen_image = $screen_image
+@onready var screen_image = $top/screen_image
+@onready var computer_filter = $top/computer_filter
+@onready var computer_interact = $Computer
 
 #handssssss
 @onready var hand = $top/hand
@@ -57,6 +59,7 @@ signal giveback
 signal finished
 
 func _ready() -> void:
+	screen_image.hide()
 	leave_QA.hide()
 	leave_QA_area.disabled = true
 	id_A.disabled = true
@@ -84,6 +87,11 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
+	
+	if computer_filter.visible == true:
+		if Input.is_action_just_pressed("space"):
+			computer_screen_off()
+	
 	
 	if follow:
 		label.show()
@@ -129,7 +137,13 @@ func _process(delta: float) -> void:
 				id_A.disabled = true 
 				card_holding() #though this is texture, it's not initating the next step.
 				#That would be when the scanner is clicked!!!!!!!! lol
-	
+	elif computer_interact.overlaps_area(cursor): ### Debug plsss
+		# when you're starting process by grabbing the ID and later scanning it
+		interact("Open PC?")
+		if Input.is_action_just_pressed("click"): #turns off the id button and starts the texture process
+			computer_screen_on()
+			
+			
 	elif leave_QA.overlaps_area(cursor):
 		interact("Tell them to git?")
 		
@@ -204,8 +218,17 @@ func _process(delta: float) -> void:
 	
 
 func computer_screen_on():
-	add_child(screen)
 	screen_image.show()
+	computer_filter.show()
+	
+	talking = true
+	
+
+
+func computer_screen_off():
+	screen_image.hide()
+	computer_filter.hide()
+	e()
 
 func interact(text):
 	label.text = "[shake]" + text 
@@ -338,3 +361,12 @@ func openDoor() -> void:
 	await window_animation.animation_finished
 	door_open = true
 	window_A.disabled = true
+
+#var screen
+#
+#func show_screen():
+	#screen = preload("res://computerscreen.tscn").instantiate()
+	#add_child(screen)
+#
+#func hide_screen():
+	#screen.queue_free()
