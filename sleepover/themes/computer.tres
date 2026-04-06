@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cg3q7y3xd18qd"]
+
+[ext_resource type="FontFile" uid="uid://br1ogrglnawjl" path="res://fonts/BPdots/BPdotsSquare.otf" id="1_y4lpr"]
+
+[resource]
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/fonts/normal_font = ExtResource("1_y4lpr")
