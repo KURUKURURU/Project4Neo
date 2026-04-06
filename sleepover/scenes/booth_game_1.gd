@@ -37,6 +37,8 @@ extends Node2D
 @onready var computer_filter = $top/computer_filter
 @onready var computer_interact = $Computer
 
+
+
 #handssssss
 @onready var hand = $top/hand
 var holding := false
@@ -49,6 +51,8 @@ var processing = false
 var door_open = false
 var scared_1 = false
 
+var CURRENT_PERSON := 1
+
 var screen = preload("res://scenes/computerscreen.tscn").instantiate()
 
 
@@ -59,6 +63,8 @@ signal giveback
 signal finished
 
 func _ready() -> void:
+	screen_image.day = 1
+	screen_image.person = 0
 	screen_image.hide()
 	leave_QA.hide()
 	leave_QA_area.disabled = true
@@ -87,6 +93,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
+	
 	
 	if computer_filter.visible == true:
 		if Input.is_action_just_pressed("space"):
@@ -174,6 +181,8 @@ func _process(delta: float) -> void:
 			if processing: #cancel if already checking or the card is scanned already
 				return
 			
+			screen_image.person = CURRENT_PERSON
+			CURRENT_PERSON = CURRENT_PERSON +1
 			processing = true # you are now checking
 			id_A.disabled = true 
 			# ^^^^^ this button (for giving and taking) is turned off for small bugs, so no biggie on this

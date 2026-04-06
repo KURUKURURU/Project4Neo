@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b1tukiw0ew1lj"]
+[gd_scene load_steps=39 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://cqwgv6p3myr2d" path="res://scenes/cursor.gd" id="4_c1lty"]
 [ext_resource type="FontFile" uid="uid://bmjxagehe61x7" path="res://fonts/scott___.ttf" id="4_oirde"]
 [ext_resource type="Texture2D" uid="uid://djjljpgkd3abv" path="res://images/settings_bgs/turnsystem1.png" id="5_g0l6d"]
-[ext_resource type="AudioStream" uid="uid://df6b1krhd0ynr" path="res://sfx/STINGER.wav" id="6_hodh1"]
 [ext_resource type="Shader" uid="uid://cwx3em0yxeatv" path="res://themes/shaders/crt.gdshader" id="6_oeblk"]
 [ext_resource type="Texture2D" uid="uid://bqmsni0e4qkkj" path="res://images/thongngn.png" id="7_oeblk"]
 [ext_resource type="AudioStream" uid="uid://m8jy1gikgd4s" path="res://sfx/scan.mp3" id="7_oirde"]
@@ -283,7 +282,6 @@ position = Vector2(149, 0)
 shape = SubResource("CapsuleShape2D_jux77")
 
 [node name="scare" type="AudioStreamPlayer" parent="Scare"]
-stream = ExtResource("6_hodh1")
 
 [node name="Jane" type="Area2D" parent="."]
 position = Vector2(275, -32)
