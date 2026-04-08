@@ -58,9 +58,9 @@ func _process(delta: float) -> void:
 				talking = true
 				
 				t._emote("benny", "normal")
-				await speak("Benny", "Later.", "", "", "")
+				await speak("Benny", "Good bye.", "", "", "")
 				t._emote("sam", "normal")
-				await speak("You", "Later.", "", "", "")
+				await speak("You", "Later man.", "", "", "")
 				e()
 				
 				talking = false
@@ -69,6 +69,17 @@ func _process(delta: float) -> void:
 			p.can_interact = true
 			
 			if Input.is_action_just_pressed("interact"):
+				
+				talking = true
+				
+				t._emote("sam", "normal")
+				p.emote_icon("worry")
+				await speak("You", "I can't believe it.", "", "", "")
+				t._emote("sam", "smile2")
+				await speak("You", "I can't believe I met him. Today of all days.", "", "", "")
+				await speak("You", "Thought it would take longer, but I guess things just went my way tonight.", "", "", "")
+				e()
+				
 				
 				bikeSFX.play()
 				fadeAnimation.play("fade")

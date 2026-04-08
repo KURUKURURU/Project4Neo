@@ -294,6 +294,11 @@ script = ExtResource("4_g4u7d")
 stream = ExtResource("13_ekyvg")
 volume_db = -2.742
 
+[node name="bg2" type="TextureRect" parent="."]
+offset_right = 1302.0
+offset_bottom = 1087.0
+mouse_filter = 2
+
 [connection signal="pressed" from="files/note/click" to="." method="notes"]
 [connection signal="pressed" from="files/folder/click" to="." method="folder_1"]
 [connection signal="pressed" from="files/folder2/click" to="." method="folder_2"]

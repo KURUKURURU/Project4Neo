@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b1tukiw0ew1lj"]
+[gd_scene load_steps=47 format=3 uid="uid://b1tukiw0ew1lj"]
 
 [ext_resource type="Script" uid="uid://ceqnqfrekwyu4" path="res://scenes/booth_game_1.gd" id="1_8p4ax"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_24ock"]
@@ -8,16 +8,22 @@
 [ext_resource type="FontFile" uid="uid://bmjxagehe61x7" path="res://fonts/scott___.ttf" id="4_oirde"]
 [ext_resource type="Texture2D" uid="uid://djjljpgkd3abv" path="res://images/settings_bgs/turnsystem1.png" id="5_g0l6d"]
 [ext_resource type="Shader" uid="uid://cwx3em0yxeatv" path="res://themes/shaders/crt.gdshader" id="6_oeblk"]
+[ext_resource type="Texture2D" uid="uid://68q1igx50bji" path="res://images/settings_bgs/dark_bg.png" id="7_csi48"]
 [ext_resource type="Texture2D" uid="uid://bqmsni0e4qkkj" path="res://images/thongngn.png" id="7_oeblk"]
 [ext_resource type="AudioStream" uid="uid://m8jy1gikgd4s" path="res://sfx/scan.mp3" id="7_oirde"]
+[ext_resource type="Texture2D" uid="uid://tcnfqvgr5rep" path="res://images/truck_normal.png" id="8_1fmgy"]
 [ext_resource type="AudioStream" uid="uid://cgmj2inommki0" path="res://sfx/buzzer.wav" id="8_cs4w5"]
 [ext_resource type="AudioStream" uid="uid://cq7chuyob5hmb" path="res://sfx/windsmall.mp3" id="8_ln2eu"]
 [ext_resource type="AudioStream" uid="uid://b5ole32mkpnkr" path="res://sfx/gate_open.wav" id="8_svwcg"]
 [ext_resource type="AudioStream" uid="uid://d0wrty3yt3042" path="res://sfx/gate_close.wav" id="9_cs4w5"]
+[ext_resource type="Texture2D" uid="uid://cilxjyr3er8jx" path="res://images/buzzer_off.png" id="9_d15ak"]
 [ext_resource type="AudioStream" uid="uid://c4pg00ioew26c" path="res://sfx/cicadas.mp3" id="9_d50hb"]
+[ext_resource type="Texture2D" uid="uid://juo3htecvfjb" path="res://images/buzzer_process.png" id="10_csi48"]
 [ext_resource type="AudioStream" uid="uid://bqceg1g3xh4i1" path="res://sfx/roomtone1.mp3" id="10_vfikc"]
 [ext_resource type="AudioStream" uid="uid://g70nari74vns" path="res://sfx/computer_start.wav" id="11_1e40v"]
+[ext_resource type="Texture2D" uid="uid://kjvu4jmrdasc" path="res://images/buzzer_on.png" id="11_1fmgy"]
 [ext_resource type="AudioStream" uid="uid://bnb2nxvibxmov" path="res://music/daRKNRESSSS.wav" id="11_d50hb"]
+[ext_resource type="PackedScene" uid="uid://dyq4pncofkyue" path="res://scenes/clock.tscn" id="12_0synx"]
 [ext_resource type="AudioStream" uid="uid://u2kwsta7w3a2" path="res://sfx/drive_up.wav" id="12_svwcg"]
 [ext_resource type="AudioStream" uid="uid://bun3mkfyi8gho" path="res://sfx/drive_away2.wav" id="13_cs4w5"]
 [ext_resource type="Texture2D" uid="uid://c6co8wv3dcp6t" path="res://images/settings_bgs/turnsystem3.png" id="13_dttfu"]
@@ -91,18 +97,44 @@ shader_parameter/noise_opacity = 0.034000001615
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.17200000817
 shader_parameter/aberration = 4.7499999933364734e-08
-shader_parameter/brightness = 1.3900000000000001
+shader_parameter/brightness = 1.39
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 1.7470000829824999
+shader_parameter/warp_amount = 1.7470000829825
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 5.06
 shader_parameter/vignette_opacity = 0.034000001615
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_m36io"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_d15ak")
+}, {
+"duration": 0.08,
+"texture": ExtResource("10_csi48")
+}, {
+"duration": 3.7,
+"texture": ExtResource("11_1fmgy")
+}, {
+"duration": 0.08,
+"texture": ExtResource("10_csi48")
+}, {
+"duration": 6.0,
+"texture": ExtResource("9_d15ak")
+}],
+"loop": false,
+"name": &"interact",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hodh1"]
-size = Vector2(351.625, 266.25)
+size = Vector2(490, 148)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mn8mh"]
 size = Vector2(843.90625, 861)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buoce"]
+size = Vector2(465, 124)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jux77"]
 
@@ -117,10 +149,10 @@ height = 592.0
 radius = 35.510563
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_24ock"]
-radius = 177.63446
+radius = 354.40796
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1e40v"]
-size = Vector2(391, 578)
+size = Vector2(842.5, 578)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24ock"]
 size = Vector2(482.5, 516)
@@ -219,12 +251,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="bg2" type="ColorRect" parent="."]
+[node name="bg4" type="TextureRect" parent="."]
 offset_top = -923.0
 offset_right = 3900.0
 offset_bottom = 157.0
 scale = Vector2(1.7156413, 1.7156413)
-color = Color(0, 0, 0, 0.762)
+texture = ExtResource("7_csi48")
+
+[node name="car" type="TextureRect" parent="."]
+offset_top = -923.0
+offset_right = 3900.0
+offset_bottom = 157.0
+scale = Vector2(1.7156413, 1.7156413)
+texture = ExtResource("8_1fmgy")
 
 [node name="bg" type="TextureRect" parent="."]
 offset_top = -923.0
@@ -263,8 +302,15 @@ drag_horizontal_enabled = true
 [node name="Buzzer" type="Area2D" parent="."]
 position = Vector2(1653, 547)
 
+[node name="animation" type="AnimatedSprite2D" parent="Buzzer"]
+position = Vector2(315, 209)
+scale = Vector2(1.673877, 1.673877)
+sprite_frames = SubResource("SpriteFrames_m36io")
+animation = &"interact"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buzzer"]
-position = Vector2(491.1875, 117)
+position = Vector2(383, 134)
+scale = Vector2(0.77352023, 1.15874)
 shape = SubResource("RectangleShape2D_hodh1")
 
 [node name="Computer" type="Area2D" parent="."]
@@ -273,6 +319,17 @@ position = Vector2(2821, -91)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Computer"]
 position = Vector2(736.0469, 431.5)
 shape = SubResource("RectangleShape2D_mn8mh")
+
+[node name="Clock" type="Area2D" parent="."]
+position = Vector2(2403, 443)
+
+[node name="clock" parent="Clock" instance=ExtResource("12_0synx")]
+position = Vector2(-121, -3.0517578e-05)
+scale = Vector2(1.5848422, 1.5848422)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clock"]
+position = Vector2(181, 127)
+shape = SubResource("RectangleShape2D_buoce")
 
 [node name="Scare" type="Area2D" parent="."]
 position = Vector2(4363, 40)
@@ -287,7 +344,7 @@ shape = SubResource("CapsuleShape2D_jux77")
 position = Vector2(275, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jane"]
-position = Vector2(475.75, 34.75)
+position = Vector2(307, 240)
 shape = SubResource("RectangleShape2D_oirde")
 
 [node name="Window" type="Area2D" parent="."]
@@ -312,16 +369,17 @@ script = ExtResource("4_c1lty")
 shape = SubResource("CircleShape2D_8p4ax")
 
 [node name="ID" type="Area2D" parent="."]
-position = Vector2(5681, -213)
+position = Vector2(5405, 63)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ID"]
+position = Vector2(193, 78)
 shape = SubResource("CircleShape2D_24ock")
 
 [node name="leave_QA" type="Area2D" parent="."]
 position = Vector2(5681, -213)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leave_QA"]
-position = Vector2(38, 122)
+position = Vector2(38, 420)
 shape = SubResource("RectangleShape2D_1e40v")
 
 [node name="Scanner" type="Area2D" parent="."]

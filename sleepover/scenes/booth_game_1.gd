@@ -12,6 +12,7 @@ extends Node2D
 @onready var scanner = $Scanner
 
 @onready var movement_texture = $movement
+@onready var vehicle = $car
 
 @onready var beep = $sfx/beep
 @onready var wind = $sfx/wind
@@ -24,6 +25,7 @@ extends Node2D
 @onready var leave_QA = $leave_QA
 
 @onready var buzzer = $Buzzer
+@onready var buzzer_animation = $Buzzer/animation
 @onready var buzzer_A = $Buzzer/CollisionShape2D
 @onready var buzzer_sfx = $sfx/buzzer
 
@@ -38,6 +40,14 @@ extends Node2D
 @onready var computer_interact = $Computer
 
 
+@onready var d_up = $Node2D/drive_up
+@onready var d_away = $Node2D/drive_away
+@onready var gate_o = $sfx/gate_open
+@onready var gate_c = $sfx/gate_close
+
+@onready var clock = $Clock
+@onready var clock_real = $Clock/clock
+
 
 #handssssss
 @onready var hand = $top/hand
@@ -45,12 +55,24 @@ var holding := false
 var id_insert = preload("res://images/test/card_insert.png")
 var id_hold = preload("res://images/test/card_take.png")
 
+var car = preload("res://images/smallcar_done.png")
+var car_grab = preload("res://images/smallcar_grab.png")
+
+var truck = preload("res://images/truck_normal.png")
+var truck_grab = preload("res://images/truck_grab.png")
+
+var VEHICLE_CHOICE = ""
+
 var talking = false
 var follow = false
 var processing = false
 var door_open = false
 var scared_1 = false
 
+var clock_spoke = false
+
+var GRADED_CHOICE : bool
+var STRIKES = 3
 var CURRENT_PERSON := 1
 
 var screen = preload("res://scenes/computerscreen.tscn").instantiate()
@@ -63,6 +85,7 @@ signal giveback
 signal finished
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	screen_image.day = 1
 	screen_image.person = 0
 	screen_image.hide()
@@ -74,29 +97,80 @@ func _ready() -> void:
 	fadeAnimation.play("fadein")
 	await fadeAnimation.animation_finished
 	fadeColor.hide()
-	#
-	#await speak("", "Those [shake]extreme measures[/shake] he mentioned...", "","","")
-	#await speak("", "Not a big fan.                            ", "","","")
-	#await speak("", "Anyways, I came here for a reason.", "","","")
-	#await speak("", "The game plan is in my notebook.", "","","")
-	#
-	#e()
+	talking = true
+	
+	await speak("", "Those [shake]extreme measures[/shake] he mentioned...", "","","")
+	await speak("", "Big yikes.", "","","")
+	await speak("", "I should try my best to [pulse]avoid [/pulse]that. ", "","","")
+	await speak("", "I didn't work hard getting this just to have to deal with that.", "","","")
+	await speak("", "The game plan is in my notebook.", "","","")
+	
+	e()
 	follow = true
 	
+	
+	# 1
+	VEHICLE_CHOICE = "car"
 	card_sequence()
+	
+	await d_up.finished
+	screen_image.current_weight = 3050
+	
+	await wait(1.0)
+	
+	if not talking:
+		talking = true
+		await speak("","Hey man it's late, can you move it?","","","")
+		e()
+	
 	await finished
+	match GRADED_CHOICE: #just find where it's false, and it will hold it against you
+		false:
+			STRIKES = STRIKES - 1
+	# 
 	
 	await wait(15.0)
 	
+	# 2
+	VEHICLE_CHOICE = "truck"
 	card_sequence()
-	await finished
 	
+	await d_up.finished
+	screen_image.current_weight = 8102
+	
+	await finished
+	match GRADED_CHOICE: #just find where it's false, and it will hold it against you
+		true:
+			STRIKES = STRIKES - 1
+	# 
+	
+	await wait(30.0)
+	
+	# 3
+	VEHICLE_CHOICE = "car"
+	card_sequence()
+	
+	await d_up.finished
+	screen_image.current_weight = 3245
+	
+	
+	await finished
+	match GRADED_CHOICE: #just find where it's false, and it will hold it against you
+		false:
+			STRIKES = STRIKES - 1
+	#
+	
+	day_done()
 
 func _process(delta: float) -> void:
 	
 	
 	if computer_filter.visible == true:
+		
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		
 		if Input.is_action_just_pressed("space"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			computer_screen_off()
 	
 	
@@ -142,6 +216,13 @@ func _process(delta: float) -> void:
 			interact("Take ID?")
 			if Input.is_action_just_pressed("click"): #turns off the id button and starts the texture process
 				id_A.disabled = true 
+				
+				match VEHICLE_CHOICE:
+					"car":
+						vehicle.texture = car
+					"truck":
+						vehicle.texture = truck
+						
 				card_holding() #though this is texture, it's not initating the next step.
 				#That would be when the scanner is clicked!!!!!!!! lol
 	elif computer_interact.overlaps_area(cursor): ### Debug plsss
@@ -158,10 +239,10 @@ func _process(delta: float) -> void:
 			
 			talking = true
 			
-			await speak("", "Should I tell him to get lost?","Yep.", "[wave]Check again.", "")
+			await speak("", "Should I tell them to get lost?","Yep.", "[wave]Check again.", "")
 			if t.choice == 1:
 				t._emote("sam","derp")
-				await speak("You", "Sorry man, you gotta go.","", "", "")
+				await speak("You", "Sorry, you gotta go. I don't make the rules.","", "", "")
 				t._emote("","")
 				await get_lost()
 			
@@ -174,6 +255,13 @@ func _process(delta: float) -> void:
 			interact("Scanner")
 			if Input.is_action_just_pressed("click"):
 				beep.play()
+				
+				talking = true
+				await speak("","It's pretty bulky.","","","")
+				await speak("","You'd think an advanced company lab place would have better security equipment.","","","")
+				await speak("","Though I guess that's where I come in. [wave]With my very special skill set.","","","")
+				e()
+				
 			return #stops here if not holding card for scan, so it wont reach if clicked event
 		
 		if Input.is_action_just_pressed("click"): #when holding card and scanner clicked, temp turn off the default button
@@ -212,6 +300,24 @@ func _process(delta: float) -> void:
 				return
 			
 			await come_in()
+	
+	elif clock.overlaps_area(cursor): 
+		interact("Clock")
+		
+		if Input.is_action_just_pressed("click"): #when holding card and scanner clicked, temp turn off the default button
+			talking = true
+			if not clock_spoke:
+				clock_spoke = true
+				await speak("", "What a nice clock.", "","","")
+				await speak("", "It would be shame to just leave it here.", "","","")
+				await speak("", "I do need a clock.", "","","")
+				await speak("", "[shake]No one would miss it.", "","","")
+				await speak("", "...", "","","")
+			elif clock_spoke:
+				await speak("", "I might take this later...", "","","")
+			
+			
+			e()
 	
 	elif scare1.overlaps_area(cursor): 
 		
@@ -299,12 +405,8 @@ func wait(seconds: float) -> void:
 
 
 
-@onready var d_up = $Node2D/drive_up
-@onready var d_away = $Node2D/drive_away
-@onready var gate_o = $sfx/gate_open
-@onready var gate_c = $sfx/gate_close
-
 func card_sequence(): #main function for scanning, though it's more indirect than direct
+	vehicle.texture = null
 	#doin prelims, for reseting possibly idk
 	leave_QA_area.disabled = true
 	id_A.disabled = true
@@ -314,15 +416,29 @@ func card_sequence(): #main function for scanning, though it's more indirect tha
 	d_up.play()
 	
 	#then wait and then stick hand out for id
-	await wait(3.0)
-	movement_texture.texture = null #CHANGE THIS TO THE UPDATED TEXTURE
+	await wait(2.0)
+	
+	match VEHICLE_CHOICE:
+		"car":
+			vehicle.texture = car
+		"truck":
+			vehicle.texture = truck
+	await wait(4.0)
+	
+	match VEHICLE_CHOICE:
+		"car":
+			vehicle.texture = car_grab
+		"truck":
+			vehicle.texture = truck_grab
+			
 	id_A.disabled = false
 	
 	#then grab, scan, and giveback
 	await giveback
 	leave_QA.show()
 	leave_QA_area.disabled = false # turns on choice to tell him to leave 
-	
+	await finished
+	clock_real.time = clock_real.time + 1
 	
 	#then check computer screen for clearance (5), license, weight (cars get 3,000 pounds, trucks get 8,000)
 	#then log them in log book
@@ -336,9 +452,11 @@ func get_lost(driver_message:= "Dang."):
 	e()
 	d_away.play()
 	await wait(2.0)
-	movement_texture.texture = null
+	vehicle.texture = null
 	await d_away.finished
 	
+	screen_image.current_weight = 0
+	GRADED_CHOICE = false
 	emit_signal("finished")
 
 func come_in(driver_message:= "Thanks."):
@@ -348,17 +466,21 @@ func come_in(driver_message:= "Thanks."):
 	buzzer_sfx.play()
 	gate_o.play()
 	
+	
+	buzzer_animation.play("interact")
 	talking = true
 	await speak("Driver",driver_message,"","","")
 	e()
 	
 	d_away.play()
 	await wait(2.0)
-	movement_texture.texture = null
+	vehicle.texture = null
+	
 	await d_away.finished
 	
 	gate_c.play()
-	
+	screen_image.current_weight = 0
+	GRADED_CHOICE = true
 	emit_signal("finished")
 
 
@@ -379,3 +501,6 @@ func openDoor() -> void:
 #
 #func hide_screen():
 	#screen.queue_free()
+
+func day_done():
+	print(STRIKES)

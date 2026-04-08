@@ -12,6 +12,7 @@ extends Node2D
 
 #AREAS
 @onready var benny = $benny/Area2D
+@onready var bennyv = $benny
 @onready var benny_C = $benny/Area2D/CollisionShape2D
 @onready var ENTER = $ENTER
 @onready var ENTER_C = $ENTER/CollisionShape2D
@@ -24,14 +25,32 @@ var enter_vant = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ENTER.monitoring = false
+	p.moving = false
 	#p.last_action = "l"
 	
 	cutscene("RESET")
 	fadeAnimation.play("fadein")
-	
+	await wait(2)
 	t._emote("", "")
-	await speak("", "Bike locked.", "", "", "")
 	bikeSFX.play()
+	await speak("", "Bike locked.", "", "", "")
+	await wait(1)
+	t._emote("sam", "normal")
+	speak("You", "... ", "", "", "")
+	p.emote_icon("dots")
+	talking = true
+	
+	await wait(2.0)
+	
+	talking = true
+	t._emote("sam", "normal")
+	await speak("You", "I need a car. ", "", "", "")
+	await speak("You", "Before that, I need a job. ", "", "", "")
+	t._emote("sam", "smile2")
+	await speak("You", "[wave]Yay, working...", "", "", "")
+	e()
+	
+	
 	e()
 	
 
@@ -49,13 +68,18 @@ func _process(delta: float) -> void:
 				print("debug")
 				talking = true
 				t._emote("benny", "normal")
-				await speak("...", "Good evening.", "", "", "")
+				await speak("...", "Good evening, Bike man!", "", "", "")
 				t._emote("sam", "normal")
 				await speak("You", "Hey Benny.", "", "", "")
+				await speak("You", "Also, quit calling me that. It's demeaning.", "", "", "")
+				await speak("You", "It's just Sam.", "", "", "")
+				await speak("You", "Would you like me calling you, I dunno, Unibrow?", "", "", "")
+				bennyv.emote_icon("dots")
+				await speak("You", "Yeah, I didn't think so.", "", "", "")
 				t._emote("benny", "normal")
-				await speak("Benny", "Another job?", "", "", "")
+				await speak("Benny", "You got another job?", "", "", "")
 				t._emote("sam", "normal")
-				await speak("You", "Another job.", "", "", "")
+				await speak("You", "Yeah. ", "", "", "")
 				t._emote("", "")
 				benny_C.disabled = true
 				ENTER_C.disabled = false
@@ -78,25 +102,25 @@ func _process(delta: float) -> void:
 				talking = true
 				p.can_interact = false
 				
-				await speak("Benny", "You are good guy.", "", "", "")
+				await speak("Benny", "Bike guy.", "", "", "")
 				
 				p.last_action = "d"
 				#p.last_action = ""
 				
 				await p.emote_icon("exclamation")
 				t._emote("sam", "derp")
-				await speak("You", "Thanks?", "", "", "")
+				await speak("You", "Yes, Unibrow?", "", "", "")
 				t._emote("benny", "normal")
-				await speak("Benny", "You should get real job, not crap made for bums.", "", "", "")
+				await speak("Benny", "You should get real job, not these bummy job.", "", "", "")
 				
 				t._emote("sam", "normal")
 				await speak("You", "That's probably the nicest thing you've ever said to me.", "", "", "")
-				await speak("You", "And that might be the first positive thing you've said since we met last year.", "", "", "")
+				await speak("You", "Even with that intimidatingly heavy accent, I think I'm going to tear up.", "", "", "")
 				await speak("You", "When you said bums, does that imply that you're a bum?", "", "", "")
-				speak("You", "Hope you know I dont think-", "", "", "")
+				speak("You", "Hope you know I dont think-sas  ", "", "", "")
 				await wait(1.0)
 				t._emote("benny", "normal")
-				await speak("Benny", "Go in.", "", "", "")
+				await speak("Benny", "In. Now.", "", "", "")
 				
 				p.last_action = "l"
 				
