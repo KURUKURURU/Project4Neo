@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=4 uid="uid://brawv17r5t0ic"]
+[gd_scene load_steps=24 format=4 uid="uid://brawv17r5t0ic"]
 
 [ext_resource type="Script" uid="uid://dn5f3u1totlss" path="res://scenes/startarea.gd" id="1_apjf7"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="1_iyu60"]
 [ext_resource type="Texture2D" uid="uid://dr3nrn1ac12p2" path="res://images/test/estttt.png" id="3_apjf7"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="3_bxioc"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_c4uvy"]
+[ext_resource type="Texture2D" uid="uid://cm26nslaq34jh" path="res://images/player/bike.png" id="5_cxax8"]
 [ext_resource type="PackedScene" uid="uid://8yxgscete44d" path="res://scenes/npc.tscn" id="6_5u4ro"]
 [ext_resource type="AudioStream" uid="uid://7hruycijxbn3" path="res://sfx/ambience_street.wav" id="7_u6fly"]
 [ext_resource type="AudioStream" uid="uid://6hg5ytg3dyhx" path="res://sfx/bikeplace.mp3" id="8_ovo77"]
@@ -145,10 +146,19 @@ mouse_filter = 2
 texture = ExtResource("3_c4uvy")
 
 [node name="test" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1300.0
+offset_bottom = 2160.0
 scale = Vector2(0.99799556, 0.99799556)
 texture = ExtResource("3_apjf7")
+
+[node name="bike2" type="TextureRect" parent="."]
+self_modulate = Color(0.22882555, 0.1590399, 0.22882555, 1)
+offset_left = 554.0
+offset_top = 256.0
+offset_right = 816.0
+offset_bottom = 406.0
+scale = Vector2(0.8469064, 0.8469064)
+texture = ExtResource("5_cxax8")
 
 [node name="Player" parent="." instance=ExtResource("3_bxioc")]
 modulate = Color(0.55815613, 0.55815613, 0.55815613, 1)

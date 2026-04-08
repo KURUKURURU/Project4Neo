@@ -29,6 +29,7 @@ func _ready() -> void:
 	p.can_interact = false
 	
 	await biking.animation_finished
+	$top/day/animation.play("thing")
 	wind.play()
 	cicadas.play()
 	aura.play()

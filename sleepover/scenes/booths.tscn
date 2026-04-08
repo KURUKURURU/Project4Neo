@@ -1,14 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://n27dfrxyq3d2"]
+[gd_scene load_steps=24 format=4 uid="uid://n27dfrxyq3d2"]
 
 [ext_resource type="PackedScene" uid="uid://c762xcsn0ch8a" path="res://scenes/biking_scene.tscn" id="1_40xye"]
 [ext_resource type="Script" uid="uid://dq518eectkhot" path="res://scenes/booths.gd" id="1_cngsr"]
 [ext_resource type="PackedScene" uid="uid://ci64unodp0266" path="res://scenes/tools/talking_ui.tscn" id="2_cngsr"]
 [ext_resource type="Texture2D" uid="uid://sq2s7flwqc04" path="res://images/filter.png" id="3_1kclb"]
 [ext_resource type="PackedScene" uid="uid://btluxgttgiqbe" path="res://scenes/player.tscn" id="5_1kclb"]
-[ext_resource type="Texture2D" uid="uid://vq1bvsvccllf" path="res://images/test/5.png" id="6_3n54q"]
+[ext_resource type="Texture2D" uid="uid://bnoj8tclje07n" path="res://images/5.png" id="5_e2hqt"]
+[ext_resource type="FontFile" uid="uid://bmjxagehe61x7" path="res://fonts/scott___.ttf" id="5_hy8wo"]
+[ext_resource type="Texture2D" uid="uid://cm26nslaq34jh" path="res://images/player/bike.png" id="6_idmta"]
+[ext_resource type="Script" uid="uid://b7w7a7rr2tx7d" path="res://scenes/day.gd" id="6_xvuhw"]
 [ext_resource type="AudioStream" uid="uid://cq7chuyob5hmb" path="res://sfx/windsmall.mp3" id="7_e2hqt"]
 [ext_resource type="AudioStream" uid="uid://c4pg00ioew26c" path="res://sfx/cicadas.mp3" id="8_ms2ed"]
 [ext_resource type="AudioStream" uid="uid://bnb2nxvibxmov" path="res://music/daRKNRESSSS.wav" id="9_idmta"]
+[ext_resource type="Texture2D" uid="uid://ct1r5gaiq6hf6" path="res://images/settings_bgs/barrier.png" id="10_ms2ed"]
 
 [sub_resource type="Animation" id="Animation_nmf60"]
 length = 0.001
@@ -62,8 +66,56 @@ _data = {
 &"fadein": SubResource("Animation_u6fly")
 }
 
+[sub_resource type="Animation" id="Animation_kjfru"]
+resource_name = "thing"
+length = 2.444
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666, 1.9, 2.444),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 0.3189972, 1), Color(1, 1, 0.31764707, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kvv8n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4ghe"]
+_data = {
+&"RESET": SubResource("Animation_kvv8n"),
+&"thing": SubResource("Animation_kjfru")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xxu2"]
 size = Vector2(162, 178)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idmta"]
+texture = ExtResource("10_ms2ed")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(31, 50, -50, 50, 50, 50, 50, -50, -50, -50, -50, 50, -50, 50, 50, 50)
+
+[sub_resource type="TileSet" id="TileSet_hy8wo"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_idmta")
 
 [node name="Booths" type="Node2D"]
 script = ExtResource("1_cngsr")
@@ -73,7 +125,6 @@ script = ExtResource("1_cngsr")
 [node name="BikingScene" parent="top" instance=ExtResource("1_40xye")]
 
 [node name="talking_ui" parent="top" instance=ExtResource("2_cngsr")]
-visible = false
 z_index = 5
 position = Vector2(-21, 0)
 
@@ -95,17 +146,50 @@ offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("3_1kclb")
 
+[node name="day" type="RichTextLabel" parent="top"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 470.0
+offset_top = 100.0
+offset_right = 872.0
+offset_bottom = 243.0
+theme_override_fonts/normal_font = ExtResource("5_hy8wo")
+theme_override_font_sizes/normal_font_size = 91
+text = "DAY ONE"
+script = ExtResource("6_xvuhw")
+
+[node name="animation" type="AnimationPlayer" parent="top/day"]
+libraries = {
+&"": SubResource("AnimationLibrary_l4ghe")
+}
+
 [node name="bg" type="TextureRect" parent="."]
 offset_right = 1300.0
 offset_bottom = 1080.0
-texture = ExtResource("6_3n54q")
+texture = ExtResource("5_e2hqt")
+
+[node name="bike" type="TextureRect" parent="."]
+self_modulate = Color(0.22882555, 0.1590399, 0.22882555, 1)
+offset_left = 324.99997
+offset_top = 783.99994
+offset_right = 587.0
+offset_bottom = 933.99994
+scale = Vector2(1.5493306, 1.5493306)
+texture = ExtResource("6_idmta")
 
 [node name="Player" parent="." instance=ExtResource("5_1kclb")]
-position = Vector2(163, 815)
+modulate = Color(0.4969692, 0.30519488, 0.4969692, 1)
+position = Vector2(509, 968)
+scale = Vector2(1.5027397, 1.5027397)
 speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-3.0517578e-05, -1.5258789e-05)
+scale = Vector2(54.554268, 1.03821)
 zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = 0
+limit_right = 1796
+limit_bottom = 1361
 position_smoothing_enabled = true
 position_smoothing_speed = 3.5
 
@@ -113,7 +197,7 @@ position_smoothing_speed = 3.5
 position = Vector2(720, 513)
 
 [node name="col" type="CollisionShape2D" parent="start"]
-position = Vector2(0, 27)
+position = Vector2(393, 38)
 shape = SubResource("RectangleShape2D_8xxu2")
 
 [node name="wind2" type="AudioStreamPlayer" parent="."]
@@ -130,5 +214,12 @@ pitch_scale = 0.72
 [node name="darknessssss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_idmta")
 volume_db = -33.347
+
+[node name="barrier" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(267, 0)
+scale = Vector2(0.97930604, 1.0341561)
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wYAAAAAAAAAAAD9/wcAAAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAP//AAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAP//AAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAALAP//AAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAAMAP//AAAAAAAAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAANAP//AAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAAOAP//AAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAP//AAAAAAAAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAD8/wkAAAAAAAAAAAD8/woAAAAAAAAAAAD8/wsAAAAAAAAAAAD8/wwAAAAAAAAAAAD8/w0AAAAAAAAAAAD9/w0AAAAAAAAAAAD+/w0AAAAAAAAAAAD//w0AAAAAAAAAAAAAAA0AAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAAQAAsAAAAAAAAAAAAQAAwAAAAAAAAAAAD8/wgAAAAAAAAAAAD8/wUAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wcAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_hy8wo")
 
 [connection signal="BIKE_DONE" from="top/BikingScene" to="." method="_BIKE_DONE"]

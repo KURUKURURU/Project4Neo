@@ -438,6 +438,7 @@ func card_sequence(): #main function for scanning, though it's more indirect tha
 	leave_QA.show()
 	leave_QA_area.disabled = false # turns on choice to tell him to leave 
 	await finished
+	leave_QA_area.disabled = true
 	clock_real.time = clock_real.time + 1
 	
 	#then check computer screen for clearance (5), license, weight (cars get 3,000 pounds, trucks get 8,000)
@@ -504,3 +505,6 @@ func openDoor() -> void:
 
 func day_done():
 	print(STRIKES)
+	await wait(2.0)
+	
+	$top/RichTextLabel.show()

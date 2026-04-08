@@ -93,13 +93,13 @@ var dots = ""
 
 func _loop_load():
 	loop_load = loop_load + dots
-	
-	dots = "."
-	await wait(0.2)
-	dots = ".."
-	await wait(0.2)
-	dots = "..."
-	await wait(0.2)
+	#
+	#dots = "."
+	#await wait(0.2)
+	#dots = ".."
+	#await wait(0.2)
+	#dots = "..."
+	#await wait(0.2)
 
 func notes() -> void:
 	_image.texture = null

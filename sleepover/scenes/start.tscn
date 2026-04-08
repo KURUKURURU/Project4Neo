@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgsuw1k15j5ks"]
+
+[ext_resource type="Texture2D" uid="uid://bqmkypsap1820" path="res://images/test/serg.png" id="1_kdmts"]
+[ext_resource type="Texture2D" uid="uid://conax40mgqbwv" path="res://images/test/erfs.png" id="2_0auqf"]
+[ext_resource type="Texture2D" uid="uid://dsi47lp74x5nv" path="res://images/test/wer.png" id="3_y16t7"]
+[ext_resource type="Script" uid="uid://dr2espp2gvdwp" path="res://scenes/img.gd" id="4_0auqf"]
+[ext_resource type="FontFile" uid="uid://ctanbuyj126er" path="res://fonts/BPdots/BPdots.otf" id="4_4ge6i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8itgj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kdmts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0auqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y16t7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="img" type="AnimatedSprite2D" parent="."]
+position = Vector2(650, 540)
+sprite_frames = SubResource("SpriteFrames_8itgj")
+autoplay = "default"
+frame_progress = 0.16821164
+script = ExtResource("4_0auqf")
+
+[node name="start" type="TextureButton" parent="."]
+offset_left = 559.0
+offset_top = 527.0
+offset_right = 731.0
+offset_bottom = 668.0
+
+[node name="credit" type="RichTextLabel" parent="."]
+offset_left = 1110.0
+offset_top = 1011.0
+offset_right = 1358.0
+offset_bottom = 1075.0
+theme_override_fonts/normal_font = ExtResource("4_4ge6i")
+theme_override_font_sizes/normal_font_size = 36
+text = "by ava"
+
+[connection signal="pressed" from="start" to="img" method="_on_start_pressed"]

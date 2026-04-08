@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 				print("debug")
 				talking = true
 				t._emote("benny", "normal")
-				await speak("...", "Good evening, Bike man!", "", "", "")
+				await speak("...", "[shake]Good evening, Bike man!", "", "", "")
 				t._emote("sam", "normal")
 				await speak("You", "Hey Benny.", "", "", "")
 				await speak("You", "Also, quit calling me that. It's demeaning.", "", "", "")
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 				bennyv.emote_icon("dots")
 				await speak("You", "Yeah, I didn't think so.", "", "", "")
 				t._emote("benny", "normal")
-				await speak("Benny", "You got another job?", "", "", "")
+				await speak("Benny", "[shake rate=5 level=5]You get more job?", "", "", "")
 				t._emote("sam", "normal")
 				await speak("You", "Yeah. ", "", "", "")
 				t._emote("", "")
@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 				talking = true
 				p.can_interact = false
 				
-				await speak("Benny", "Bike guy.", "", "", "")
+				await speak("Benny", "[shake rate=2 level=5]Bike guy.", "", "", "")
 				
 				p.last_action = "d"
 				#p.last_action = ""
@@ -111,7 +111,7 @@ func _process(delta: float) -> void:
 				t._emote("sam", "derp")
 				await speak("You", "Yes, Unibrow?", "", "", "")
 				t._emote("benny", "normal")
-				await speak("Benny", "You should get real job, not these bummy job.", "", "", "")
+				await speak("Benny", "[shake rate=5 level=5]You should get real job, not job made for bum.", "", "", "")
 				
 				t._emote("sam", "normal")
 				await speak("You", "That's probably the nicest thing you've ever said to me.", "", "", "")
@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 				speak("You", "Hope you know I dont think-sas  ", "", "", "")
 				await wait(1.0)
 				t._emote("benny", "normal")
-				await speak("Benny", "In. Now.", "", "", "")
+				await speak("Benny", "[shake rate=5 level=5]In. Now.", "", "", "")
 				
 				p.last_action = "l"
 				

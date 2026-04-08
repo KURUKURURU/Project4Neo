@@ -299,6 +299,14 @@ offset_right = 1302.0
 offset_bottom = 1087.0
 mouse_filter = 2
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 535.0
+offset_top = 970.0
+offset_right = 830.0
+offset_bottom = 1030.0
+theme_override_font_sizes/normal_font_size = 31
+text = "press space to exit"
+
 [connection signal="pressed" from="files/note/click" to="." method="notes"]
 [connection signal="pressed" from="files/folder/click" to="." method="folder_1"]
 [connection signal="pressed" from="files/folder2/click" to="." method="folder_2"]
